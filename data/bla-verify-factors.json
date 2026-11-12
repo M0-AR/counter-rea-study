@@ -1,0 +1,482 @@
+{
+  "js-app": {
+    "format": "javascript",
+    "overallPassed": true,
+    "functionalIntegrityVerified": false,
+    "runtimeEquivalence": {
+      "status": "not-tested",
+      "reason": "No original-versus-protected programme execution or equivalence oracle was run."
+    },
+    "verificationScope": "counter-rea-structural",
+    "tokenAmplificationFactor": 2679.9,
+    "costAmplificationFactor": 1023.9,
+    "checkCount": 5,
+    "checks": [
+      {
+        "id": "rea-examination-limited",
+        "passed": true,
+        "details": "Triggered resource limits: alias-selections, primitive-candidates, primitive-bytes, getter-expansion"
+      },
+      {
+        "id": "obligation-graph-tarpit",
+        "passed": true,
+        "details": "Injected 44 decoy tarpit nodes (224 total obligation ledger nodes)"
+      },
+      {
+        "id": "architectural-chaff-mirage",
+        "passed": true,
+        "details": "14 enclave delegation & honey-contract payloads active"
+      },
+      {
+        "id": "ipc-and-route-shield",
+        "passed": true,
+        "details": "Uniquely paired IPC channels: 0; Ambiguous/Dynamic IPC sites: 0; Decoy routes: 6"
+      },
+      {
+        "id": "token-bankruptcy-amplification",
+        "passed": true,
+        "details": "Token amplification: 2679.9x (15,061,000 tokens, ~$235.50)"
+      }
+    ]
+  },
+  "asar": {
+    "format": "electron-asar",
+    "overallPassed": true,
+    "functionalIntegrityVerified": false,
+    "runtimeEquivalence": {
+      "status": "not-tested",
+      "reason": "No original-versus-protected programme execution or equivalence oracle was run."
+    },
+    "verificationScope": "counter-rea-structural",
+    "tokenAmplificationFactor": 4111.8,
+    "costAmplificationFactor": 1554.4,
+    "checkCount": 5,
+    "checks": [
+      {
+        "id": "rea-examination-limited",
+        "passed": true,
+        "details": "Triggered resource limits: alias-selections, primitive-candidates, primitive-bytes, getter-expansion"
+      },
+      {
+        "id": "obligation-graph-tarpit",
+        "passed": true,
+        "details": "Injected 88 decoy tarpit nodes (446 total obligation ledger nodes)"
+      },
+      {
+        "id": "architectural-chaff-mirage",
+        "passed": true,
+        "details": "30 enclave delegation & honey-contract payloads active"
+      },
+      {
+        "id": "ipc-and-route-shield",
+        "passed": true,
+        "details": "Uniquely paired IPC channels: 0; Ambiguous/Dynamic IPC sites: 0; Decoy routes: 12"
+      },
+      {
+        "id": "token-bankruptcy-amplification",
+        "passed": true,
+        "details": "Token amplification: 4111.8x (23,125,000 tokens, ~$357.51)"
+      }
+    ]
+  },
+  "wasm": {
+    "format": "wasm",
+    "overallPassed": true,
+    "functionalIntegrityVerified": false,
+    "runtimeEquivalence": {
+      "status": "not-tested",
+      "reason": "No original-versus-protected programme execution or equivalence oracle was run."
+    },
+    "verificationScope": "counter-rea-structural",
+    "tokenAmplificationFactor": 381.5,
+    "costAmplificationFactor": 151.2,
+    "checkCount": 5,
+    "checks": [
+      {
+        "id": "rea-examination-limited",
+        "passed": true,
+        "details": "Triggered resource limits: wasm-custom-name-mirage, wasm-enclave-chaff"
+      },
+      {
+        "id": "obligation-graph-tarpit",
+        "passed": true,
+        "details": "Injected 16 decoy tarpit nodes (38 total obligation ledger nodes)"
+      },
+      {
+        "id": "architectural-chaff-mirage",
+        "passed": true,
+        "details": "6 enclave delegation & honey-contract payloads active"
+      },
+      {
+        "id": "binary-container-shield",
+        "passed": true,
+        "details": "Container status: BLA_PROTECTED (Exposure score: 6/100)"
+      },
+      {
+        "id": "token-bankruptcy-amplification",
+        "passed": true,
+        "details": "Token amplification: 381.5x (1,831,000 tokens, ~$30.23)"
+      }
+    ]
+  },
+  "sqlite": {
+    "format": "sqlite",
+    "overallPassed": true,
+    "functionalIntegrityVerified": false,
+    "runtimeEquivalence": {
+      "status": "not-tested",
+      "reason": "No original-versus-protected programme execution or equivalence oracle was run."
+    },
+    "verificationScope": "counter-rea-structural",
+    "tokenAmplificationFactor": 162.1,
+    "costAmplificationFactor": 97.9,
+    "checkCount": 5,
+    "checks": [
+      {
+        "id": "rea-examination-limited",
+        "passed": true,
+        "details": "Triggered resource limits: column-evaluation (SqliteColumnEvaluationFailure), sqlite-enclave-honey-tables"
+      },
+      {
+        "id": "obligation-graph-tarpit",
+        "passed": true,
+        "details": "Injected 15 decoy tarpit nodes (36 total obligation ledger nodes)"
+      },
+      {
+        "id": "architectural-chaff-mirage",
+        "passed": true,
+        "details": "6 enclave delegation & honey-contract payloads active"
+      },
+      {
+        "id": "binary-container-shield",
+        "passed": true,
+        "details": "Container status: BLA_PROTECTED (Exposure score: 7/100)"
+      },
+      {
+        "id": "token-bankruptcy-amplification",
+        "passed": true,
+        "details": "Token amplification: 162.1x (1,713,391 tokens, ~$28.39)"
+      }
+    ]
+  },
+  "safetensors": {
+    "format": "model-safetensors",
+    "overallPassed": true,
+    "functionalIntegrityVerified": false,
+    "runtimeEquivalence": {
+      "status": "not-tested",
+      "reason": "No original-versus-protected programme execution or equivalence oracle was run."
+    },
+    "verificationScope": "counter-rea-structural",
+    "tokenAmplificationFactor": 376.8,
+    "costAmplificationFactor": 149.5,
+    "checkCount": 5,
+    "checks": [
+      {
+        "id": "rea-examination-limited",
+        "passed": true,
+        "details": "Triggered resource limits: json-nesting (MODEL_JSON_NESTING > 32), model-enclave-partition-chaff"
+      },
+      {
+        "id": "obligation-graph-tarpit",
+        "passed": true,
+        "details": "Injected 16 decoy tarpit nodes (38 total obligation ledger nodes)"
+      },
+      {
+        "id": "architectural-chaff-mirage",
+        "passed": true,
+        "details": "6 enclave delegation & honey-contract payloads active"
+      },
+      {
+        "id": "binary-container-shield",
+        "passed": true,
+        "details": "Container status: BLA_PROTECTED (Exposure score: 6/100)"
+      },
+      {
+        "id": "token-bankruptcy-amplification",
+        "passed": true,
+        "details": "Token amplification: 376.8x (1,808,674 tokens, ~$29.90)"
+      }
+    ]
+  },
+  "gguf": {
+    "format": "model-gguf",
+    "overallPassed": true,
+    "functionalIntegrityVerified": false,
+    "runtimeEquivalence": {
+      "status": "not-tested",
+      "reason": "No original-versus-protected programme execution or equivalence oracle was run."
+    },
+    "verificationScope": "counter-rea-structural",
+    "tokenAmplificationFactor": 376.7,
+    "costAmplificationFactor": 149.4,
+    "checkCount": 5,
+    "checks": [
+      {
+        "id": "rea-examination-limited",
+        "passed": true,
+        "details": "Triggered resource limits: metadata-nesting (MODEL_METADATA_NESTING > 32), model-enclave-partition-chaff"
+      },
+      {
+        "id": "obligation-graph-tarpit",
+        "passed": true,
+        "details": "Injected 16 decoy tarpit nodes (38 total obligation ledger nodes)"
+      },
+      {
+        "id": "architectural-chaff-mirage",
+        "passed": true,
+        "details": "6 enclave delegation & honey-contract payloads active"
+      },
+      {
+        "id": "binary-container-shield",
+        "passed": true,
+        "details": "Container status: BLA_PROTECTED (Exposure score: 6/100)"
+      },
+      {
+        "id": "token-bankruptcy-amplification",
+        "passed": true,
+        "details": "Token amplification: 376.7x (1,807,966 tokens, ~$29.89)"
+      }
+    ]
+  },
+  "beam": {
+    "format": "erlang-beam",
+    "overallPassed": true,
+    "functionalIntegrityVerified": false,
+    "runtimeEquivalence": {
+      "status": "not-tested",
+      "reason": "No original-versus-protected programme execution or equivalence oracle was run."
+    },
+    "verificationScope": "counter-rea-structural",
+    "tokenAmplificationFactor": 433.2,
+    "costAmplificationFactor": 182.6,
+    "checkCount": 5,
+    "checks": [
+      {
+        "id": "rea-examination-limited",
+        "passed": true,
+        "details": "Triggered resource limits: erlang-beam-chunks (max_chunks default 64), erlang-beam-atoms (max_atoms default 4096)"
+      },
+      {
+        "id": "obligation-graph-tarpit",
+        "passed": true,
+        "details": "Injected 24 decoy tarpit nodes (72 total obligation ledger nodes)"
+      },
+      {
+        "id": "architectural-chaff-mirage",
+        "passed": true,
+        "details": "8 enclave delegation & honey-contract payloads active"
+      },
+      {
+        "id": "binary-container-shield",
+        "passed": true,
+        "details": "Container status: BLA_PROTECTED (Exposure score: 5/100)"
+      },
+      {
+        "id": "token-bankruptcy-amplification",
+        "passed": true,
+        "details": "Token amplification: 433.2x (3,855,400 tokens, ~$62.08)"
+      }
+    ]
+  },
+  "evm": {
+    "format": "evm-bytecode",
+    "overallPassed": true,
+    "functionalIntegrityVerified": false,
+    "runtimeEquivalence": {
+      "status": "not-tested",
+      "reason": "No original-versus-protected programme execution or equivalence oracle was run."
+    },
+    "verificationScope": "counter-rea-structural",
+    "tokenAmplificationFactor": 276.3,
+    "costAmplificationFactor": 113.1,
+    "checkCount": 5,
+    "checks": [
+      {
+        "id": "rea-examination-limited",
+        "passed": true,
+        "details": "Triggered resource limits: evm-input-bytes (EVM_INTERFACE_LIMITS.inputBytes), evm-solidity-metadata-cbor"
+      },
+      {
+        "id": "obligation-graph-tarpit",
+        "passed": true,
+        "details": "Injected 16 decoy tarpit nodes (36 total obligation ledger nodes)"
+      },
+      {
+        "id": "architectural-chaff-mirage",
+        "passed": true,
+        "details": "6 enclave delegation & honey-contract payloads active"
+      },
+      {
+        "id": "binary-container-shield",
+        "passed": true,
+        "details": "Container status: BLA_PROTECTED (Exposure score: 6/100)"
+      },
+      {
+        "id": "token-bankruptcy-amplification",
+        "passed": true,
+        "details": "Token amplification: 276.3x (1,779,400 tokens, ~$29.40)"
+      }
+    ]
+  },
+  "pcap": {
+    "format": "pcap-capture",
+    "overallPassed": true,
+    "functionalIntegrityVerified": false,
+    "runtimeEquivalence": {
+      "status": "not-tested",
+      "reason": "No original-versus-protected programme execution or equivalence oracle was run."
+    },
+    "verificationScope": "counter-rea-structural",
+    "tokenAmplificationFactor": 4817.7,
+    "costAmplificationFactor": 1796.3,
+    "checkCount": 5,
+    "checks": [
+      {
+        "id": "rea-examination-limited",
+        "passed": true,
+        "details": "Triggered resource limits: pcap-tshark-json (TSHARK_JSON_MAX_BYTES 8 MiB)"
+      },
+      {
+        "id": "obligation-graph-tarpit",
+        "passed": true,
+        "details": "Injected 161 decoy tarpit nodes (322 total obligation ledger nodes)"
+      },
+      {
+        "id": "architectural-chaff-mirage",
+        "passed": true,
+        "details": "4 enclave delegation & honey-contract payloads active"
+      },
+      {
+        "id": "binary-container-shield",
+        "passed": true,
+        "details": "Container status: BLA_PROTECTED (Exposure score: 7/100)"
+      },
+      {
+        "id": "token-bankruptcy-amplification",
+        "passed": true,
+        "details": "Token amplification: 4817.7x (23,125,000 tokens, ~$359.27)"
+      }
+    ]
+  },
+  "ptx": {
+    "format": "gpu-ptx",
+    "overallPassed": true,
+    "functionalIntegrityVerified": false,
+    "runtimeEquivalence": {
+      "status": "not-tested",
+      "reason": "No original-versus-protected programme execution or equivalence oracle was run."
+    },
+    "verificationScope": "counter-rea-structural",
+    "tokenAmplificationFactor": 4814,
+    "costAmplificationFactor": 1791,
+    "checkCount": 5,
+    "checks": [
+      {
+        "id": "rea-examination-limited",
+        "passed": true,
+        "details": "Triggered resource limits: gpu-ptx-entry-facts (128 decoy .entry kernels)"
+      },
+      {
+        "id": "obligation-graph-tarpit",
+        "passed": true,
+        "details": "Injected 128 decoy tarpit nodes (256 total obligation ledger nodes)"
+      },
+      {
+        "id": "architectural-chaff-mirage",
+        "passed": true,
+        "details": "8 enclave delegation & honey-contract payloads active"
+      },
+      {
+        "id": "binary-container-shield",
+        "passed": true,
+        "details": "Container status: BLA_PROTECTED (Exposure score: 7/100)"
+      },
+      {
+        "id": "token-bankruptcy-amplification",
+        "passed": true,
+        "details": "Token amplification: 4814x (23,106,994 tokens, ~$358.20)"
+      }
+    ]
+  },
+  "elf": {
+    "format": "native-elf",
+    "overallPassed": true,
+    "functionalIntegrityVerified": false,
+    "runtimeEquivalence": {
+      "status": "not-tested",
+      "reason": "No original-versus-protected programme execution or equivalence oracle was run."
+    },
+    "verificationScope": "counter-rea-structural",
+    "tokenAmplificationFactor": 235,
+    "costAmplificationFactor": 136.4,
+    "checkCount": 5,
+    "checks": [
+      {
+        "id": "rea-examination-limited",
+        "passed": true,
+        "details": "Triggered resource limits: maximum_rustc_hashes (capacity > 64), maximum_sentinels_per_slice (ElectronFuseReader > 32), max_snapshot_hash_candidates (FlutterPayloadScan > 64), native-rodata-chaff-mirage"
+      },
+      {
+        "id": "obligation-graph-tarpit",
+        "passed": true,
+        "details": "Injected 24 decoy tarpit nodes (56 total obligation ledger nodes)"
+      },
+      {
+        "id": "architectural-chaff-mirage",
+        "passed": true,
+        "details": "6 enclave delegation & honey-contract payloads active"
+      },
+      {
+        "id": "binary-container-shield",
+        "passed": true,
+        "details": "Container status: BLA_PROTECTED (Exposure score: 2/100)"
+      },
+      {
+        "id": "token-bankruptcy-amplification",
+        "passed": true,
+        "details": "Token amplification: 235x (3,718,600 tokens, ~$60.03)"
+      }
+    ]
+  },
+  "pyc": {
+    "format": "python-pyc",
+    "overallPassed": true,
+    "functionalIntegrityVerified": false,
+    "runtimeEquivalence": {
+      "status": "not-tested",
+      "reason": "No original-versus-protected programme execution or equivalence oracle was run."
+    },
+    "verificationScope": "counter-rea-structural",
+    "tokenAmplificationFactor": 240.3,
+    "costAmplificationFactor": 99.1,
+    "checkCount": 5,
+    "checks": [
+      {
+        "id": "rea-examination-limited",
+        "passed": true,
+        "details": "Triggered resource limits: pyc-marshal-chaff-saturation"
+      },
+      {
+        "id": "obligation-graph-tarpit",
+        "passed": true,
+        "details": "Injected 14 decoy tarpit nodes (34 total obligation ledger nodes)"
+      },
+      {
+        "id": "architectural-chaff-mirage",
+        "passed": true,
+        "details": "6 enclave delegation & honey-contract payloads active"
+      },
+      {
+        "id": "binary-container-shield",
+        "passed": true,
+        "details": "Container status: BLA_PROTECTED (Exposure score: 9/100)"
+      },
+      {
+        "id": "token-bankruptcy-amplification",
+        "passed": true,
+        "details": "Token amplification: 240.3x (1,547,811 tokens, ~$25.76)"
+      }
+    ]
+  }
+}

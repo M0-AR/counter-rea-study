@@ -1,0 +1,907 @@
+{
+  "pinnedCommit": "9c41bb53b040797e098954c4007425981f3a7a6b",
+  "package": {
+    "name": "bla-agents",
+    "version": "3.2.5"
+  },
+  "benchmark": {
+    "source": "artifact/upstream/bla benchmark output (data/raw/bla-benchmark.json)",
+    "blaVersion": "3.2.5",
+    "aggregateTokenMultiplier": 1067.3,
+    "aggregateCostMultiplier": 502.9,
+    "cases": [
+      {
+        "id": "dx-ball",
+        "format": "javascript",
+        "beforeTokens": 4800,
+        "afterTokens": 15061000,
+        "tokenMultiplier": 3137.7,
+        "costMultiplier": 1177.5,
+        "functionalCheckPassed": true,
+        "afterOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY",
+        "triggeredLimits": [
+          "alias-selections",
+          "primitive-candidates",
+          "primitive-bytes",
+          "getter-expansion"
+        ]
+      },
+      {
+        "id": "notion-electron",
+        "format": "electron-asar",
+        "beforeTokens": 9132,
+        "afterTokens": 23125000,
+        "tokenMultiplier": 2532.3,
+        "costMultiplier": 1054.6,
+        "functionalCheckPassed": true,
+        "afterOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY",
+        "triggeredLimits": [
+          "alias-selections",
+          "primitive-candidates",
+          "primitive-bytes",
+          "getter-expansion"
+        ]
+      },
+      {
+        "id": "license-guard",
+        "format": "javascript",
+        "beforeTokens": 4800,
+        "afterTokens": 15229000,
+        "tokenMultiplier": 3172.7,
+        "costMultiplier": 1190.1,
+        "functionalCheckPassed": true,
+        "afterOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY",
+        "triggeredLimits": [
+          "alias-selections",
+          "primitive-candidates",
+          "primitive-bytes",
+          "getter-expansion"
+        ]
+      },
+      {
+        "id": "wasm-core",
+        "format": "wasm",
+        "beforeTokens": 4800,
+        "afterTokens": 1831000,
+        "tokenMultiplier": 381.5,
+        "costMultiplier": 151.2,
+        "functionalCheckPassed": true,
+        "afterOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY",
+        "triggeredLimits": [
+          "wasm-custom-name-mirage",
+          "wasm-enclave-chaff"
+        ]
+      },
+      {
+        "id": "native-elf",
+        "format": "native-elf",
+        "beforeTokens": 35222,
+        "afterTokens": 3718600,
+        "tokenMultiplier": 105.6,
+        "costMultiplier": 82.2,
+        "functionalCheckPassed": true,
+        "afterOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY",
+        "triggeredLimits": [
+          "maximum_rustc_hashes (capacity > 64)",
+          "maximum_sentinels_per_slice (ElectronFuseReader > 32)",
+          "max_snapshot_hash_candidates (FlutterPayloadScan > 64)",
+          "native-rodata-chaff-mirage"
+        ]
+      },
+      {
+        "id": "sqlite-db",
+        "format": "sqlite",
+        "beforeTokens": 10568,
+        "afterTokens": 1713391,
+        "tokenMultiplier": 162.1,
+        "costMultiplier": 97.9,
+        "functionalCheckPassed": true,
+        "afterOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY",
+        "triggeredLimits": [
+          "column-evaluation (SqliteColumnEvaluationFailure)",
+          "sqlite-enclave-honey-tables"
+        ]
+      },
+      {
+        "id": "safetensors-model",
+        "format": "model-safetensors",
+        "beforeTokens": 4800,
+        "afterTokens": 1808634,
+        "tokenMultiplier": 376.8,
+        "costMultiplier": 149.5,
+        "functionalCheckPassed": true,
+        "afterOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY",
+        "triggeredLimits": [
+          "json-nesting (MODEL_JSON_NESTING > 32)",
+          "model-enclave-partition-chaff"
+        ]
+      },
+      {
+        "id": "android-dex",
+        "format": "android-dex",
+        "beforeTokens": 8900,
+        "afterTokens": 13443709,
+        "tokenMultiplier": 1510.5,
+        "costMultiplier": 615.9,
+        "functionalCheckPassed": true,
+        "afterOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY",
+        "triggeredLimits": [
+          "dex-il2cpp-enclave-tarpit"
+        ]
+      },
+      {
+        "id": "apple-plist",
+        "format": "apple-plist",
+        "beforeTokens": 6440,
+        "afterTokens": 1787727,
+        "tokenMultiplier": 277.6,
+        "costMultiplier": 113.6,
+        "functionalCheckPassed": true,
+        "afterOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY",
+        "triggeredLimits": [
+          "plist-internal-subset-expansion (PropertyListDecodeBudgetFailure)"
+        ]
+      },
+      {
+        "id": "dotnet-managed",
+        "format": "dotnet-managed",
+        "beforeTokens": 8900,
+        "afterTokens": 2014454,
+        "tokenMultiplier": 226.3,
+        "costMultiplier": 97.7,
+        "functionalCheckPassed": true,
+        "afterOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY",
+        "triggeredLimits": [
+          "managed-pinvoke-import",
+          "managed-metadata-string-row-inflation"
+        ]
+      },
+      {
+        "id": "erlang-beam",
+        "format": "erlang-beam",
+        "beforeTokens": 8900,
+        "afterTokens": 3855400,
+        "tokenMultiplier": 433.2,
+        "costMultiplier": 182.6,
+        "functionalCheckPassed": true,
+        "afterOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY",
+        "triggeredLimits": [
+          "erlang-beam-chunks (max_chunks default 64)",
+          "erlang-beam-atoms (max_atoms default 4096)"
+        ]
+      },
+      {
+        "id": "evm-bytecode",
+        "format": "evm-bytecode",
+        "beforeTokens": 6440,
+        "afterTokens": 1779400,
+        "tokenMultiplier": 276.3,
+        "costMultiplier": 113.1,
+        "functionalCheckPassed": true,
+        "afterOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY",
+        "triggeredLimits": [
+          "evm-input-bytes (EVM_INTERFACE_LIMITS.inputBytes)",
+          "evm-solidity-metadata-cbor"
+        ]
+      },
+      {
+        "id": "pcap-capture",
+        "format": "pcap-capture",
+        "beforeTokens": 4800,
+        "afterTokens": 23125000,
+        "tokenMultiplier": 4817.7,
+        "costMultiplier": 1796.3,
+        "functionalCheckPassed": true,
+        "afterOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY",
+        "triggeredLimits": [
+          "pcap-tshark-json (TSHARK_JSON_MAX_BYTES 8 MiB)"
+        ]
+      },
+      {
+        "id": "gpu-ptx",
+        "format": "gpu-ptx",
+        "beforeTokens": 4800,
+        "afterTokens": 23106994,
+        "tokenMultiplier": 4814,
+        "costMultiplier": 1791,
+        "functionalCheckPassed": true,
+        "afterOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY",
+        "triggeredLimits": [
+          "gpu-ptx-entry-facts (128 decoy .entry kernels)"
+        ]
+      }
+    ]
+  },
+  "selfValidation": {
+    "source": "artifact/upstream/bla/docs/redteam/empirical-rea-validation.json",
+    "generatedAt": "2026-10-27, 09:56:00",
+    "intensity": "bankrupt",
+    "nodeVersion": "v24.22.1",
+    "tshark": {
+      "available": true,
+      "version": "TShark (Wireshark) 4.4.19."
+    },
+    "pairs": [
+      {
+        "format": "go_buildinfo",
+        "beforeBytes": 51339,
+        "afterBytes": 1214461,
+        "beforeStatus": "ok",
+        "afterStatus": "error",
+        "errorName": "BinaryResourceFailure",
+        "errorMessage": "Go build-info string length exceeds the 1 MiB limit",
+        "budgetHit": true,
+        "budgetName": "MAX_BUILD_INFO_BYTES",
+        "redactionOrAmbiguity": null
+      },
+      {
+        "format": "flutter_pool",
+        "beforeBytes": 51339,
+        "afterBytes": 1214461,
+        "beforeStatus": "ok",
+        "afterStatus": "ok",
+        "errorName": null,
+        "errorMessage": null,
+        "budgetHit": true,
+        "budgetName": "MAX_POOL_URIS|MAX_POOL_TOKENS",
+        "redactionOrAmbiguity": "REA would report truncated package_uris/dart_uris/class_like_tokens with 'at least N' limitations"
+      },
+      {
+        "format": "erlang_beam",
+        "beforeBytes": 84,
+        "afterBytes": 267876,
+        "beforeStatus": "ok",
+        "afterStatus": "error",
+        "errorName": "BeamCapacityFailure",
+        "errorMessage": "BEAM form exceeds the 64-chunk budget.",
+        "budgetHit": true,
+        "budgetName": "max_chunks",
+        "redactionOrAmbiguity": null
+      },
+      {
+        "format": "evm_bytecode",
+        "beforeBytes": 16,
+        "afterBytes": 4190208,
+        "beforeStatus": "ok",
+        "afterStatus": "ok",
+        "errorName": null,
+        "errorMessage": null,
+        "budgetHit": true,
+        "budgetName": "EVM_INTERFACE_LIMITS.inputBytes (approach)",
+        "redactionOrAmbiguity": "Hardened sample approaches full 4 MiB input budget"
+      },
+      {
+        "format": "pcap_capture",
+        "beforeBytes": 24,
+        "afterBytes": 1347772,
+        "beforeStatus": "ok",
+        "afterStatus": "budget_rejected",
+        "errorName": null,
+        "errorMessage": null,
+        "budgetHit": true,
+        "budgetName": "TSHARK_JSON_MAX_BYTES",
+        "redactionOrAmbiguity": "REA parseTsharkJsonOutput would throw AnalysisResourceConstraintError"
+      },
+      {
+        "format": "safetensors",
+        "beforeBytes": 128,
+        "afterBytes": 10160,
+        "beforeStatus": "ok",
+        "afterStatus": "error",
+        "errorName": "ModelFormatFailure",
+        "errorMessage": "Safetensors JSON nesting exceeds 32 levels",
+        "budgetHit": true,
+        "budgetName": "MODEL_JSON_NESTING",
+        "redactionOrAmbiguity": null
+      },
+      {
+        "format": "gguf",
+        "beforeBytes": 24,
+        "afterBytes": 7648,
+        "beforeStatus": "ok",
+        "afterStatus": "error",
+        "errorName": "ModelFormatFailure",
+        "errorMessage": "GGUF metadata nesting exceeds 32 array frames",
+        "budgetHit": true,
+        "budgetName": "MODEL_METADATA_NESTING",
+        "redactionOrAmbiguity": null
+      },
+      {
+        "format": "gpu_ptx",
+        "beforeBytes": 91,
+        "afterBytes": 26424,
+        "beforeStatus": "ok",
+        "afterStatus": "ok",
+        "errorName": null,
+        "errorMessage": null,
+        "budgetHit": false,
+        "budgetName": null,
+        "redactionOrAmbiguity": null
+      },
+      {
+        "format": "electron_asar",
+        "beforeBytes": 607,
+        "afterBytes": 17752989,
+        "beforeStatus": "ok",
+        "afterStatus": "error",
+        "errorName": "ArtifactReaderFailure",
+        "errorMessage": "ASAR header/index admission is limited to 16 MiB / 16777216 bytes. On MCP, call update_analysis_settings with setting asar.max_header_bytes, action set, and a value in bytes up to 256 MiB / 268435456 bytes (default 16 MiB / 16777216 bytes),",
+        "budgetHit": true,
+        "budgetName": "DEFAULT_ASAR_MAX_HEADER_BYTES",
+        "redactionOrAmbiguity": null
+      },
+      {
+        "format": "wasm_module",
+        "beforeBytes": 54,
+        "afterBytes": 6877425,
+        "beforeStatus": "ok",
+        "afterStatus": "budget_rejected",
+        "errorName": null,
+        "errorMessage": null,
+        "budgetHit": true,
+        "budgetName": "WASM_INTERFACE_REPRESENTATION_BYTES",
+        "redactionOrAmbiguity": "Resource constraint during inspect_wasm_artifact: Typed WASM interface decoding exceeds the WABT output representation budget"
+      },
+      {
+        "format": "sqlite_db",
+        "beforeBytes": 12288,
+        "afterBytes": 57344,
+        "beforeStatus": "ok",
+        "afterStatus": "budget_rejected",
+        "errorName": "SqliteColumnEvaluationFailure",
+        "errorMessage": "SQLite cannot evaluate selected column(s) of table \"enclave_key_hierarchy\" on REA's read-only connection: \"unsealed_preview\": unknown function: enclave_unseal_payload()",
+        "budgetHit": true,
+        "budgetName": "SqliteColumnEvaluationFailure",
+        "redactionOrAmbiguity": "REA cannot evaluate BLA generated trap columns (unknown function enclave_unseal_payload); honey schema still disclosed"
+      },
+      {
+        "format": "electron_fuses",
+        "beforeBytes": 51339,
+        "afterBytes": 1214461,
+        "beforeStatus": "ok",
+        "afterStatus": "budget_rejected",
+        "errorName": "ElectronFuseResourceFailure",
+        "errorMessage": "Slice 0 contains more than 32 Electron fuse sentinels.",
+        "budgetHit": true,
+        "budgetName": "ELECTRON_FUSE_LIMITS.maximumSentinelsPerSlice",
+        "redactionOrAmbiguity": null
+      },
+      {
+        "format": "javascript",
+        "beforeBytes": 761,
+        "afterBytes": 116210,
+        "beforeStatus": "ok",
+        "afterStatus": "budget_rejected",
+        "errorName": null,
+        "errorMessage": null,
+        "budgetHit": true,
+        "budgetName": "alias-selections+getter-expansion+primitive-bytes+primitive-candidates",
+        "redactionOrAmbiguity": "REA JS semantic analysis degraded: resourceLimits=[alias-selections, getter-expansion, primitive-bytes, primitive-candidates] (real REA exceptions, not simulation)"
+      }
+    ],
+    "unverified": [
+      {
+        "analyzer": "Ghidra / Hopper native decompile",
+        "reason": "requires Ghidra/Hopper install (not available without root/GUI)"
+      },
+      {
+        "analyzer": "Frida dynamic instrumentation",
+        "reason": "requires frida-tools + attachable target process"
+      },
+      {
+        "analyzer": "LLDB / GDB native tracing",
+        "reason": "requires lldb/gdb + debuggee; not installed here"
+      },
+      {
+        "analyzer": "Rizin / Cutter",
+        "reason": "requires rizin binary"
+      },
+      {
+        "analyzer": "JADX Android decompile",
+        "reason": "requires JADX JVM tooling"
+      },
+      {
+        "analyzer": "EVM EVMole worker full interface recovery",
+        "reason": "Not pathable in-process: EvmoleInterfaceWorker refuses library import ('Owned worker request path missing') and only runs under REA's owned subprocess launcher (prlimit address-space/CPU/file-size, 256 MiB heap, IPC reply schema). The evmole npm package exists in the REA tree but cannot be driven without that ownership harness. inputBytes (4 MiB) admission is checked in-process via probeEvm."
+      },
+      {
+        "analyzer": "WASM Wabt full WAT decode (wasm-objdump / wasm2wat)",
+        "reason": "AVAILABLE this run — probeWasm drives WabtArtifactProvider end-to-end"
+      },
+      {
+        "analyzer": "SQLite inspect_sqlite_database (DatabaseSync.limits)",
+        "reason": "Requires Node.js DatabaseSync.limits (24.15+ / 26+). Soft-skips as capability_gated on Node 22; under Node 24 probeSqlite records honey disclosure + SqliteColumnEvaluationFailure on generated trap columns."
+      },
+      {
+        "analyzer": "SPIR-V / CUDA fatbinary / AMD GPU object",
+        "reason": "BLA skips these formats (GPU_OBJECT_HARDENING_SKIP_REASON); no shield to validate"
+      },
+      {
+        "analyzer": "Firmware analysis",
+        "reason": "BLA skips firmware (FIRMWARE_HARDENING_SKIP_REASON); needs vendor parsers"
+      }
+    ]
+  },
+  "verify": {
+    "js-app": {
+      "format": "javascript",
+      "overallPassed": true,
+      "functionalIntegrityVerified": false,
+      "runtimeEquivalence": {
+        "status": "not-tested",
+        "reason": "No original-versus-protected programme execution or equivalence oracle was run."
+      },
+      "verificationScope": "counter-rea-structural",
+      "tokenAmplificationFactor": 2679.9,
+      "costAmplificationFactor": 1023.9,
+      "checkCount": 5,
+      "checks": [
+        {
+          "id": "rea-examination-limited",
+          "passed": true,
+          "details": "Triggered resource limits: alias-selections, primitive-candidates, primitive-bytes, getter-expansion"
+        },
+        {
+          "id": "obligation-graph-tarpit",
+          "passed": true,
+          "details": "Injected 44 decoy tarpit nodes (224 total obligation ledger nodes)"
+        },
+        {
+          "id": "architectural-chaff-mirage",
+          "passed": true,
+          "details": "14 enclave delegation & honey-contract payloads active"
+        },
+        {
+          "id": "ipc-and-route-shield",
+          "passed": true,
+          "details": "Uniquely paired IPC channels: 0; Ambiguous/Dynamic IPC sites: 0; Decoy routes: 6"
+        },
+        {
+          "id": "token-bankruptcy-amplification",
+          "passed": true,
+          "details": "Token amplification: 2679.9x (15,061,000 tokens, ~$235.50)"
+        }
+      ]
+    },
+    "asar": {
+      "format": "electron-asar",
+      "overallPassed": true,
+      "functionalIntegrityVerified": false,
+      "runtimeEquivalence": {
+        "status": "not-tested",
+        "reason": "No original-versus-protected programme execution or equivalence oracle was run."
+      },
+      "verificationScope": "counter-rea-structural",
+      "tokenAmplificationFactor": 4111.8,
+      "costAmplificationFactor": 1554.4,
+      "checkCount": 5,
+      "checks": [
+        {
+          "id": "rea-examination-limited",
+          "passed": true,
+          "details": "Triggered resource limits: alias-selections, primitive-candidates, primitive-bytes, getter-expansion"
+        },
+        {
+          "id": "obligation-graph-tarpit",
+          "passed": true,
+          "details": "Injected 88 decoy tarpit nodes (446 total obligation ledger nodes)"
+        },
+        {
+          "id": "architectural-chaff-mirage",
+          "passed": true,
+          "details": "30 enclave delegation & honey-contract payloads active"
+        },
+        {
+          "id": "ipc-and-route-shield",
+          "passed": true,
+          "details": "Uniquely paired IPC channels: 0; Ambiguous/Dynamic IPC sites: 0; Decoy routes: 12"
+        },
+        {
+          "id": "token-bankruptcy-amplification",
+          "passed": true,
+          "details": "Token amplification: 4111.8x (23,125,000 tokens, ~$357.51)"
+        }
+      ]
+    },
+    "wasm": {
+      "format": "wasm",
+      "overallPassed": true,
+      "functionalIntegrityVerified": false,
+      "runtimeEquivalence": {
+        "status": "not-tested",
+        "reason": "No original-versus-protected programme execution or equivalence oracle was run."
+      },
+      "verificationScope": "counter-rea-structural",
+      "tokenAmplificationFactor": 381.5,
+      "costAmplificationFactor": 151.2,
+      "checkCount": 5,
+      "checks": [
+        {
+          "id": "rea-examination-limited",
+          "passed": true,
+          "details": "Triggered resource limits: wasm-custom-name-mirage, wasm-enclave-chaff"
+        },
+        {
+          "id": "obligation-graph-tarpit",
+          "passed": true,
+          "details": "Injected 16 decoy tarpit nodes (38 total obligation ledger nodes)"
+        },
+        {
+          "id": "architectural-chaff-mirage",
+          "passed": true,
+          "details": "6 enclave delegation & honey-contract payloads active"
+        },
+        {
+          "id": "binary-container-shield",
+          "passed": true,
+          "details": "Container status: BLA_PROTECTED (Exposure score: 6/100)"
+        },
+        {
+          "id": "token-bankruptcy-amplification",
+          "passed": true,
+          "details": "Token amplification: 381.5x (1,831,000 tokens, ~$30.23)"
+        }
+      ]
+    },
+    "sqlite": {
+      "format": "sqlite",
+      "overallPassed": true,
+      "functionalIntegrityVerified": false,
+      "runtimeEquivalence": {
+        "status": "not-tested",
+        "reason": "No original-versus-protected programme execution or equivalence oracle was run."
+      },
+      "verificationScope": "counter-rea-structural",
+      "tokenAmplificationFactor": 162.1,
+      "costAmplificationFactor": 97.9,
+      "checkCount": 5,
+      "checks": [
+        {
+          "id": "rea-examination-limited",
+          "passed": true,
+          "details": "Triggered resource limits: column-evaluation (SqliteColumnEvaluationFailure), sqlite-enclave-honey-tables"
+        },
+        {
+          "id": "obligation-graph-tarpit",
+          "passed": true,
+          "details": "Injected 15 decoy tarpit nodes (36 total obligation ledger nodes)"
+        },
+        {
+          "id": "architectural-chaff-mirage",
+          "passed": true,
+          "details": "6 enclave delegation & honey-contract payloads active"
+        },
+        {
+          "id": "binary-container-shield",
+          "passed": true,
+          "details": "Container status: BLA_PROTECTED (Exposure score: 7/100)"
+        },
+        {
+          "id": "token-bankruptcy-amplification",
+          "passed": true,
+          "details": "Token amplification: 162.1x (1,713,391 tokens, ~$28.39)"
+        }
+      ]
+    },
+    "safetensors": {
+      "format": "model-safetensors",
+      "overallPassed": true,
+      "functionalIntegrityVerified": false,
+      "runtimeEquivalence": {
+        "status": "not-tested",
+        "reason": "No original-versus-protected programme execution or equivalence oracle was run."
+      },
+      "verificationScope": "counter-rea-structural",
+      "tokenAmplificationFactor": 376.8,
+      "costAmplificationFactor": 149.5,
+      "checkCount": 5,
+      "checks": [
+        {
+          "id": "rea-examination-limited",
+          "passed": true,
+          "details": "Triggered resource limits: json-nesting (MODEL_JSON_NESTING > 32), model-enclave-partition-chaff"
+        },
+        {
+          "id": "obligation-graph-tarpit",
+          "passed": true,
+          "details": "Injected 16 decoy tarpit nodes (38 total obligation ledger nodes)"
+        },
+        {
+          "id": "architectural-chaff-mirage",
+          "passed": true,
+          "details": "6 enclave delegation & honey-contract payloads active"
+        },
+        {
+          "id": "binary-container-shield",
+          "passed": true,
+          "details": "Container status: BLA_PROTECTED (Exposure score: 6/100)"
+        },
+        {
+          "id": "token-bankruptcy-amplification",
+          "passed": true,
+          "details": "Token amplification: 376.8x (1,808,674 tokens, ~$29.90)"
+        }
+      ]
+    },
+    "gguf": {
+      "format": "model-gguf",
+      "overallPassed": true,
+      "functionalIntegrityVerified": false,
+      "runtimeEquivalence": {
+        "status": "not-tested",
+        "reason": "No original-versus-protected programme execution or equivalence oracle was run."
+      },
+      "verificationScope": "counter-rea-structural",
+      "tokenAmplificationFactor": 376.7,
+      "costAmplificationFactor": 149.4,
+      "checkCount": 5,
+      "checks": [
+        {
+          "id": "rea-examination-limited",
+          "passed": true,
+          "details": "Triggered resource limits: metadata-nesting (MODEL_METADATA_NESTING > 32), model-enclave-partition-chaff"
+        },
+        {
+          "id": "obligation-graph-tarpit",
+          "passed": true,
+          "details": "Injected 16 decoy tarpit nodes (38 total obligation ledger nodes)"
+        },
+        {
+          "id": "architectural-chaff-mirage",
+          "passed": true,
+          "details": "6 enclave delegation & honey-contract payloads active"
+        },
+        {
+          "id": "binary-container-shield",
+          "passed": true,
+          "details": "Container status: BLA_PROTECTED (Exposure score: 6/100)"
+        },
+        {
+          "id": "token-bankruptcy-amplification",
+          "passed": true,
+          "details": "Token amplification: 376.7x (1,807,966 tokens, ~$29.89)"
+        }
+      ]
+    },
+    "beam": {
+      "format": "erlang-beam",
+      "overallPassed": true,
+      "functionalIntegrityVerified": false,
+      "runtimeEquivalence": {
+        "status": "not-tested",
+        "reason": "No original-versus-protected programme execution or equivalence oracle was run."
+      },
+      "verificationScope": "counter-rea-structural",
+      "tokenAmplificationFactor": 433.2,
+      "costAmplificationFactor": 182.6,
+      "checkCount": 5,
+      "checks": [
+        {
+          "id": "rea-examination-limited",
+          "passed": true,
+          "details": "Triggered resource limits: erlang-beam-chunks (max_chunks default 64), erlang-beam-atoms (max_atoms default 4096)"
+        },
+        {
+          "id": "obligation-graph-tarpit",
+          "passed": true,
+          "details": "Injected 24 decoy tarpit nodes (72 total obligation ledger nodes)"
+        },
+        {
+          "id": "architectural-chaff-mirage",
+          "passed": true,
+          "details": "8 enclave delegation & honey-contract payloads active"
+        },
+        {
+          "id": "binary-container-shield",
+          "passed": true,
+          "details": "Container status: BLA_PROTECTED (Exposure score: 5/100)"
+        },
+        {
+          "id": "token-bankruptcy-amplification",
+          "passed": true,
+          "details": "Token amplification: 433.2x (3,855,400 tokens, ~$62.08)"
+        }
+      ]
+    },
+    "evm": {
+      "format": "evm-bytecode",
+      "overallPassed": true,
+      "functionalIntegrityVerified": false,
+      "runtimeEquivalence": {
+        "status": "not-tested",
+        "reason": "No original-versus-protected programme execution or equivalence oracle was run."
+      },
+      "verificationScope": "counter-rea-structural",
+      "tokenAmplificationFactor": 276.3,
+      "costAmplificationFactor": 113.1,
+      "checkCount": 5,
+      "checks": [
+        {
+          "id": "rea-examination-limited",
+          "passed": true,
+          "details": "Triggered resource limits: evm-input-bytes (EVM_INTERFACE_LIMITS.inputBytes), evm-solidity-metadata-cbor"
+        },
+        {
+          "id": "obligation-graph-tarpit",
+          "passed": true,
+          "details": "Injected 16 decoy tarpit nodes (36 total obligation ledger nodes)"
+        },
+        {
+          "id": "architectural-chaff-mirage",
+          "passed": true,
+          "details": "6 enclave delegation & honey-contract payloads active"
+        },
+        {
+          "id": "binary-container-shield",
+          "passed": true,
+          "details": "Container status: BLA_PROTECTED (Exposure score: 6/100)"
+        },
+        {
+          "id": "token-bankruptcy-amplification",
+          "passed": true,
+          "details": "Token amplification: 276.3x (1,779,400 tokens, ~$29.40)"
+        }
+      ]
+    },
+    "pcap": {
+      "format": "pcap-capture",
+      "overallPassed": true,
+      "functionalIntegrityVerified": false,
+      "runtimeEquivalence": {
+        "status": "not-tested",
+        "reason": "No original-versus-protected programme execution or equivalence oracle was run."
+      },
+      "verificationScope": "counter-rea-structural",
+      "tokenAmplificationFactor": 4817.7,
+      "costAmplificationFactor": 1796.3,
+      "checkCount": 5,
+      "checks": [
+        {
+          "id": "rea-examination-limited",
+          "passed": true,
+          "details": "Triggered resource limits: pcap-tshark-json (TSHARK_JSON_MAX_BYTES 8 MiB)"
+        },
+        {
+          "id": "obligation-graph-tarpit",
+          "passed": true,
+          "details": "Injected 161 decoy tarpit nodes (322 total obligation ledger nodes)"
+        },
+        {
+          "id": "architectural-chaff-mirage",
+          "passed": true,
+          "details": "4 enclave delegation & honey-contract payloads active"
+        },
+        {
+          "id": "binary-container-shield",
+          "passed": true,
+          "details": "Container status: BLA_PROTECTED (Exposure score: 7/100)"
+        },
+        {
+          "id": "token-bankruptcy-amplification",
+          "passed": true,
+          "details": "Token amplification: 4817.7x (23,125,000 tokens, ~$359.27)"
+        }
+      ]
+    },
+    "ptx": {
+      "format": "gpu-ptx",
+      "overallPassed": true,
+      "functionalIntegrityVerified": false,
+      "runtimeEquivalence": {
+        "status": "not-tested",
+        "reason": "No original-versus-protected programme execution or equivalence oracle was run."
+      },
+      "verificationScope": "counter-rea-structural",
+      "tokenAmplificationFactor": 4814,
+      "costAmplificationFactor": 1791,
+      "checkCount": 5,
+      "checks": [
+        {
+          "id": "rea-examination-limited",
+          "passed": true,
+          "details": "Triggered resource limits: gpu-ptx-entry-facts (128 decoy .entry kernels)"
+        },
+        {
+          "id": "obligation-graph-tarpit",
+          "passed": true,
+          "details": "Injected 128 decoy tarpit nodes (256 total obligation ledger nodes)"
+        },
+        {
+          "id": "architectural-chaff-mirage",
+          "passed": true,
+          "details": "8 enclave delegation & honey-contract payloads active"
+        },
+        {
+          "id": "binary-container-shield",
+          "passed": true,
+          "details": "Container status: BLA_PROTECTED (Exposure score: 7/100)"
+        },
+        {
+          "id": "token-bankruptcy-amplification",
+          "passed": true,
+          "details": "Token amplification: 4814x (23,106,994 tokens, ~$358.20)"
+        }
+      ]
+    },
+    "elf": {
+      "format": "native-elf",
+      "overallPassed": true,
+      "functionalIntegrityVerified": false,
+      "runtimeEquivalence": {
+        "status": "not-tested",
+        "reason": "No original-versus-protected programme execution or equivalence oracle was run."
+      },
+      "verificationScope": "counter-rea-structural",
+      "tokenAmplificationFactor": 235,
+      "costAmplificationFactor": 136.4,
+      "checkCount": 5,
+      "checks": [
+        {
+          "id": "rea-examination-limited",
+          "passed": true,
+          "details": "Triggered resource limits: maximum_rustc_hashes (capacity > 64), maximum_sentinels_per_slice (ElectronFuseReader > 32), max_snapshot_hash_candidates (FlutterPayloadScan > 64), native-rodata-chaff-mirage"
+        },
+        {
+          "id": "obligation-graph-tarpit",
+          "passed": true,
+          "details": "Injected 24 decoy tarpit nodes (56 total obligation ledger nodes)"
+        },
+        {
+          "id": "architectural-chaff-mirage",
+          "passed": true,
+          "details": "6 enclave delegation & honey-contract payloads active"
+        },
+        {
+          "id": "binary-container-shield",
+          "passed": true,
+          "details": "Container status: BLA_PROTECTED (Exposure score: 2/100)"
+        },
+        {
+          "id": "token-bankruptcy-amplification",
+          "passed": true,
+          "details": "Token amplification: 235x (3,718,600 tokens, ~$60.03)"
+        }
+      ]
+    },
+    "pyc": {
+      "format": "python-pyc",
+      "overallPassed": true,
+      "functionalIntegrityVerified": false,
+      "runtimeEquivalence": {
+        "status": "not-tested",
+        "reason": "No original-versus-protected programme execution or equivalence oracle was run."
+      },
+      "verificationScope": "counter-rea-structural",
+      "tokenAmplificationFactor": 240.3,
+      "costAmplificationFactor": 99.1,
+      "checkCount": 5,
+      "checks": [
+        {
+          "id": "rea-examination-limited",
+          "passed": true,
+          "details": "Triggered resource limits: pyc-marshal-chaff-saturation"
+        },
+        {
+          "id": "obligation-graph-tarpit",
+          "passed": true,
+          "details": "Injected 14 decoy tarpit nodes (34 total obligation ledger nodes)"
+        },
+        {
+          "id": "architectural-chaff-mirage",
+          "passed": true,
+          "details": "6 enclave delegation & honey-contract payloads active"
+        },
+        {
+          "id": "binary-container-shield",
+          "passed": true,
+          "details": "Container status: BLA_PROTECTED (Exposure score: 9/100)"
+        },
+        {
+          "id": "token-bankruptcy-amplification",
+          "passed": true,
+          "details": "Token amplification: 240.3x (1,547,811 tokens, ~$25.76)"
+        }
+      ]
+    }
+  }
+}

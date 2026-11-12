@@ -1,0 +1,19 @@
+{
+  "source": "artifact/upstream/bla/README.md lines 232-247 (bla-agents 3.2.5)",
+  "factors": {
+    "dx-ball": 2822.7,
+    "notion-electron": 2532.3,
+    "license-guard": 2822.7,
+    "gpu-ptx": 500.2,
+    "erlang-beam": 433.2,
+    "wasm-core": 381.5,
+    "safetensors-model": 376.8,
+    "pcap-capture": 333.2,
+    "android-dex": 313.2,
+    "evm-bytecode": 276.3,
+    "dotnet-managed": 274.8,
+    "apple-plist": 211.8,
+    "sqlite-db": 162.1,
+    "native-elf": 105.6
+  }
+}

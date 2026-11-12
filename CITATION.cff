@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "If you use this repository, cite the software and the BLA/REA upstreams."
+title: "Counter-REA Study: A Reproduction and Robustness Audit of BLA's Budget-Trap Claims"
+abstract: "An empirical audit of BLA's counter-reverse-engineering claims against live REA, with pinned upstreams, independent fixtures, tokenizer sensitivity, and a claim-source audit."
+type: software
+license: MIT
+authors:
+  - name: "Counter-REA Study Contributors"
+keywords:
+  - reverse engineering
+  - AI agents
+  - software protection
+  - reproducibility
+  - BLA
+  - REA

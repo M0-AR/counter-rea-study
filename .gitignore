@@ -1,0 +1,32 @@
+# Upstream checkouts are fetched and pinned by artifact/scripts/fetch_upstream.sh.
+artifact/upstream/
+
+# Dependency and cache directories.
+node_modules/
+**/node_modules/
+__pycache__/
+.venv/
+.DS_Store
+
+# Generated protected/intensity fixtures (rebuild with make fixtures/intensity).
+artifact/fixtures/protected/
+artifact/fixtures/intensity/
+
+# Host-only provenance; the canonical run writes env.container.json.
+artifact/results/env.json
+
+# Large raw outputs; small summaries are kept.
+artifact/results/raw/
+artifact/results/variants/
+artifact/results/intensity/
+artifact/results/mcp/
+artifact/results/pcap/
+artifact/results/baseline/
+artifact/results/equivalence.json
+artifact/results/matrix.json
+artifact/results/*.log
+artifact/results/*.stderr
+
+# Local editor files.
+*.swp
+*.swo

@@ -1,0 +1,2130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Counter-REA Study — The Budget Trap Is Real, the Number Is Not Portable</title>
+<meta name="description" content="A reproducible audit of BLA's counter-reverse-engineering claims against live REA. 14 formats, 12 independent fixtures, 5 replications, and an interactive 3D lab.">
+<meta name="theme-color" content="#05070d">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Counter-REA Study — The Budget Trap Is Real, the Number Is Not Portable">
+<meta property="og:description" content="A same-commit audit of BLA's claims against live REA, with 12 independent fixtures, 4 intensities, 2 transports, and 5 query shapes.">
+<meta property="og:image" content="assets/social-preview.png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Counter-REA Study">
+<meta name="twitter:description" content="The budget trap is real. The number is not portable. Explore the evidence and play the 3D lab.">
+<meta name="twitter:image" content="assets/social-preview.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2305070d'/%3E%3Cpath d='M14 40 L24 18 L34 40 L44 18 L52 40' fill='none' stroke='%2338e8ff' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='52' cy='18' r='4' fill='%23fbbf24'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#05070d;
+  --bg-2:#080c16;
+  --bg-3:#0b1220;
+  --panel:rgba(13,20,35,.72);
+  --panel-2:rgba(20,29,49,.58);
+  --line:rgba(148,163,184,.15);
+  --line-2:rgba(148,163,184,.26);
+  --text:#e9eefc;
+  --muted:#9aa8c2;
+  --dim:#68758f;
+  --cyan:#38e8ff;
+  --cyan-2:#0ea5c9;
+  --violet:#8b5cf6;
+  --amber:#fbbf24;
+  --red:#ff5d7a;
+  --green:#34d399;
+  --blue:#60a5fa;
+  --shadow:0 24px 80px rgba(0,0,0,.45);
+  --radius:20px;
+  --radius-sm:12px;
+  --max:1180px;
+  --nav:70px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:92px}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:16px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+body::before{
+  content:"";position:fixed;inset:0;z-index:-3;
+  background:
+    radial-gradient(900px 500px at 12% -8%,rgba(56,232,255,.14),transparent 60%),
+    radial-gradient(800px 500px at 92% 4%,rgba(139,92,246,.14),transparent 62%),
+    radial-gradient(900px 700px at 50% 110%,rgba(251,191,36,.06),transparent 60%),
+    linear-gradient(180deg,#05070d 0%,#060a13 42%,#05070d 100%);
+}
+body::after{
+  content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.28;
+  background-image:
+    linear-gradient(rgba(148,163,184,.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(148,163,184,.05) 1px,transparent 1px);
+  background-size:64px 64px;
+  mask-image:radial-gradient(ellipse 90% 70% at 50% 20%,#000 20%,transparent 75%);
+  -webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 20%,#000 20%,transparent 75%);
+}
+::selection{background:rgba(56,232,255,.28);color:#fff}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:#05070d}
+::-webkit-scrollbar-thumb{background:#1c2a44;border-radius:99px;border:2px solid #05070d}
+::-webkit-scrollbar-thumb:hover{background:#2a3c60}
+a{color:var(--cyan);text-decoration:none}
+a:hover{text-decoration:underline;text-underline-offset:3px}
+button{font:inherit;color:inherit}
+img,svg,canvas{max-width:100%}
+h1,h2,h3,h4{font-family:Sora,Inter,sans-serif;line-height:1.12;letter-spacing:-.025em;margin:0}
+p{margin:0}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:4px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.skip{position:fixed;left:16px;top:-80px;z-index:200;background:var(--cyan);color:#031018;padding:10px 16px;border-radius:10px;font-weight:700;transition:top .2s}
+.skip:focus{top:12px}
+.wrap{width:min(var(--max),calc(100% - 48px));margin-inline:auto}
+.progress{position:fixed;left:0;top:0;height:2px;width:0;background:linear-gradient(90deg,var(--cyan),var(--violet),var(--amber));z-index:120;box-shadow:0 0 18px rgba(56,232,255,.7)}
+.nav{position:sticky;top:0;z-index:100;height:var(--nav);background:rgba(5,7,13,.72);backdrop-filter:blur(18px) saturate(150%);-webkit-backdrop-filter:blur(18px) saturate(150%);border-bottom:1px solid var(--line)}
+.nav-inner{width:min(var(--max),calc(100% - 48px));margin-inline:auto;height:100%;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{display:flex;align-items:center;gap:11px;color:var(--text);font-weight:700;letter-spacing:-.02em;white-space:nowrap}
+.brand:hover{text-decoration:none}
+.brand-mark{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(56,232,255,.18),rgba(139,92,246,.22));border:1px solid rgba(56,232,255,.35);box-shadow:inset 0 0 18px rgba(56,232,255,.12),0 0 24px rgba(56,232,255,.12);font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--cyan)}
+.brand span small{display:block;font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);line-height:1.2}
+.nav-links{display:flex;align-items:center;gap:4px}
+.nav-links a{color:var(--muted);font-size:13.5px;font-weight:500;padding:8px 11px;border-radius:9px;transition:color .2s,background .2s}
+.nav-links a:hover,.nav-links a[aria-current="true"]{color:var(--text);background:rgba(148,163,184,.09);text-decoration:none}
+.nav-actions{display:flex;align-items:center;gap:8px}
+.icon-btn{width:38px;height:38px;display:grid;place-items:center;border-radius:10px;border:1px solid var(--line);background:rgba(148,163,184,.05);color:var(--muted);cursor:pointer;transition:.2s}
+.icon-btn:hover{color:var(--text);border-color:var(--line-2);background:rgba(148,163,184,.1)}
+.icon-btn svg{width:17px;height:17px}
+.menu-btn{display:none}
+.mobile-menu{display:none;position:fixed;left:0;right:0;top:var(--nav);z-index:99;background:rgba(5,7,13,.97);border-bottom:1px solid var(--line);padding:14px 24px 20px;backdrop-filter:blur(18px)}
+.mobile-menu.open{display:block}
+.mobile-menu a{display:block;padding:12px 4px;color:var(--text);border-bottom:1px solid var(--line);font-weight:600}
+.mobile-menu a:last-child{border:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border-radius:12px;padding:12px 18px;font-size:14px;font-weight:700;letter-spacing:-.01em;border:1px solid transparent;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s,border-color .2s;text-decoration:none!important}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0)}
+.btn-primary{background:linear-gradient(135deg,var(--cyan),#7dd3fc 45%,var(--violet));color:#031018;box-shadow:0 10px 34px rgba(56,232,255,.22),inset 0 1px 0 rgba(255,255,255,.4)}
+.btn-primary:hover{box-shadow:0 14px 44px rgba(56,232,255,.32),inset 0 1px 0 rgba(255,255,255,.5)}
+.btn-ghost{background:rgba(148,163,184,.06);border-color:var(--line-2);color:var(--text)}
+.btn-ghost:hover{background:rgba(148,163,184,.12);border-color:rgba(56,232,255,.35)}
+.btn-small{padding:8px 12px;font-size:12.5px;border-radius:9px}
+.badge{display:inline-flex;align-items:center;gap:7px;padding:5px 10px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line-2);background:rgba(148,163,184,.06);color:var(--muted)}
+.badge-live{color:var(--green);border-color:rgba(52,211,153,.3);background:rgba(52,211,153,.07)}
+.dot{width:6px;height:6px;border-radius:50%;background:currentColor;box-shadow:0 0 12px currentColor;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(.82)}}
+.section{padding:96px 0;position:relative}
+.section-tight{padding:64px 0}
+.section-head{max-width:760px;margin-bottom:38px}
+.kicker{display:flex;align-items:center;gap:10px;font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);margin-bottom:14px}
+.kicker::before{content:"";width:26px;height:1px;background:linear-gradient(90deg,var(--cyan),transparent)}
+.section-title{font-size:clamp(28px,4vw,46px);font-weight:700;margin-bottom:14px}
+.section-sub{color:var(--muted);font-size:16.5px;max-width:680px}
+.gradient-text{background:linear-gradient(100deg,var(--cyan) 0%,#a5b4fc 45%,var(--violet) 75%,var(--amber) 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero{position:relative;padding:72px 0 78px;min-height:calc(100vh - var(--nav));display:flex;align-items:center;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:46px;align-items:center}
+.eyebrow{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:22px}
+.hero h1{font-size:clamp(38px,6.1vw,74px);font-weight:800;letter-spacing:-.045em;margin-bottom:20px}
+.hero h1 .line{display:block}
+.hero-lead{color:var(--muted);font-size:clamp(16px,1.6vw,19px);max-width:620px;margin-bottom:28px}
+.hero-lead strong{color:var(--text);font-weight:600}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:28px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:8px 18px;color:var(--dim);font-size:12.5px;font-family:"JetBrains Mono",monospace}
+.hero-meta span{display:inline-flex;align-items:center;gap:7px}
+.hero-meta svg{width:14px;height:14px;color:var(--cyan)}
+.hero-visual{position:relative;min-height:440px;display:flex;align-items:center;justify-content:center}
+#neural-canvas{position:absolute;inset:0;width:100%;height:100%;border-radius:28px;opacity:.9}
+.signal-card{position:relative;z-index:2;width:min(100%,390px);border-radius:22px;border:1px solid rgba(56,232,255,.18);background:linear-gradient(180deg,rgba(13,20,35,.86),rgba(8,12,22,.9));box-shadow:var(--shadow),0 0 80px rgba(56,232,255,.08);padding:22px;backdrop-filter:blur(14px)}
+.signal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.signal-head h2{font-size:13px;font-family:"JetBrains Mono",monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.signal-row{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line)}
+.signal-row:last-of-type{border-bottom:0}
+.signal-label{font-size:12.5px;color:var(--muted)}
+.signal-value{font-family:"JetBrains Mono",monospace;font-size:20px;font-weight:600;color:var(--text);white-space:nowrap}
+.signal-value.cyan{color:var(--cyan)}
+.signal-value.amber{color:var(--amber)}
+.signal-value.red{color:var(--red)}
+.signal-note{font-size:11.5px;color:var(--dim);margin-top:12px;line-height:1.5}
+.signal-bars{display:flex;align-items:flex-end;gap:5px;height:46px;margin-top:14px}
+.signal-bars i{display:block;flex:1;border-radius:3px 3px 1px 1px;background:linear-gradient(180deg,var(--cyan),rgba(56,232,255,.15));animation:barPulse 3.2s ease-in-out infinite;transform-origin:bottom}
+.signal-bars i:nth-child(2n){background:linear-gradient(180deg,var(--violet),rgba(139,92,246,.15));animation-delay:.2s}
+.signal-bars i:nth-child(3n){background:linear-gradient(180deg,var(--amber),rgba(251,191,36,.15));animation-delay:.45s}
+@keyframes barPulse{0%,100%{transform:scaleY(.55);opacity:.65}50%{transform:scaleY(1);opacity:1}}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.grid{display:grid;gap:16px}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.grid-2{grid-template-columns:repeat(2,1fr)}
+.card{background:linear-gradient(180deg,var(--panel),rgba(8,12,22,.72));border:1px solid var(--line);border-radius:var(--radius);padding:24px;box-shadow:0 14px 40px rgba(0,0,0,.18);transition:transform .25s,border-color .25s,box-shadow .25s}
+.card:hover{transform:translateY(-3px);border-color:rgba(56,232,255,.22);box-shadow:0 20px 50px rgba(0,0,0,.28)}
+.card h3{font-size:18px;margin-bottom:9px}
+.card p{color:var(--muted);font-size:14.5px}
+.card-icon{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;margin-bottom:16px;border:1px solid var(--line-2);background:rgba(56,232,255,.06);color:var(--cyan)}
+.card-icon svg{width:20px;height:20px}
+.stat{padding:22px;border-radius:16px;border:1px solid var(--line);background:rgba(13,20,35,.55)}
+.stat-value{font-family:"JetBrains Mono",monospace;font-size:clamp(26px,3.4vw,40px);font-weight:600;letter-spacing:-.04em;line-height:1;margin-bottom:8px}
+.stat-label{font-size:12.5px;color:var(--muted);line-height:1.4}
+.finding{position:relative;overflow:hidden}
+.finding::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:linear-gradient(180deg,var(--cyan),var(--violet));opacity:.85}
+.finding .num{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--cyan);letter-spacing:.16em;margin-bottom:12px}
+.finding h3{font-size:19px}
+.finding .big{font-family:"JetBrains Mono",monospace;font-size:26px;color:var(--amber);margin:10px 0 8px;letter-spacing:-.03em}
+.explain-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:26px;align-items:start}
+.flow{display:grid;gap:10px}
+.flow-node{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:14px;border:1px solid var(--line);background:rgba(13,20,35,.6)}
+.flow-node .ico{width:38px;height:38px;flex:0 0 auto;border-radius:10px;display:grid;place-items:center;background:rgba(56,232,255,.08);border:1px solid rgba(56,232,255,.2);color:var(--cyan)}
+.flow-node .ico svg{width:19px;height:19px}
+.flow-node h4{font-size:14px;margin-bottom:2px}
+.flow-node p{font-size:12.5px;color:var(--muted)}
+.flow-arrow{display:flex;justify-content:center;color:var(--dim);height:8px}
+.plain-box{border-radius:16px;border:1px solid rgba(251,191,36,.18);background:rgba(251,191,36,.04);padding:20px;margin-top:18px}
+.plain-box h4{font-size:13px;font-family:"JetBrains Mono",monospace;text-transform:uppercase;letter-spacing:.12em;color:var(--amber);margin-bottom:8px}
+.plain-box p{font-size:14px;color:var(--muted)}
+.dashboard-tools{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{border:1px solid var(--line-2);background:rgba(148,163,184,.05);color:var(--muted);padding:7px 12px;border-radius:999px;font-size:12px;font-weight:600;cursor:pointer;transition:.2s}
+.chip:hover{color:var(--text);border-color:rgba(56,232,255,.3)}
+.chip[aria-pressed="true"]{background:rgba(56,232,255,.12);border-color:rgba(56,232,255,.42);color:var(--cyan)}
+.search-box{position:relative;min-width:230px;flex:1;max-width:330px}
+.search-box svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:var(--dim);pointer-events:none}
+.search-box input{width:100%;padding:10px 12px 10px 36px;border-radius:10px;border:1px solid var(--line-2);background:rgba(5,7,13,.6);color:var(--text);font-size:13px;outline:none;transition:.2s}
+.search-box input:focus{border-color:rgba(56,232,255,.5);box-shadow:0 0 0 3px rgba(56,232,255,.1)}
+.search-box input::placeholder{color:var(--dim)}
+.case-table{border:1px solid var(--line);border-radius:16px;overflow:hidden;background:rgba(8,12,22,.5)}
+.case-head,.case-row{display:grid;grid-template-columns:minmax(180px,1.5fr) 100px 110px minmax(150px,1fr) 120px;gap:12px;align-items:center;padding:13px 18px}
+.case-head{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--dim);background:rgba(148,163,184,.04);border-bottom:1px solid var(--line)}
+.case-row{width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid var(--line);cursor:pointer;color:var(--text);transition:background .18s}
+.case-row:last-child{border-bottom:0}
+.case-row:hover,.case-row[aria-pressed="true"]{background:rgba(56,232,255,.055)}
+.case-row:focus-visible{outline-offset:-3px}
+.case-name{display:flex;align-items:center;gap:10px;font-weight:600;font-size:13.5px}
+.case-dot{width:7px;height:7px;border-radius:50%;flex:0 0 auto;background:var(--dim);box-shadow:0 0 10px currentColor}
+.case-num{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--muted)}
+.case-num.claimed{color:var(--cyan)}
+.case-num.measured{color:var(--amber)}
+.case-num.none{color:var(--dim)}
+.outcome{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;border-radius:999px;white-space:nowrap;border:1px solid}
+.outcome::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor}
+.outcome-amplified{color:var(--red);border-color:rgba(255,93,122,.28);background:rgba(255,93,122,.07)}
+.outcome-neutral{color:var(--amber);border-color:rgba(251,191,36,.28);background:rgba(251,191,36,.07)}
+.outcome-refused{color:var(--violet);border-color:rgba(139,92,246,.3);background:rgba(139,92,246,.08)}
+.outcome-mcp{color:var(--green);border-color:rgba(52,211,153,.28);background:rgba(52,211,153,.07)}
+.case-detail{margin-top:16px;border:1px solid rgba(56,232,255,.2);border-radius:16px;background:linear-gradient(180deg,rgba(56,232,255,.055),rgba(8,12,22,.6));padding:20px;display:none}
+.case-detail.show{display:block;animation:fadeUp .35s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.case-detail h3{font-size:18px;margin-bottom:6px}
+.case-detail .meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.case-detail p{color:var(--muted);font-size:14px}
+.case-detail dl{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0 0}
+.case-detail dt{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--dim);font-family:"JetBrains Mono",monospace}
+.case-detail dd{margin:3px 0 0;font-size:14px;font-weight:600}
+.chart-card{border:1px solid var(--line);border-radius:18px;background:rgba(8,12,22,.55);padding:22px;margin-top:18px}
+.chart-head{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:16px}
+.chart-head h3{font-size:16px}
+.chart-head span{font-size:12px;color:var(--dim)}
+.chart-legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:12px;font-size:11.5px;color:var(--muted)}
+.chart-legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:middle}
+.chart-svg{width:100%;height:auto;overflow:visible}
+.chart-svg text{font-family:"JetBrains Mono",monospace}
+.chart-tip{position:fixed;z-index:150;pointer-events:none;background:#0b1220;border:1px solid var(--line-2);border-radius:10px;padding:9px 11px;font-size:12px;box-shadow:var(--shadow);opacity:0;transform:translate(-50%,-120%);transition:opacity .12s;max-width:260px}
+.chart-tip.show{opacity:1}
+.lab-tabs{display:inline-flex;gap:4px;padding:4px;border-radius:12px;border:1px solid var(--line);background:rgba(8,12,22,.6);margin-bottom:18px}
+.lab-tab{border:0;background:transparent;color:var(--muted);padding:9px 14px;border-radius:9px;font-size:12.5px;font-weight:600;cursor:pointer;transition:.2s}
+.lab-tab:hover{color:var(--text)}
+.lab-tab[aria-selected="true"]{background:rgba(56,232,255,.12);color:var(--cyan);box-shadow:inset 0 0 0 1px rgba(56,232,255,.25)}
+.lab-shell{display:grid;grid-template-columns:1.35fr .65fr;gap:16px;border:1px solid var(--line);border-radius:22px;overflow:hidden;background:rgba(8,12,22,.6);box-shadow:var(--shadow)}
+.lab-canvas-wrap{position:relative;min-height:520px;background:radial-gradient(circle at 50% 45%,rgba(56,232,255,.07),transparent 55%),#05070d;overflow:hidden}
+#lab-canvas{display:block;width:100%;height:100%;min-height:520px;touch-action:none;cursor:grab}
+#lab-canvas:active{cursor:grabbing}
+.lab-overlay{position:absolute;left:16px;top:16px;display:flex;flex-wrap:wrap;gap:6px;pointer-events:none}
+.lab-overlay .badge{pointer-events:auto;background:rgba(5,7,13,.7);backdrop-filter:blur(8px)}
+.lab-hint{position:absolute;left:16px;bottom:14px;font-size:11px;color:var(--dim);background:rgba(5,7,13,.65);border:1px solid var(--line);border-radius:8px;padding:6px 9px;backdrop-filter:blur(8px)}
+.lab-panel{padding:22px;border-left:1px solid var(--line);display:flex;flex-direction:column;gap:16px;min-height:520px}
+.lab-panel h3{font-size:17px}
+.lab-panel p{color:var(--muted);font-size:13.5px}
+.lab-panel .muted{color:var(--dim);font-size:12px}
+.lab-legend{display:flex;flex-wrap:wrap;gap:12px;font-size:11.5px;color:var(--muted)}
+.lab-legend i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:5px}
+.mode-row{display:flex;flex-wrap:wrap;gap:6px}
+.mode-btn{border:1px solid var(--line-2);background:rgba(148,163,184,.05);color:var(--muted);border-radius:8px;padding:6px 9px;font-size:11.5px;font-weight:600;cursor:pointer}
+.mode-btn[aria-pressed="true"]{border-color:rgba(56,232,255,.4);background:rgba(56,232,255,.1);color:var(--cyan)}
+.lab-fallback{position:absolute;inset:0;display:none;place-items:center;padding:24px;text-align:center;background:#05070d}
+.lab-fallback.show{display:grid}
+.lab-fallback p{color:var(--muted);font-size:13px;max-width:360px}
+.game-card{border:1px solid var(--line);border-radius:14px;background:rgba(13,20,35,.55);padding:16px}
+.game-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
+.game-top h4{font-size:13px;color:var(--cyan);font-family:"JetBrains Mono",monospace;letter-spacing:.08em;text-transform:uppercase}
+.game-budget{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--amber)}
+.budget-track{height:8px;border-radius:99px;background:rgba(148,163,184,.12);overflow:hidden;margin:8px 0 12px}
+.budget-fill{height:100%;width:100%;border-radius:99px;background:linear-gradient(90deg,var(--green),var(--cyan));transition:width .5s,background .5s}
+.game-prompt{font-size:13px;color:var(--muted);margin-bottom:12px;min-height:54px}
+.game-options{display:grid;gap:7px}
+.game-option{display:flex;align-items:center;justify-content:space-between;gap:10px;text-align:left;border:1px solid var(--line-2);background:rgba(148,163,184,.04);color:var(--text);border-radius:9px;padding:9px 11px;font-size:12.5px;cursor:pointer;transition:.18s}
+.game-option:hover:not(:disabled){border-color:rgba(56,232,255,.4);background:rgba(56,232,255,.07)}
+.game-option:disabled{opacity:.55;cursor:default}
+.game-option .cost{font-family:"JetBrains Mono",monospace;color:var(--amber);white-space:nowrap}
+.game-option.best{border-color:rgba(52,211,153,.4);background:rgba(52,211,153,.08)}
+.game-option.bad{border-color:rgba(255,93,122,.4);background:rgba(255,93,122,.08)}
+.game-feedback{font-size:12.5px;color:var(--muted);margin-top:10px;min-height:54px}
+.game-feedback strong{color:var(--text)}
+.game-actions{display:flex;gap:7px;margin-top:10px;flex-wrap:wrap}
+.intensity-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.intensity-card{border:1px solid var(--line);border-radius:18px;background:rgba(8,12,22,.55);padding:22px}
+.intensity-card h3{font-size:16px;margin-bottom:4px}
+.intensity-card .sub{font-size:12px;color:var(--dim);margin-bottom:14px}
+.intensity-bars{display:grid;gap:9px}
+.intensity-row{display:grid;grid-template-columns:72px 1fr 70px;align-items:center;gap:10px;font-size:11.5px}
+.intensity-row .lbl{color:var(--muted);font-family:"JetBrains Mono",monospace}
+.intensity-row .track{height:9px;border-radius:99px;background:rgba(148,163,184,.1);overflow:hidden}
+.intensity-row .fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--cyan),var(--violet));transition:width .6s}
+.intensity-row .val{text-align:right;font-family:"JetBrains Mono",monospace;color:var(--text)}
+.transport-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+.transport-card{border:1px solid var(--line);border-radius:14px;padding:16px;background:rgba(13,20,35,.5)}
+.transport-card .t{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);font-family:"JetBrains Mono",monospace;margin-bottom:6px}
+.transport-card .v{font-family:"JetBrains Mono",monospace;font-size:22px;color:var(--cyan);margin-bottom:3px}
+.transport-card .d{font-size:12px;color:var(--muted)}
+.beginner-path{position:relative;display:grid;gap:14px}
+.level{display:grid;grid-template-columns:52px 1fr;gap:16px;padding:20px;border:1px solid var(--line);border-radius:16px;background:rgba(8,12,22,.5);transition:.2s}
+.level:hover{border-color:rgba(56,232,255,.24)}
+.level-num{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-family:"JetBrains Mono",monospace;font-weight:600;color:var(--cyan);background:rgba(56,232,255,.07);border:1px solid rgba(56,232,255,.22)}
+.level h3{font-size:17px;margin-bottom:5px}
+.level p{font-size:13.5px;color:var(--muted)}
+.level .learn{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.level .learn span{font-size:10.5px;padding:3px 7px;border-radius:999px;background:rgba(148,163,184,.07);border:1px solid var(--line);color:var(--dim)}
+.checkpoint{margin-top:12px;border-top:1px solid var(--line);padding-top:10px}
+.checkpoint summary{cursor:pointer;color:var(--cyan);font-size:12.5px;font-weight:600}
+.checkpoint p{font-size:12.5px;color:var(--muted);margin-top:8px}
+.audience-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.audience{border:1px solid var(--line);border-radius:14px;padding:16px;background:rgba(13,20,35,.5)}
+.audience .role{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--cyan);font-family:"JetBrains Mono",monospace;margin-bottom:7px}
+.audience h3{font-size:14px;margin-bottom:6px}
+.audience p{font-size:12.5px;color:var(--muted)}
+.value-table{width:100%;border-collapse:collapse;margin-top:16px;font-size:13px}
+.value-table th,.value-table td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.value-table th{font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);font-family:"JetBrains Mono",monospace;background:rgba(148,163,184,.04)}
+.value-table td{color:var(--muted)}
+.value-table td:first-child{color:var(--text);font-weight:600;width:24%}
+.value-table tr:last-child td{border-bottom:0}
+.quiz-card{border:1px solid rgba(56,232,255,.18);border-radius:22px;background:linear-gradient(180deg,rgba(13,20,35,.8),rgba(8,12,22,.7));padding:26px;box-shadow:var(--shadow)}
+.quiz-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px}
+.quiz-top .qnum{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--cyan);letter-spacing:.12em;text-transform:uppercase}
+.quiz-score{font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--muted)}
+.quiz-progress{height:6px;border-radius:99px;background:rgba(148,163,184,.12);overflow:hidden;margin-bottom:18px}
+.quiz-progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--violet));transition:width .4s}
+.quiz-q{font-size:clamp(18px,2.4vw,24px);font-weight:700;margin-bottom:16px;font-family:Sora,sans-serif;letter-spacing:-.02em}
+.quiz-options{display:grid;gap:9px}
+.quiz-option{text-align:left;border:1px solid var(--line-2);background:rgba(148,163,184,.04);color:var(--text);border-radius:11px;padding:13px 15px;font-size:14px;cursor:pointer;transition:.18s;display:flex;gap:11px;align-items:flex-start}
+.quiz-option:hover:not(:disabled){border-color:rgba(56,232,255,.4);background:rgba(56,232,255,.06)}
+.quiz-option:disabled{cursor:default}
+.quiz-option .key{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--dim);border:1px solid var(--line);border-radius:5px;padding:2px 5px;flex:0 0 auto;margin-top:1px}
+.quiz-option.correct{border-color:rgba(52,211,153,.5);background:rgba(52,211,153,.1)}
+.quiz-option.wrong{border-color:rgba(255,93,122,.5);background:rgba(255,93,122,.09)}
+.quiz-option.correct .key{color:var(--green);border-color:rgba(52,211,153,.4)}
+.quiz-option.wrong .key{color:var(--red);border-color:rgba(255,93,122,.4)}
+.quiz-feedback{margin-top:14px;border-radius:12px;border:1px solid var(--line);background:rgba(5,7,13,.5);padding:13px 15px;font-size:13px;color:var(--muted);display:none}
+.quiz-feedback.show{display:block;animation:fadeUp .3s ease both}
+.quiz-feedback strong{color:var(--text)}
+.quiz-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.quiz-result{display:none;text-align:center;padding:18px 6px}
+.quiz-result.show{display:block}
+.quiz-result .score{font-family:"JetBrains Mono",monospace;font-size:54px;font-weight:600;color:var(--cyan);line-height:1;margin-bottom:8px}
+.quiz-result h3{font-size:22px;margin-bottom:8px}
+.quiz-result p{color:var(--muted);font-size:14px;max-width:560px;margin:0 auto 16px}
+.concept-layout{display:grid;grid-template-columns:1.25fr .75fr;gap:16px;align-items:stretch}
+.concept-card{border:1px solid var(--line);border-radius:20px;background:rgba(8,12,22,.6);padding:18px;min-height:430px;display:flex;flex-direction:column}
+.concept-svg{width:100%;height:auto;flex:1;min-height:340px}
+.concept-edge{stroke:rgba(148,163,184,.18);stroke-width:1.2;transition:stroke .4s,stroke-width .4s}
+.concept-edge.active{stroke:rgba(56,232,255,.55);stroke-width:1.8;filter:drop-shadow(0 0 4px rgba(56,232,255,.5))}
+.concept-node{cursor:pointer}
+.concept-node circle{fill:#0b1220;stroke:rgba(148,163,184,.35);stroke-width:1.4;transition:.3s}
+.concept-node text{fill:var(--muted);font-family:Inter,sans-serif;font-size:11px;font-weight:600;text-anchor:middle;dominant-baseline:middle;pointer-events:none;transition:.3s}
+.concept-node:hover circle{stroke:rgba(56,232,255,.7)}
+.concept-node.active circle{fill:rgba(56,232,255,.14);stroke:var(--cyan);filter:drop-shadow(0 0 10px rgba(56,232,255,.55))}
+.concept-node.active text{fill:var(--text)}
+.concept-panel{border:1px solid var(--line);border-radius:20px;background:rgba(8,12,22,.6);padding:22px;display:flex;flex-direction:column;gap:12px}
+.concept-panel h3{font-size:17px}
+.concept-panel p{font-size:13.5px;color:var(--muted);flex:1}
+.concept-meter{height:8px;border-radius:99px;background:rgba(148,163,184,.12);overflow:hidden}
+.concept-meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--violet));transition:width .5s}
+.concept-actions{display:flex;flex-wrap:wrap;gap:7px}
+.reproduce-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.code-block{position:relative;border:1px solid var(--line);border-radius:14px;background:#05070d;overflow:hidden}
+.code-block pre{margin:0;padding:18px;overflow-x:auto;font-family:"JetBrains Mono",monospace;font-size:12.5px;line-height:1.7;color:#cbd5e1}
+.code-block .copy-btn{position:absolute;right:10px;top:10px;z-index:2}
+.faq-item{border:1px solid var(--line);border-radius:14px;background:rgba(8,12,22,.5);padding:0 18px;margin-bottom:9px}
+.faq-item summary{cursor:pointer;padding:16px 0;font-weight:600;font-size:14.5px;list-style:none;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::after{content:"+";font-family:"JetBrains Mono",monospace;color:var(--cyan);font-size:18px;transition:transform .2s}
+.faq-item[open] summary::after{transform:rotate(45deg)}
+.faq-item p{font-size:13.5px;color:var(--muted);padding-bottom:16px;margin:0}
+.glossary{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.glossary .faq-item{margin:0}
+.footer{border-top:1px solid var(--line);padding:44px 0 36px;background:rgba(5,7,13,.6)}
+.footer-grid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px}
+.footer h3{font-size:15px;margin-bottom:6px}
+.footer p{font-size:12.5px;color:var(--dim);max-width:420px}
+.footer-links{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:12.5px}
+.footer-links a{color:var(--muted)}
+.footer-bottom{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:11.5px;color:var(--dim);font-family:"JetBrains Mono",monospace}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);z-index:300;background:#0b1220;border:1px solid rgba(56,232,255,.35);color:var(--text);padding:11px 16px;border-radius:12px;font-size:13px;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.25s}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.search-modal{position:fixed;inset:0;z-index:250;display:none;background:rgba(3,5,10,.72);backdrop-filter:blur(8px);padding:80px 18px 18px}
+.search-modal.open{display:block}
+.search-panel{width:min(680px,100%);margin:0 auto;background:#0b1220;border:1px solid var(--line-2);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
+.search-panel input{width:100%;border:0;background:transparent;color:var(--text);font-size:18px;padding:18px 20px;outline:none;border-bottom:1px solid var(--line)}
+.search-panel input::placeholder{color:var(--dim)}
+.search-results{max-height:60vh;overflow:auto;padding:8px}
+.search-result{display:block;width:100%;text-align:left;border:0;background:transparent;color:var(--text);padding:11px 12px;border-radius:9px;cursor:pointer}
+.search-result:hover,.search-result:focus{background:rgba(56,232,255,.08)}
+.search-result .st{font-size:13.5px;font-weight:600}
+.search-result .sd{font-size:11.5px;color:var(--dim);margin-top:2px}
+.search-empty{padding:18px;color:var(--dim);font-size:13px;text-align:center}
+.motion-off *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .reveal{opacity:1;transform:none}
+}
+@media (max-width:1000px){
+  .hero-grid{grid-template-columns:1fr;gap:30px}
+  .hero-visual{min-height:360px}
+  .grid-3{grid-template-columns:1fr 1fr}
+  .explain-grid{grid-template-columns:1fr}
+  .lab-shell{grid-template-columns:1fr}
+  .lab-panel{border-left:0;border-top:1px solid var(--line);min-height:0}
+  .lab-canvas-wrap,#lab-canvas{min-height:420px}
+  .concept-layout{grid-template-columns:1fr}
+  .reproduce-grid{grid-template-columns:1fr}
+  .audience-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:860px){
+  .nav-links{display:none}
+  .menu-btn{display:grid}
+  .section{padding:72px 0}
+  .intensity-grid{grid-template-columns:1fr}
+  .case-head{display:none}
+  .case-row{grid-template-columns:1fr auto;gap:8px 12px;padding:14px 16px}
+  .case-row .case-cell:nth-child(2),.case-row .case-cell:nth-child(3){grid-row:2}
+  .case-row .case-cell:nth-child(4){grid-row:2;justify-self:end}
+  .case-row .case-cell:nth-child(5){grid-column:1/-1;color:var(--dim);font-size:11px}
+  .case-detail dl{grid-template-columns:1fr 1fr}
+  .transport-grid{grid-template-columns:1fr}
+  .glossary{grid-template-columns:1fr}
+}
+@media (max-width:620px){
+  .wrap,.nav-inner{width:calc(100% - 32px)}
+  .hero{padding:52px 0 60px;min-height:auto}
+  .hero h1{font-size:clamp(34px,10.5vw,48px)}
+  .hero-visual{min-height:300px}
+  .signal-card{padding:18px}
+  .grid-3,.grid-2,.audience-grid{grid-template-columns:1fr}
+  .section-title{font-size:clamp(26px,7vw,34px)}
+  .case-row{grid-template-columns:1fr}
+  .case-row .case-cell:nth-child(2),.case-row .case-cell:nth-child(3),.case-row .case-cell:nth-child(4){grid-row:auto;justify-self:start}
+  .case-detail dl{grid-template-columns:1fr}
+  .lab-canvas-wrap,#lab-canvas{min-height:340px}
+  .lab-panel{padding:16px}
+  .quiz-card{padding:18px}
+  .quiz-result .score{font-size:44px}
+  .footer-grid{flex-direction:column}
+  .level{grid-template-columns:1fr}
+  .level-num{width:38px;height:38px}
+  .value-table{table-layout:fixed;width:100%;font-size:12px}
+  .value-table th,.value-table td{padding:8px 6px;overflow-wrap:anywhere}
+  .value-table th:nth-child(2),.value-table td:nth-child(2){display:none}
+  .search-modal{padding-top:60px}
+  .nav-actions a[data-repo-link]{display:none}
+}
+@media (max-width:400px){
+  .brand span small{display:none}
+  .nav-inner{gap:8px}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top" aria-label="Counter-REA Study home">
+      <span class="brand-mark" aria-hidden="true">CR</span>
+      <span>Counter-REA<small>Research artifact</small></span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#summary">Summary</a>
+      <a href="#evidence">Evidence</a>
+      <a href="#lab">3D Lab</a>
+      <a href="#learn">Learn</a>
+      <a href="#business">Business</a>
+      <a href="#quiz">Quiz</a>
+      <a href="#reproduce">Reproduce</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="search-open" aria-label="Search this page" title="Search (press /)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      </button>
+      <button class="icon-btn" id="motion-toggle" aria-label="Reduce motion" title="Reduce motion" aria-pressed="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="9"/></svg>
+      </button>
+      <a class="btn btn-primary btn-small" data-repo-link href="https://github.com/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M12 .7a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.2.8-.6v-2.1c-3.3.7-4-1.4-4-1.4-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.6-.3-5.4-1.3-5.4-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.4 11.4 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.4 5.9.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6A11.5 11.5 0 0 0 12 .7Z"/></svg>
+        GitHub
+      </a>
+      <button class="icon-btn menu-btn" id="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#summary">Summary</a>
+  <a href="#evidence">Evidence</a>
+  <a href="#lab">3D Lab</a>
+  <a href="#learn">Learn</a>
+  <a href="#business">Business</a>
+  <a href="#quiz">Quiz</a>
+  <a href="#reproduce">Reproduce</a>
+  <a data-repo-link href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+</div>
+
+<main id="main">
+  <section class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow">
+          <span class="badge badge-live"><span class="dot"></span> Open research · 2026</span>
+          <span class="badge">Reproducible</span>
+          <span class="badge">No API key</span>
+        </div>
+        <h1>
+          <span class="line">The budget trap is real.</span>
+          <span class="line gradient-text">The number is not portable.</span>
+        </h1>
+        <p class="hero-lead">
+          A same-commit audit of <strong>BLA's counter-reverse-engineering claims</strong> against
+          live REA. Twelve independent fixtures, four protection intensities, two transports,
+          five query shapes, and one uncomfortable finding: <strong>amplification is a property
+          of the artifact and the analyzer path</strong> — not a format constant.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#evidence">
+            Explore the evidence
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="#lab">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2 4 7v10l8 5 8-5V7l-8-5Z"/><path d="m4 7 8 5 8-5M12 12v10"/></svg>
+            Play the 3D lab
+          </a>
+        </div>
+        <div class="hero-meta">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg> 14 formats</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v18M3 12h18"/></svg> 12 independent fixtures</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v6h-6"/></svg> 5 replications</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.4 8.4 8 10 4.6-1.6 8-5 8-10V6l-8-4Z"/></svg> 0 LLM API keys</span>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <canvas id="neural-canvas"></canvas>
+        <div class="signal-card">
+          <div class="signal-head">
+            <h2>Signal / 01</h2>
+            <span class="badge badge-live" style="font-size:9px;padding:3px 7px"><span class="dot"></span> live</span>
+          </div>
+          <div class="signal-row">
+            <span class="signal-label">Max measured amplification</span>
+            <span class="signal-value cyan" data-count="2077.21" data-suffix="×">2,077×</span>
+          </div>
+          <div class="signal-row">
+            <span class="signal-label">README vs benchmark factors</span>
+            <span class="signal-value amber">7 / 14</span>
+          </div>
+          <div class="signal-row">
+            <span class="signal-label">Same JS via MCP summary</span>
+            <span class="signal-value red">1.67×</span>
+          </div>
+          <div class="signal-bars" aria-hidden="true">
+            <i style="height:42%"></i><i style="height:66%"></i><i style="height:30%"></i><i style="height:88%"></i><i style="height:54%"></i><i style="height:74%"></i><i style="height:38%"></i><i style="height:96%"></i><i style="height:48%"></i><i style="height:62%"></i><i style="height:28%"></i><i style="height:80%"></i>
+          </div>
+          <p class="signal-note">Measured with REA's own token counter on independently authored fixtures. Not a dollar invoice. Not a universal constant.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="summary">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="kicker">The 30-second version</div>
+        <h2 class="section-title">What this study found</h2>
+        <p class="section-sub">Three findings, each checkable in the repository. No single-number hero story, no hidden assumptions.</p>
+      </div>
+      <div class="grid grid-3">
+        <article class="card finding reveal">
+          <div class="num">FINDING 01</div>
+          <h3>BLA's own claim surfaces disagree.</h3>
+          <div class="big">639.5× vs 1,067.3×</div>
+          <p>The README reports ~639.5× token amplification. The same-commit benchmark reports 1,067.3×. Seven of fourteen per-case factors differ, and the verifier marks runtime equivalence as <code>not-tested</code> while still returning <code>overallPassed: true</code>.</p>
+        </article>
+        <article class="card finding reveal">
+          <div class="num">FINDING 02</div>
+          <h3>The live outcome is conditional.</h3>
+          <div class="big">4 amplified · 3 neutral · 5 refused</div>
+          <p>At the <code>bankrupt</code> preset, JavaScript, WASM, EVM, and PCAP amplify strongly. SQLite, PTX, and ELF are neutral. ASAR, safetensors, GGUF, BEAM, and PYC are refused. One documented ASAR override converts a refusal into 718.14×.</p>
+        </article>
+        <article class="card finding reveal">
+          <div class="num">FINDING 03</div>
+          <h3>The published factor does not predict the measured factor.</h3>
+          <div class="big">r = 0.039 · slope = 0.018</div>
+          <p>Across the eight successful CLI cases, log10 Pearson correlation is 0.039 and the log-log slope is 0.018. The claimed geometric mean is 1,003.24×; the measured geometric mean is 36.38×. The sample is small, but the spread is not.</p>
+        </article>
+      </div>
+      <div class="plain-box reveal">
+        <h4>Read this if you only remember one sentence</h4>
+        <p><strong>Budget traps are real, but they are query-shaped, fixture-dependent, and sometimes convert a refusal into a larger bill.</strong> A claim of the form “format X costs N×” is under-specified without the intensity, command, transport, output detail, budget, and ABI check.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="explain">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="kicker">Zero jargon</div>
+        <h2 class="section-title">What is a budget trap?</h2>
+        <p class="section-sub">If you have never thought about reverse engineering or token budgets, start here. Every term is explained the first time it appears.</p>
+      </div>
+      <div class="explain-grid">
+        <div class="flow reveal">
+          <div class="flow-node">
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16v12H4z"/><path d="M8 7V4h8v3M8 12h8M8 16h5"/></svg></span>
+            <div><h4>1. An artifact ships</h4><p>A program, model, database, or packet capture. It contains code and data that someone may want to inspect.</p></div>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">↓</div>
+          <div class="flow-node">
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3 4 7v10l8 5 8-5V7l-8-5Z"/><path d="M12 8v8M8 10v4M16 10v4"/></svg></span>
+            <div><h4>2. A protector adds decoys</h4><p>BLA inserts fake structures, oversized metadata, and resource traps. The goal is to make automated analysis expensive without breaking normal execution.</p></div>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">↓</div>
+          <div class="flow-node">
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></span>
+            <div><h4>3. An analyzer spends a budget</h4><p>REA reads the artifact and returns evidence. Every output consumes tokens: the unit an AI agent pays in context, time, and money.</p></div>
+          </div>
+          <div class="flow-arrow" aria-hidden="true">↓</div>
+          <div class="flow-node">
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 18 10 6l4 8 3-5 3 9"/><path d="M4 21h16"/></svg></span>
+            <div><h4>4. The bill depends on the path</h4><p>Summary vs full JSON, narrow vs broad fields, CLI vs MCP, default vs raised budget. The same protected file can cost 1.67× or 2,077×.</p></div>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="card" style="margin-bottom:16px">
+            <h3>Why business readers should care</h3>
+            <p>Security vendors, platform teams, and investors increasingly hear claims like “our protection raises reverse-engineering cost by 1,000×.” This study shows why that sentence is not enough to make a procurement or investment decision. The useful question is not “what is the factor?” but “under which analyzer, transport, query, and budget?”</p>
+          </div>
+          <div class="card">
+            <h3>Why researchers should care</h3>
+            <p>The repository is a reproducible case study in evaluation methodology: pinned upstreams, independent fixtures, a retrospective protocol, exact numbers, and a clear separation between a structural self-check and a runtime-equivalence claim. It is designed to be attacked, replicated, and extended.</p>
+          </div>
+          <div class="plain-box">
+            <h4>One important distinction</h4>
+            <p>A refusal is not automatically a defender win. It can be a security boundary, a usability failure, or a signal for the analyst to switch tools. This study reports refusals separately instead of averaging them into an amplification factor.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="evidence">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="kicker">The evidence</div>
+        <h2 class="section-title">Every case, every number</h2>
+        <p class="section-sub">Filter, search, and open any row. “Claimed” is BLA's published factor; “measured” is live REA on an independently authored fixture. Refusals are error payloads, not analysis costs.</p>
+      </div>
+      <div class="dashboard-tools reveal">
+        <div class="chips" role="group" aria-label="Filter cases">
+          <button class="chip" data-filter="all" aria-pressed="true">All 15</button>
+          <button class="chip" data-filter="amplified" aria-pressed="false">Amplified</button>
+          <button class="chip" data-filter="neutral" aria-pressed="false">Neutral</button>
+          <button class="chip" data-filter="refused" aria-pressed="false">Refused</button>
+          <button class="chip" data-filter="mcp" aria-pressed="false">MCP transport</button>
+        </div>
+        <label class="search-box">
+          <span class="sr-only">Search cases</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input id="case-search" type="search" placeholder="Search a case, format, or outcome…" autocomplete="off">
+        </label>
+      </div>
+      <div class="case-table reveal" id="case-table" aria-live="polite"></div>
+      <div class="case-detail" id="case-detail" aria-live="polite"></div>
+      <div class="chart-card reveal">
+        <div class="chart-head">
+          <h3>Claimed vs measured amplification</h3>
+          <span>Eight successful CLI cases · log scale</span>
+        </div>
+        <div id="comparison-chart"></div>
+        <div class="chart-legend">
+          <span><i style="background:var(--cyan)"></i>Claimed by BLA</span>
+          <span><i style="background:var(--amber)"></i>Measured on independent fixture</span>
+          <span><i style="background:var(--red)"></i>Measured &lt; claimed</span>
+        </div>
+        <p class="muted" style="font-size:12px;color:var(--dim);margin-top:12px">Bars are grouped by case. The claimed factor is often far above or below the measured factor; the point is the absence of a stable relationship, not a ranking.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="lab">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="kicker">Interactive · 3D</div>
+        <h2 class="section-title">The Budget Trap Lab</h2>
+        <p class="section-sub">Explore the evidence in three dimensions, then play a five-round game about the decision that actually matters: which query do you run, and what does it cost?</p>
+      </div>
+      <div class="lab-tabs" role="tablist" aria-label="3D lab modes">
+        <button class="lab-tab" role="tab" id="tab-constellation" aria-selected="true" aria-controls="lab-panel" data-lab-mode="constellation">Constellation</button>
+        <button class="lab-tab" role="tab" id="tab-game" aria-selected="false" aria-controls="lab-panel" data-lab-mode="game">Budget Run</button>
+        <button class="lab-tab" role="tab" id="tab-how" aria-selected="false" aria-controls="lab-panel" data-lab-mode="how">How to read this</button>
+      </div>
+      <div class="lab-shell reveal">
+        <div class="lab-canvas-wrap">
+          <canvas id="lab-canvas" tabindex="0" aria-label="Interactive 3D visualization. Use the panel controls to change mode, select a format, or play the budget game. A text data table below provides the same information."></canvas>
+          <div class="lab-overlay">
+            <span class="badge" id="lab-mode-badge">Constellation</span>
+            <span class="badge" id="lab-focus-badge">All formats</span>
+          </div>
+          <div class="lab-hint">Drag to orbit · scroll to zoom · click a bar</div>
+          <div class="lab-fallback" id="lab-fallback">
+            <div>
+              <p><strong>3D is unavailable in this browser.</strong></p>
+              <p>The evidence table above and the game panel still work. The constellation is an enhancement, not a requirement.</p>
+            </div>
+          </div>
+        </div>
+        <div class="lab-panel" id="lab-panel" role="tabpanel" aria-labelledby="tab-constellation" aria-live="polite"></div>
+      </div>
+      <div class="chart-card reveal" style="margin-top:18px">
+        <div class="chart-head">
+          <h3>Accessible data view</h3>
+          <span>The same constellation data, as text</span>
+        </div>
+        <div id="lab-table"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="intensity">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="kicker">The shape of the effect</div>
+        <h2 class="section-title">Intensity, transport, and query shape</h2>
+        <p class="section-sub">Three ways the same protection story changes by orders of magnitude. These are the details a single “format factor” hides.</p>
+      </div>
+      <div class="intensity-grid">
+        <div class="intensity-card reveal">
+          <h3>JavaScript intensity curve</h3>
+          <div class="sub">Four BLA presets · REA token count · log scale</div>
+          <div class="intensity-bars" id="intensity-js"></div>
+          <p style="font-size:12px;color:var(--dim);margin-top:12px">Smooth: 38.49× → 59.31× → 91.14× → 114.47×. The bankrupt step is only 1.26× the previous step.</p>
+        </div>
+        <div class="intensity-card reveal">
+          <h3>WASM intensity curve</h3>
+          <div class="sub">Four BLA presets · REA token count · log scale</div>
+          <div class="intensity-bars" id="intensity-wasm"></div>
+          <p style="font-size:12px;color:var(--dim);margin-top:12px">Flat, then a cliff: 2.74× → 3.91× → 6.67× → 2,077.21×. The bankrupt step is 311.54× the previous step. Export preservation is required for ABI compatibility.</p>
+        </div>
+      </div>
+      <div class="chart-card reveal">
+        <div class="chart-head">
+          <h3>Same protected JavaScript, three transports</h3>
+          <span>Token count · log scale</span>
+        </div>
+        <div id="transport-chart"></div>
+        <div class="transport-grid">
+          <div class="transport-card">
+            <div class="t">CLI full JSON</div>
+            <div class="v">7,159,792</div>
+            <div class="d">The full evidence dump. This is the number a “tokens after protection” claim usually means.</div>
+          </div>
+          <div class="transport-card">
+            <div class="t">MCP summary</div>
+            <div class="v">4,645</div>
+            <div class="d">1.67× the unprotected summary. The same artifact, a different product.</div>
+          </div>
+          <div class="transport-card">
+            <div class="t">MCP complete</div>
+            <div class="v">10,577,078 B</div>
+            <div class="d">Hits the 10 MiB stdio budget with no truncation. The transport becomes the boundary.</div>
+          </div>
+        </div>
+      </div>
+      <div class="chart-card reveal">
+        <div class="chart-head">
+          <h3>Same protected PCAP, four query shapes</h3>
+          <span>Token count · log scale</span>
+        </div>
+        <div id="query-chart"></div>
+        <p style="font-size:12px;color:var(--dim);margin-top:12px">Summary tool 14.37× · narrow <code>frame.number</code> 1.82× · six broad fields 6.42× · <code>tcp.payload</code> 275.4×. The trap is in the query, not only in the file.</p>
+      </div>
+      <div class="card reveal" style="margin-top:16px;border-color:rgba(139,92,246,.25)">
+        <h3>The verifier gap, in one card</h3>
+        <div class="grid grid-3" style="margin-top:14px">
+          <div class="stat"><div class="stat-value" style="color:var(--green)">12 / 12</div><div class="stat-label">protected cases returned <code>overallPassed: true</code></div></div>
+          <div class="stat"><div class="stat-value" style="color:var(--amber)">not-tested</div><div class="stat-label"><code>runtimeEquivalence.status</code> on every case</div></div>
+          <div class="stat"><div class="stat-value" style="color:var(--red)">false</div><div class="stat-label"><code>functionalIntegrityVerified</code> on every case</div></div>
+        </div>
+        <p style="font-size:13.5px;color:var(--muted);margin-top:14px">A structural self-check is useful. It is not a runtime-equivalence oracle. The independent checks in this study distinguish “the analyzer produced a result” from “the protected program still behaves like the original.”</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="learn">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="kicker">🌱 Beginner guide</div>
+        <h2 class="section-title">Read this and you are a professional</h2>
+        <p class="section-sub">Six levels from “what is reverse engineering?” to “how do I verify the claim myself?” Each level has a checkpoint. No prior security background required.</p>
+      </div>
+      <div class="beginner-path">
+        <article class="level reveal">
+          <div class="level-num">01</div>
+          <div>
+            <h3>What is reverse engineering?</h3>
+            <p>Reverse engineering is the work of understanding what a program does when you do not have its source code. A security analyst may do it to find a vulnerability; a competitor may do it to understand a product; a platform may do it to check whether a vendor's protection claim is true.</p>
+            <div class="learn"><span>artifact</span><span>analyzer</span><span>evidence</span></div>
+            <details class="checkpoint"><summary>Checkpoint: why can reverse engineering be automated?</summary><p>Because much of the work is pattern recognition over structured outputs: disassembly, metadata, strings, schemas, and protocol fields. An AI agent can read those outputs and decide what to inspect next — which is exactly why token cost becomes a security property.</p></details>
+          </div>
+        </article>
+        <article class="level reveal">
+          <div class="level-num">02</div>
+          <div>
+            <h3>What is a budget trap?</h3>
+            <p>A budget trap is an artifact designed so that automated analysis spends more tokens, time, or memory than the information is worth. It does not necessarily stop the analyst. It makes the analyst pay. BLA's traps include decoy structures, oversized metadata, and resource limits.</p>
+            <div class="learn"><span>decoy</span><span>token budget</span><span>amplification</span></div>
+            <details class="checkpoint"><summary>Checkpoint: is a refusal the same as a high bill?</summary><p>No. A refusal is an error payload; a high bill is a successful analysis that returns a lot of evidence. The study reports them separately because averaging them hides the difference between “blocked” and “expensive.”</p></details>
+          </div>
+        </article>
+        <article class="level reveal">
+          <div class="level-num">03</div>
+          <div>
+            <h3>What did this study test?</h3>
+            <p>It pinned BLA 3.2.5 and REA 6.9.0 at exact commits, built 12 small fixtures from source, protected them at four intensities, and ran live REA on each. It also audited BLA's own README, benchmark, verifier, and live-REA validation at the same commit.</p>
+            <div class="learn"><span>pinned commit</span><span>fixture</span><span>protocol</span></div>
+            <details class="checkpoint"><summary>Checkpoint: why use independent fixtures instead of BLA's showcase?</summary><p>To test external validity. Replaying BLA's own fixtures would only show that BLA's demonstration works on BLA's demonstration. Independent fixtures ask whether the published behavior survives artifacts BLA did not design.</p></details>
+          </div>
+        </article>
+        <article class="level reveal">
+          <div class="level-num">04</div>
+          <div>
+            <h3>What did it find?</h3>
+            <p>BLA's claim surfaces disagree (639.5× vs 1,067.3×; 7 of 14 factors differ). The live outcome is conditional (4 amplified, 3 neutral, 5 refused). The published factor does not predict the measured factor (log10 r = 0.039, slope = 0.018).</p>
+            <div class="learn"><span>claim audit</span><span>outcome</span><span>correlation</span></div>
+            <details class="checkpoint"><summary>Checkpoint: does “no correlation” mean BLA is ineffective?</summary><p>No. It means the published per-format factor is not a portable predictor in this sample. BLA's traps do produce large effects on some paths. The correct conclusion is conditional, not binary.</p></details>
+          </div>
+        </article>
+        <article class="level reveal">
+          <div class="level-num">05</div>
+          <div>
+            <h3>Why is the result subtle?</h3>
+            <p>Because the same protected artifact can cost 1.67× through one transport and 2,077× through another; 1.82× through a narrow PCAP query and 275.4× through a payload query; 789 error tokens at a default cap and 47.2M success tokens after a documented override. The path is part of the result.</p>
+            <div class="learn"><span>query shape</span><span>transport</span><span>override</span></div>
+            <details class="checkpoint"><summary>Checkpoint: what is the minimum honest way to report a factor?</summary><p>State the protector intensity, the analyzer command, the transport, the output detail, the relevant budget, and the ABI/functional check. Without those, two “10×” claims may not be comparable.</p></details>
+          </div>
+        </article>
+        <article class="level reveal">
+          <div class="level-num">06</div>
+          <div>
+            <h3>How do I verify it?</h3>
+            <p>Clone the repository, run the canonical Docker pipeline, and compare the generated <code>artifact/results/summary.json</code> with the tables on this page. The pipeline pins BLA, REA, Node, TShark, WABT, and Python. If a number changes, the diff is the finding.</p>
+            <div class="learn"><span>Docker</span><span>pinned versions</span><span>replication</span></div>
+            <details class="checkpoint"><summary>Checkpoint: what should I check first?</summary><p>Start with the claim audit: do the README and benchmark factors agree? Then check the live outcomes, then the correlation. Each layer answers a different question.</p></details>
+          </div>
+        </article>
+      </div>
+      <div class="plain-box reveal" style="margin-top:18px">
+        <h4>You will know more than most interview candidates</h4>
+        <p>If you can explain why the same protected file costs 1.67× through one transport and 2,077× through another, you already understand the core issue better than most people who repeat a vendor's headline number.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="business">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="kicker">For decision makers</div>
+        <h2 class="section-title">What this is worth</h2>
+        <p class="section-sub">A due-diligence instrument for anyone buying, selling, or regulating reverse-engineering protection. It replaces a headline factor with a repeatable set of questions.</p>
+      </div>
+      <div class="audience-grid reveal">
+        <div class="audience">
+          <div class="role">Security buyer</div>
+          <h3>Procurement</h3>
+          <p>Ask for the analyzer, transport, query, intensity, and budget behind every factor. Compare vendors on the same fixture.</p>
+        </div>
+        <div class="audience">
+          <div class="role">Platform engineer</div>
+          <h3>Threat model</h3>
+          <p>Decide whether a protection is a security boundary or a cost center. A refusal and a large bill are different outcomes.</p>
+        </div>
+        <div class="audience">
+          <div class="role">Investor / analyst</div>
+          <h3>Technical diligence</h3>
+          <p>Separate a demo that works on its own artifacts from a behavior that survives independent ones.</p>
+        </div>
+        <div class="audience">
+          <div class="role">Researcher</div>
+          <h3>Replication</h3>
+          <p>Reuse the protocol, fixtures, pinned commits, and exact numbers. Attack the design and extend the sample.</p>
+        </div>
+      </div>
+      <div class="chart-card reveal" style="margin-top:18px">
+        <div class="chart-head">
+          <h3>Where the evidence changes a decision</h3>
+          <span>Five concrete uses</span>
+        </div>
+        <table class="value-table">
+          <thead><tr><th>Decision</th><th>What this changes</th><th>Evidence</th></tr></thead>
+          <tbody>
+            <tr><td>Vendor procurement</td><td>Replace a headline factor with a testable protocol.</td><td>7 of 14 factors differ between claim surfaces; 4 amplified, 3 neutral, 5 refused.</td></tr>
+            <tr><td>Threat model</td><td>Decide whether a protection is a boundary or a cost.</td><td>Refusals are reported separately; one ASAR override converts a refusal into 718.14×.</td></tr>
+            <tr><td>Budget planning</td><td>Size the analyzer path, not just the file.</td><td>1.67× through MCP summary; 2,077.21× through full WASM analysis.</td></tr>
+            <tr><td>Research review</td><td>Check whether a published factor is portable.</td><td>log10 Pearson 0.039; log-log slope 0.018 across eight successful CLI cases.</td></tr>
+            <tr><td>Training</td><td>Teach the difference between a demo and an evaluation.</td><td>Six-level beginner guide, eight-question quiz, and a reproducible evidence table.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="grid grid-3 reveal" style="margin-top:16px">
+        <div class="card">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19V5M4 19h16"/><path d="M8 15l3-4 3 2 4-6"/></svg></div>
+          <h3>Scope a pilot</h3>
+          <p>Define the artifacts, analyzer, transport, and query shapes before the first run. The protocol is the product.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></div>
+          <h3>Challenge a claim</h3>
+          <p>Ask for the exact path behind a factor. If two “10×” claims use different paths, they are not comparable.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 2 4 7v10l8 5 8-5V7l-8-5Z"/><path d="m4 7 8 5 8-5M12 12v10"/></svg></div>
+          <h3>Replicate on your artifacts</h3>
+          <p>Run the same protocol on your own binaries. The repository is designed to make the scope and the limits explicit.</p>
+        </div>
+      </div>
+      <div class="plain-box reveal" style="margin-top:16px">
+        <h4>Commercial note</h4>
+        <p>The code and data are MIT-licensed. The valuable work is not the artifact; it is the evaluation design, the independent fixtures, and the interpretation. Organizations that need a decision on their own binaries can commission a replication with a pre-registered protocol. No result on this page is a guarantee about a different artifact or a different analyzer configuration.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="quiz">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="kicker">Test yourself</div>
+        <h2 class="section-title">Eight questions. No sign-up.</h2>
+        <p class="section-sub">Retrieval beats re-reading. Answer first, then read the explanation. Every answer is backed by a number on this page.</p>
+      </div>
+      <div class="quiz-card reveal" id="quiz-card">
+        <div class="quiz-top">
+          <span class="qnum" id="quiz-qnum">Question 1 of 8</span>
+          <span class="quiz-score" id="quiz-score">Score 0</span>
+        </div>
+        <div class="quiz-progress"><i id="quiz-progress"></i></div>
+        <div id="quiz-body">
+          <div class="quiz-q" id="quiz-q"></div>
+          <div class="quiz-options" id="quiz-options"></div>
+          <div class="quiz-feedback" id="quiz-feedback"></div>
+          <div class="quiz-actions">
+            <button class="btn btn-ghost btn-small" id="quiz-next" disabled>Next question</button>
+            <button class="btn btn-ghost btn-small" id="quiz-restart">Restart</button>
+          </div>
+        </div>
+        <div class="quiz-result" id="quiz-result">
+          <div class="score" id="quiz-final-score">0/8</div>
+          <h3 id="quiz-final-title">Keep going</h3>
+          <p id="quiz-final-text">The beginner guide is the fastest way to build the vocabulary.</p>
+          <button class="btn btn-primary" id="quiz-again">Try again</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="concepts">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="kicker">The concept map</div>
+        <h2 class="section-title">How the ideas connect</h2>
+        <p class="section-sub">Click a node. The panel explains it in plain language, and the read-aloud button narrates it.</p>
+      </div>
+      <div class="concept-layout reveal">
+        <div class="concept-card">
+          <svg class="concept-svg" id="concept-svg" viewBox="0 0 760 430" role="img" aria-label="Concept map connecting artifact, protector, analyzer, token budget, transport, query shape, refusal, amplification, and portability"></svg>
+        </div>
+        <div class="concept-panel">
+          <div class="kicker" style="margin-bottom:0">Selected concept</div>
+          <h3 id="concept-title">Artifact</h3>
+          <p id="concept-text">The file or package being analyzed: a program, model, database, or packet capture.</p>
+          <div class="concept-meter"><i id="concept-meter"></i></div>
+          <div class="concept-actions">
+            <button class="btn btn-ghost btn-small" id="concept-read">Read aloud</button>
+            <button class="btn btn-ghost btn-small" id="concept-next">Next concept</button>
+            <button class="btn btn-ghost btn-small" id="concept-reset">Reset</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="reproduce">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="kicker">Reproduce</div>
+        <h2 class="section-title">Run it yourself</h2>
+        <p class="section-sub">The canonical pipeline is pinned and containerized. Expect a long first run; the outputs are deterministic JSON.</p>
+      </div>
+      <div class="reproduce-grid">
+        <div class="code-block reveal">
+          <button class="btn btn-ghost btn-small copy-btn" data-copy="make docker-run">Copy</button>
+          <pre><code>make docker-run</code></pre>
+        </div>
+        <div class="code-block reveal">
+          <button class="btn btn-ghost btn-small copy-btn" data-copy="make verify">Copy</button>
+          <pre><code>make verify</code></pre>
+        </div>
+      </div>
+      <div class="grid grid-3 reveal" style="margin-top:16px">
+        <div class="card"><h3>Inputs</h3><p>Pinned BLA and REA commits, 12 independent fixtures, four intensities, and the published claim surfaces.</p></div>
+        <div class="card"><h3>Outputs</h3><p><code>artifact/results/*.json</code>: summary, statistics, intensity, PCAP, model equivalence, verifier audit, and environment.</p></div>
+        <div class="card"><h3>Checks</h3><p><code>make verify</code> re-runs the consistency checks. If a number moves, the diff is the finding.</p></div>
+      </div>
+      <div class="plain-box reveal" style="margin-top:16px">
+        <h4>Before you run it</h4>
+        <p>The pipeline executes upstream code and builds local fixtures. Use the documented Docker path; review <code>THREAT-MODEL.md</code> and <code>PROTOCOL.md</code> first. No LLM API key is required.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="kicker">Questions</div>
+        <h2 class="section-title">FAQ and glossary</h2>
+        <p class="section-sub">The objections a careful reader should raise, answered directly.</p>
+      </div>
+      <div class="grid grid-2">
+        <div class="reveal">
+          <details class="faq-item"><summary>Is this an attack on BLA?</summary><p>No. It is an audit of public claims at pinned commits. BLA is not modified or redistributed; upstream code is cloned at build time. The finding is about the portability of a published factor, not about whether the traps work at all.</p></details>
+          <details class="faq-item"><summary>Does “no correlation” mean BLA is ineffective?</summary><p>No. It means the published per-format factor is not a portable predictor in this sample. The traps do produce large effects on some paths: JavaScript 111.04×, WASM 2,077.21×, EVM 978.6×, and PCAP 14.37× at the bankrupt preset.</p></details>
+          <details class="faq-item"><summary>Are these dollar costs?</summary><p>No. The study measures tokens with REA's own counter. A dollar conversion depends on provider pricing, caching, and retries, so it is not claimed. The cost ratio is a separate, explicit calculation.</p></details>
+          <details class="faq-item"><summary>Why only 15 cases?</summary><p>The design prioritizes independent fixtures and controlled paths over a large convenience sample. The sample is small, the bootstrap interval is wide, and the repository is built to be extended. The correct reading is “the published factor is not portable here,” not “the true correlation is zero everywhere.”</p></details>
+          <details class="faq-item"><summary>Why no LLM API keys?</summary><p>The study measures analyzer output cost, not model behavior. Removing the model removes a confounder and makes the run reproducible. The token counter is the measurement instrument; the model is a separate layer.</p></details>
+          <details class="faq-item"><summary>What is the strongest counterargument?</summary><p>A larger fixture set, different analyzer settings, or a different query mix could change the correlation. That is why the protocol records deviations and why the raw JSON is published. The repository is designed to be attacked on exactly those grounds.</p></details>
+          <details class="faq-item"><summary>Is it safe to run?</summary><p>It executes pinned upstream code and builds local fixtures. Use the documented Docker path, review <code>THREAT-MODEL.md</code>, and treat the artifacts as untrusted input. No API key is required.</p></details>
+          <details class="faq-item"><summary>What should I read first?</summary><p>The 30-second summary, then the evidence table, then <code>PROTOCOL.md</code>. If you only have five minutes, read the three findings and the one-sentence takeaway.</p></details>
+        </div>
+        <div class="reveal">
+          <details class="faq-item"><summary>Artifact</summary><p>The file or package being analyzed: a program, model, database, or packet capture.</p></details>
+          <details class="faq-item"><summary>Protector</summary><p>The tool that transforms an artifact to raise the cost of analysis. BLA is the protector studied here.</p></details>
+          <details class="faq-item"><summary>Analyzer</summary><p>The tool that reads the artifact and returns evidence. REA is the analyzer studied here.</p></details>
+          <details class="faq-item"><summary>Token</summary><p>The unit an AI agent pays in context, time, and money. The study uses REA's token counter, not a dollar invoice.</p></details>
+          <details class="faq-item"><summary>Budget trap</summary><p>An artifact designed so that automated analysis spends more tokens, time, or memory than the information is worth.</p></details>
+          <details class="faq-item"><summary>Amplification</summary><p>The ratio of protected-analysis tokens to baseline-analysis tokens. It is reported only for successful analyses.</p></details>
+          <details class="faq-item"><summary>Refusal</summary><p>An error payload returned instead of analysis. It is reported separately because a refusal is not the same as a high bill.</p></details>
+          <details class="faq-item"><summary>Transport</summary><p>How the evidence reaches the consumer: CLI full JSON, MCP summary, or MCP complete. The same artifact can cost 1.67× or 2,077× depending on the transport and query.</p></details>
+          <details class="faq-item"><summary>Query shape</summary><p>Which fields the analyzer returns. A narrow <code>frame.number</code> query is 1.82×; a <code>tcp.payload</code> query is 275.4× on the same PCAP.</p></details>
+          <details class="faq-item"><summary>ABI</summary><p>The interface a compiled module exposes to its host. Preserving it is why the WASM result is both large and functionally meaningful.</p></details>
+          <details class="faq-item"><summary>Fixture</summary><p>A small, independently authored artifact built from source for a controlled test. Twelve fixtures drive the live runs.</p></details>
+          <details class="faq-item"><summary>MCP</summary><p>Model Context Protocol, a transport between an analyzer and an AI agent. Its stdio budget can refuse a response before the model sees it.</p></details>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h3>Counter-REA Study</h3>
+        <p>A reproducible audit of counter-reverse-engineering claims against live REA. Pinned commits, independent fixtures, exact numbers, and a conditional conclusion.</p>
+      </div>
+      <div class="footer-links">
+        <a href="README.md">README</a>
+        <a href="PROTOCOL.md">Protocol</a>
+        <a href="docs/measurements.md">Measurements</a>
+        <a href="docs/reproducibility.md">Reproducibility</a>
+        <a href="docs/limitations.md">Limitations</a>
+        <a href="CITATION.cff">Citation</a>
+        <a href="LICENSE">License</a>
+        <a data-repo-link href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>MIT code · CC BY 4.0 data</span>
+      <span>Built from pinned artifacts. No API keys. No paid placement.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="search-modal" id="search-modal" role="dialog" aria-modal="true" aria-label="Search this page">
+  <div class="search-panel">
+    <input id="search-input" type="search" placeholder="Search sections, cases, and concepts…" autocomplete="off">
+    <div class="search-results" id="search-results"></div>
+  </div>
+</div>
+<script>
+const STUDY = {
+  cases: [
+    {id:"js-app",name:"JavaScript app",short:"JS app",format:"JavaScript",claimed:2679.9,baseline:64481,protected:7159792,ratio:111.04,outcome:"amplified",transport:"CLI · full JSON",note:"BLA's bankrupt preset on a 64 KB JavaScript bundle. Full CLI JSON returns 7,159,792 tokens; the published factor is 2,679.9×."},
+    {id:"asar",name:"ASAR archive",short:"ASAR",format:"ASAR",claimed:4111.8,baseline:65786,protected:null,ratio:null,outcome:"refused",transport:"CLI · default cap",note:"Default cap refuses the protected archive after 789 error tokens. A documented 32 MiB override turns the same artifact into 47.2M tokens."},
+    {id:"wasm",name:"WebAssembly module",short:"WASM",format:"WASM",claimed:381.5,baseline:1742,protected:3618492,ratio:2077.21,outcome:"amplified",transport:"CLI · full JSON",note:"Export preservation keeps the ABI valid; the bankrupt preset produces a 2,077.21× cliff."},
+    {id:"sqlite",name:"SQLite database",short:"SQLite",format:"SQLite",claimed:162.1,baseline:1308,protected:1684,ratio:1.29,outcome:"neutral",transport:"CLI · full JSON",note:"The trap does not survive a schema query; measured amplification is 1.29×."},
+    {id:"safetensors",name:"Safetensors model",short:"Safetensors",format:"Safetensors",claimed:376.8,baseline:898,protected:null,ratio:null,outcome:"refused",transport:"CLI · loader",note:"Loader refuses the protected model; reported separately, not averaged into an amplification factor."},
+    {id:"gguf",name:"GGUF model",short:"GGUF",format:"GGUF",claimed:376.7,baseline:616,protected:null,ratio:null,outcome:"refused",transport:"CLI · loader",note:"Loader refuses the protected model; reported separately."},
+    {id:"beam",name:"BEAM module",short:"BEAM",format:"BEAM",claimed:433.2,baseline:864,protected:null,ratio:null,outcome:"refused",transport:"CLI · loader",note:"BEAM loader refuses the protected module."},
+    {id:"evm",name:"EVM bytecode",short:"EVM",format:"EVM",claimed:276.3,baseline:1430,protected:1399400,ratio:978.6,outcome:"amplified",transport:"CLI · full JSON",note:"Bytecode trap amplifies strongly on full disassembly."},
+    {id:"pcap",name:"PCAP capture",short:"PCAP",format:"PCAP",claimed:4817.7,baseline:1063,protected:15279,ratio:14.37,outcome:"amplified",transport:"CLI · summary",note:"Summary tool amplification is 14.37×; query shape moves it from 1.82× to 275.4×."},
+    {id:"ptx",name:"PTX kernel",short:"PTX",format:"PTX",claimed:4814,baseline:812,protected:817,ratio:1.01,outcome:"neutral",transport:"CLI · full JSON",note:"Neutral on this fixture; PTX text survives the transformation."},
+    {id:"elf",name:"ELF binary",short:"ELF",format:"ELF",claimed:235,baseline:566,protected:571,ratio:1.01,outcome:"neutral",transport:"CLI · full JSON",note:"Neutral on this fixture; the native binary remains readable."},
+    {id:"pyc",name:"Python bytecode",short:"PYC",format:"PYC",claimed:240.3,baseline:1345,protected:null,ratio:null,outcome:"refused",transport:"CLI · loader",note:"Python bytecode loader refuses the protected file."},
+    {id:"asar-raised-32m",name:"ASAR · 32 MiB override",short:"ASAR*",format:"ASAR",claimed:4111.8,baseline:65786,protected:47243269,ratio:718.14,outcome:"amplified",transport:"CLI · override",note:"Same artifact as ASAR, analyzed after the documented override. A refusal becomes 718.14×."},
+    {id:"js-mcp-complete",name:"JS · MCP complete",short:"MCP full",format:"JavaScript",claimed:2679.9,baseline:null,protected:null,ratio:null,outcome:"mcp-denied",transport:"MCP · complete",note:"The complete MCP response is 10,577,078 bytes, above the 10 MiB stdio budget; the transport refuses before the model sees it."},
+    {id:"js-mcp-summary",name:"JS · MCP summary",short:"MCP sum",format:"JavaScript",claimed:2679.9,baseline:2786,protected:4645,ratio:1.67,outcome:"neutral",transport:"MCP · summary",note:"The same protected JavaScript through MCP summary is only 1.67×. CLI full JSON is about 1,541× larger."}
+  ],
+  intensity: {
+    js: {baseline:64481, rows:[
+      {name:"Stealth",value:2481573,ratio:38.49},
+      {name:"Balanced",value:3824471,ratio:59.31},
+      {name:"Maximum",value:5876681,ratio:91.14},
+      {name:"Bankrupt",value:7381143,ratio:114.47}
+    ]},
+    wasm: {baseline:1742, rows:[
+      {name:"Stealth",value:4773,ratio:2.74},
+      {name:"Balanced",value:6806,ratio:3.91},
+      {name:"Maximum",value:11615,ratio:6.67},
+      {name:"Bankrupt",value:3618503,ratio:2077.21}
+    ]}
+  },
+  pcap: [
+    {label:"Summary tool",short:"Summary",value:15279,ratio:14.37,color:"#38e8ff"},
+    {label:"Narrow frame.number",short:"frame.no",value:2881,ratio:1.8234,color:"#34d399"},
+    {label:"Broad six fields",short:"6 fields",value:11055,ratio:6.4199,color:"#fbbf24"},
+    {label:"tcp.payload",short:"payload",value:440372,ratio:275.4046,color:"#ff5d7a"}
+  ],
+  transport: [
+    {label:"CLI full JSON (tokens)",short:"CLI full",value:7159792,color:"#38e8ff"},
+    {label:"MCP summary (tokens)",short:"MCP sum",value:4645,color:"#34d399"},
+    {label:"MCP complete (bytes)",short:"MCP full",value:10577078,color:"#8b5cf6"}
+  ],
+  stats: {
+    claimed:2679.9, measured:111.04,
+    pearsonRaw:-0.36724814878612205,
+    pearsonLog:0.0393193084215162,
+    spearman:-0.047619047619047616,
+    bootstrap:[-0.8147922069864318,0.764870361569396],
+    slope:0.018100576993989367,
+    intercept:2.973151315202106,
+    rmse:0.6118571119393883,
+    zeroRmse:2.0385047366564746,
+    geoClaimed:1003.2353793226428,
+    geoMeasured:36.375412467993584
+  },
+  quiz: [
+    {q:"BLA's README reports ~639.5× token amplification. Its same-commit benchmark reports 1,067.3×. What does the study conclude?",options:["They agree; the difference is rounding.","They disagree, and 7 of 14 per-case factors differ.","The benchmark is invalid because it uses a different commit.","Only the README is reproducible."],answer:1,explain:"The two claim surfaces disagree at the same commit. Exactly 7 of 14 per-case factors differ; the verifier also marks runtime equivalence as not-tested."},
+    {q:"What does “7 of 14” mean?",options:["Seven formats were refused.","Seven per-case factors differ between the README and the benchmark.","Seven runs were discarded.","Seven fixtures failed to build."],answer:1,explain:"It is a per-case factor comparison, not a count of refusals or failures. Seven targets match, seven differ."},
+    {q:"Which case produced the largest measured amplification?",options:["SQLite at 1.29×","WASM at 2,077.21×","PCAP at 14.37×","ASAR at 718.14×"],answer:1,explain:"WASM at the bankrupt preset is 2,077.21×. The next largest is EVM at 978.6×, then ASAR with the override at 718.14×."},
+    {q:"The same protected JavaScript through MCP summary measured…",options:["1.67×","111.04×","2,077×","7,159,792×"],answer:0,explain:"MCP summary returns 4,645 tokens against a 2,786-token baseline: 1.67×. The CLI full JSON is 7,159,792 tokens."},
+    {q:"ASAR at the default cap returned 789 error tokens. After the documented 32 MiB override, what happened?",options:["It still refused.","It returned 47,243,269 tokens, or 718.14×.","It returned 1.29×.","It hit the MCP budget."],answer:1,explain:"The override converts a refusal into a successful analysis with 47,243,269 tokens. That is why a refusal and a bill must be reported separately."},
+    {q:"What is the verifier gap?",options:["The verifier rejects all protected cases.","It returns overallPassed: true while runtimeEquivalence is not-tested and functionalIntegrityVerified is false.","It only works on WASM.","It measures dollar cost."],answer:1,explain:"A structural self-check is useful, but it is not a runtime-equivalence oracle. The study's independent checks separate “produced a result” from “still behaves like the original.”"},
+    {q:"Which conclusion is best supported?",options:["BLA has no effect on any format.","The published per-format factor is a portable constant.","Amplification is conditional on artifact and analyzer path; the published factor is not portable in this sample.","Refusals should be averaged with successful runs."],answer:2,explain:"The live outcome is conditional: 4 amplified, 3 neutral, 5 refused. The published factor does not predict the measured factor in this sample."},
+    {q:"A vendor says “our protection raises reverse-engineering cost by 1,000×.” What should you ask first?",options:["For the marketing deck.","For the analyzer, transport, query shape, intensity, budget, and ABI/functional check.","Whether the number is even or odd.","For a discount."],answer:1,explain:"A factor without a path is under-specified. The same artifact can cost 1.67× or 2,077× depending on transport, query, intensity, and budget."}
+  ],
+  concepts: {
+    nodes: [
+      {id:"artifact",label:"Artifact",x:110,y:215,title:"Artifact",text:"The file or package being analyzed: a program, model, database, or packet capture. Its structure and size set the baseline cost.",meter:100},
+      {id:"protector",label:"Protector",x:260,y:95,title:"Protector",text:"The tool that transforms an artifact to raise the cost of analysis. BLA adds decoys, oversized metadata, and resource traps.",meter:82},
+      {id:"analyzer",label:"Analyzer",x:260,y:335,title:"Analyzer",text:"The tool that reads the artifact and returns evidence. REA is the analyzer studied here. Its output shape matters as much as its speed.",meter:78},
+      {id:"budget",label:"Budget",x:430,y:215,title:"Token budget",text:"The unit an AI agent pays in context, time, and money. The study measures tokens with REA's own counter, not a dollar invoice.",meter:94},
+      {id:"transport",label:"Transport",x:585,y:95,title:"Transport",text:"How evidence reaches the consumer: CLI full JSON, MCP summary, or MCP complete. The same artifact can cost 1.67× or 2,077× depending on the transport.",meter:70},
+      {id:"query",label:"Query",x:585,y:335,title:"Query shape",text:"Which fields the analyzer returns. A narrow frame.number query is 1.82×; a tcp.payload query is 275.4× on the same PCAP.",meter:66},
+      {id:"refusal",label:"Refusal",x:690,y:215,title:"Refusal",text:"An error payload returned instead of analysis. A refusal is not automatically a defender win: it can be a boundary, a usability failure, or a signal to switch tools.",meter:54},
+      {id:"amplify",label:"Amplify",x:430,y:60,title:"Amplification",text:"The ratio of protected-analysis tokens to baseline-analysis tokens. It is reported only for successful analyses, never averaged with refusals.",meter:88},
+      {id:"portability",label:"Portability",x:430,y:370,title:"Portability",text:"Whether a published factor predicts a new artifact and path. In this sample it does not: log10 Pearson is 0.039 and the slope is 0.018.",meter:22}
+    ],
+    edges:[["artifact","protector"],["artifact","analyzer"],["protector","budget"],["analyzer","budget"],["budget","transport"],["budget","query"],["transport","amplify"],["query","amplify"],["budget","refusal"],["amplify","portability"],["refusal","portability"]]
+  }
+};
+
+const $ = (sel, root=document) => root.querySelector(sel);
+const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+const esc = (s) => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fmt = (n) => n == null ? "—" : Number(n).toLocaleString("en-US");
+const fmtFactor = (n) => n == null ? "—" : Number(n).toLocaleString("en-US",{maximumFractionDigits:2}) + "×";
+const shortNum = (n) => n >= 1e9 ? (n/1e9).toFixed(0)+"B" : n >= 1e6 ? (n/1e6).toFixed(0)+"M" : n >= 1e3 ? (n/1e3).toFixed(0)+"k" : String(n);
+const outcomeMap = {
+  amplified:{label:"Amplified",cls:"outcome-amplified"},
+  neutral:{label:"Neutral",cls:"outcome-neutral"},
+  refused:{label:"Refused",cls:"outcome-refused"},
+  "mcp-denied":{label:"MCP denied",cls:"outcome-refused"}
+};
+const outcomeInfo = (c) => outcomeMap[c.outcome] || outcomeMap.neutral;
+const byId = (id) => STUDY.cases.find(c => c.id === id);
+const toast = (msg) => {
+  const el = $("#toast");
+  if (!el) return;
+  el.textContent = msg;
+  el.classList.add("show");
+  clearTimeout(toast._t);
+  toast._t = setTimeout(() => el.classList.remove("show"), 2600);
+};
+
+let caseFilter = "all";
+let caseQuery = "";
+let selectedCaseId = null;
+
+function dotColor(c) {
+  return c.outcome === "amplified" ? "var(--red)" : c.outcome === "neutral" ? "var(--amber)" : c.outcome === "mcp-denied" ? "var(--green)" : "var(--violet)";
+}
+function caseMatches(c) {
+  const q = caseQuery.trim().toLowerCase();
+  const filterOk = caseFilter === "all" ? true
+    : caseFilter === "mcp" ? c.transport.includes("MCP")
+    : caseFilter === "refused" ? (c.outcome === "refused" || c.outcome === "mcp-denied")
+    : c.outcome === caseFilter;
+  if (!filterOk) return false;
+  if (!q) return true;
+  return [c.name, c.format, c.transport, c.outcome, c.note].join(" ").toLowerCase().includes(q);
+}
+function renderCaseTable() {
+  const table = $("#case-table");
+  if (!table) return;
+  const rows = STUDY.cases.filter(caseMatches);
+  table.innerHTML = `<div class="case-head" aria-hidden="true"><span>Case</span><span>Claimed</span><span>Measured</span><span>Outcome</span><span>Path</span></div>` +
+    (rows.length ? rows.map(c => {
+      const o = outcomeInfo(c);
+      return `<button class="case-row" data-case="${c.id}" aria-pressed="${selectedCaseId === c.id}">
+        <span class="case-cell case-name"><span class="case-dot" style="color:${dotColor(c)};background:${dotColor(c)}"></span>${esc(c.name)}</span>
+        <span class="case-cell case-num claimed">${fmtFactor(c.claimed)}</span>
+        <span class="case-cell case-num ${c.ratio == null ? "none" : "measured"}">${fmtFactor(c.ratio)}</span>
+        <span class="case-cell"><span class="outcome ${o.cls}">${o.label}</span></span>
+        <span class="case-cell case-num none">${esc(c.transport)}</span>
+      </button>`;
+    }).join("") : `<div class="search-empty">No case matches this filter. Clear the search or choose “All 15”.</div>`);
+  $$(".case-row", table).forEach(btn => btn.addEventListener("click", () => openCase(btn.dataset.case, true)));
+}
+function openCase(id, scroll) {
+  const c = byId(id);
+  if (!c) return;
+  selectedCaseId = id;
+  const o = outcomeInfo(c);
+  const verdict = c.ratio == null ? (c.outcome === "mcp-denied" ? "Transport refused" : "Refused") : c.ratio > c.claimed ? "Above claim" : "Below claim";
+  const detail = $("#case-detail");
+  detail.innerHTML = `<h3>${esc(c.name)}</h3>
+    <div class="meta"><span class="badge">${esc(c.format)}</span><span class="badge">${esc(c.transport)}</span><span class="outcome ${o.cls}">${o.label}</span></div>
+    <p>${esc(c.note)}</p>
+    <dl>
+      <div><dt>Claimed</dt><dd>${fmtFactor(c.claimed)}</dd></div>
+      <div><dt>Measured</dt><dd>${fmtFactor(c.ratio)}</dd></div>
+      <div><dt>Baseline tokens</dt><dd>${fmt(c.baseline)}</dd></div>
+      <div><dt>Protected tokens</dt><dd>${fmt(c.protected)}</dd></div>
+      <div><dt>Path</dt><dd>${esc(c.transport)}</dd></div>
+      <div><dt>Verdict</dt><dd>${verdict}</dd></div>
+    </dl>`;
+  detail.classList.add("show");
+  $$(".case-row").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.case === id)));
+  if (scroll) detail.scrollIntoView({behavior:"smooth", block:"nearest"});
+}
+$$(".chip").forEach(chip => chip.addEventListener("click", () => {
+  caseFilter = chip.dataset.filter;
+  $$(".chip").forEach(c => c.setAttribute("aria-pressed", String(c === chip)));
+  renderCaseTable();
+}));
+const caseSearch = $("#case-search");
+if (caseSearch) caseSearch.addEventListener("input", () => { caseQuery = caseSearch.value; renderCaseTable(); });
+
+const chartTip = document.createElement("div");
+chartTip.className = "chart-tip";
+document.body.appendChild(chartTip);
+function attachTips(root) {
+  $$("[data-tip]", root).forEach(el => {
+    el.addEventListener("pointerenter", () => { chartTip.textContent = el.dataset.tip; chartTip.classList.add("show"); });
+    el.addEventListener("pointermove", (e) => {
+      chartTip.style.left = e.clientX + "px";
+      chartTip.style.top = (e.clientY - 12) + "px";
+    });
+    el.addEventListener("pointerleave", () => chartTip.classList.remove("show"));
+  });
+}
+function barSvg(rows, opts = {}) {
+  const width = opts.width || 760, height = opts.height || 280;
+  const pad = {l:74, r:18, t:24, b:66};
+  const innerW = width - pad.l - pad.r, innerH = height - pad.t - pad.b;
+  const maxVal = Math.max(...rows.map(r => r.value)) * 1.15;
+  const logMax = Math.log10(maxVal);
+  const slot = innerW / rows.length;
+  const bw = Math.min(78, slot * 0.58);
+  let s = `<svg class="chart-svg" viewBox="0 0 ${width} ${height}" role="img" aria-label="Bar chart">`;
+  for (let e = 0; e <= Math.ceil(logMax); e++) {
+    const v = Math.pow(10, e);
+    if (v > maxVal) break;
+    const y = pad.t + innerH - (e / logMax) * innerH;
+    s += `<line x1="${pad.l}" y1="${y}" x2="${width - pad.r}" y2="${y}" stroke="rgba(148,163,184,.12)"/>`;
+    s += `<text x="${pad.l - 10}" y="${y + 4}" text-anchor="end" fill="#68758f" font-size="10">${shortNum(v)}</text>`;
+  }
+  rows.forEach((r, i) => {
+    const x = pad.l + slot * i + slot / 2;
+    const h = Math.max(2, (Math.log10(Math.max(r.value, 1)) / logMax) * innerH);
+    const y = pad.t + innerH - h;
+    const tip = `${r.label}: ${fmt(r.value)} ${r.unit || "tokens"}`;
+    s += `<rect x="${x - bw / 2}" y="${y}" width="${bw}" height="${h}" rx="4" fill="${r.color || "#38e8ff"}" data-tip="${esc(tip)}" style="cursor:pointer"><title>${esc(tip)}</title></rect>`;
+    s += `<text x="${x}" y="${height - 40}" text-anchor="middle" fill="#9aa8c2" font-size="10">${esc(r.short || r.label)}</text>`;
+    if (r.sub) s += `<text x="${x}" y="${height - 25}" text-anchor="middle" fill="#68758f" font-size="9">${esc(r.sub)}</text>`;
+  });
+  return s + `</svg>`;
+}
+function comparisonSvg(cases) {
+  const width = 760, height = 300, pad = {l:74, r:18, t:24, b:70};
+  const innerW = width - pad.l - pad.r, innerH = height - pad.t - pad.b;
+  const logMax = Math.log10(10000);
+  const slot = innerW / cases.length;
+  const bw = Math.min(26, slot * 0.28);
+  let s = `<svg class="chart-svg" viewBox="0 0 ${width} ${height}" role="img" aria-label="Grouped bar chart comparing claimed and measured amplification">`;
+  for (let e = 0; e <= 4; e++) {
+    const y = pad.t + innerH - (e / logMax) * innerH;
+    s += `<line x1="${pad.l}" y1="${y}" x2="${width - pad.r}" y2="${y}" stroke="rgba(148,163,184,.12)"/>`;
+    s += `<text x="${pad.l - 10}" y="${y + 4}" text-anchor="end" fill="#68758f" font-size="10">${shortNum(Math.pow(10, e))}×</text>`;
+  }
+  cases.forEach((c, i) => {
+    const cx = pad.l + slot * i + slot / 2;
+    [[c.claimed, "#38e8ff", "Claimed"], [c.ratio, "#fbbf24", "Measured"]].forEach(([v, color, label], j) => {
+      if (v == null) return;
+      const x = cx + (j === 0 ? -bw * 0.62 : bw * 0.62);
+      const h = Math.max(2, (Math.log10(Math.max(v, 1)) / logMax) * innerH);
+      const y = pad.t + innerH - h;
+      const tip = `${c.name} — ${label}: ${fmtFactor(v)}`;
+      s += `<rect x="${x - bw / 2}" y="${y}" width="${bw}" height="${h}" rx="3" fill="${color}" data-tip="${esc(tip)}" style="cursor:pointer"><title>${esc(tip)}</title></rect>`;
+    });
+    s += `<text x="${cx}" y="${height - 38}" text-anchor="middle" fill="#9aa8c2" font-size="10">${esc(c.short)}</text>`;
+  });
+  return s + `</svg>`;
+}
+function renderCharts() {
+  const comparison = $("#comparison-chart");
+  if (comparison) {
+    const successful = STUDY.cases.filter(c => c.transport.startsWith("CLI") && c.ratio != null);
+    comparison.innerHTML = comparisonSvg(successful);
+    attachTips(comparison);
+  }
+  const transport = $("#transport-chart");
+  if (transport) {
+    transport.innerHTML = barSvg(STUDY.transport.map(r => ({...r, sub: r.label.includes("bytes") ? "bytes" : "tokens"})), {height:260});
+    attachTips(transport);
+  }
+  const query = $("#query-chart");
+  if (query) {
+    query.innerHTML = barSvg(STUDY.pcap, {height:260});
+    attachTips(query);
+  }
+}
+function renderIntensity(id, data) {
+  const el = $(id);
+  if (!el) return;
+  const max = Math.max(...data.rows.map(r => r.value));
+  el.innerHTML = data.rows.map(r => {
+    const pct = Math.max(2, (Math.log10(r.value) / Math.log10(max)) * 100);
+    return `<div class="intensity-row"><span class="lbl">${r.name}</span><span class="track"><i class="fill" style="width:${pct}%"></i></span><span class="val">${r.ratio.toFixed(2)}×</span></div>`;
+  }).join("");
+}
+function renderLabTable() {
+  const el = $("#lab-table");
+  if (!el) return;
+  el.innerHTML = `<table class="value-table"><thead><tr><th>Case</th><th>Claimed</th><th>Measured</th><th>Outcome</th></tr></thead><tbody>` +
+    STUDY.cases.map(c => `<tr><td>${esc(c.name)}</td><td>${fmtFactor(c.claimed)}</td><td>${fmtFactor(c.ratio)}</td><td>${outcomeInfo(c).label}</td></tr>`).join("") +
+    `</tbody></table>`;
+}
+renderCaseTable();
+renderCharts();
+renderIntensity("#intensity-js", STUDY.intensity.js);
+renderIntensity("#intensity-wasm", STUDY.intensity.wasm);
+renderLabTable();
+
+const quizState = {index:0, score:0, answered:false, done:false};
+function renderQuiz() {
+  if (quizState.done) return finishQuiz();
+  const q = STUDY.quiz[quizState.index];
+  $("#quiz-body").style.display = "block";
+  $("#quiz-result").classList.remove("show");
+  $("#quiz-qnum").textContent = `Question ${quizState.index + 1} of ${STUDY.quiz.length}`;
+  $("#quiz-score").textContent = `Score ${quizState.score}`;
+  $("#quiz-progress").style.width = `${(quizState.index / STUDY.quiz.length) * 100}%`;
+  $("#quiz-q").textContent = q.q;
+  $("#quiz-options").innerHTML = q.options.map((opt, i) =>
+    `<button class="quiz-option" data-opt="${i}"><span class="key">${String.fromCharCode(65 + i)}</span><span>${esc(opt)}</span></button>`
+  ).join("");
+  $("#quiz-feedback").classList.remove("show");
+  $("#quiz-feedback").innerHTML = "";
+  $("#quiz-next").disabled = true;
+  $("#quiz-next").textContent = quizState.index === STUDY.quiz.length - 1 ? "See result" : "Next question";
+  quizState.answered = false;
+  $$("#quiz-options .quiz-option").forEach(btn => btn.addEventListener("click", () => answerQuiz(Number(btn.dataset.opt))));
+}
+function answerQuiz(i) {
+  if (quizState.answered) return;
+  quizState.answered = true;
+  const q = STUDY.quiz[quizState.index];
+  const correct = i === q.answer;
+  if (correct) quizState.score++;
+  $$("#quiz-options .quiz-option").forEach((btn, j) => {
+    btn.disabled = true;
+    if (j === q.answer) btn.classList.add("correct");
+    if (j === i && !correct) btn.classList.add("wrong");
+  });
+  $("#quiz-score").textContent = `Score ${quizState.score}`;
+  const fb = $("#quiz-feedback");
+  fb.innerHTML = `<strong>${correct ? "Correct." : "Not quite."}</strong> ${esc(q.explain)}`;
+  fb.classList.add("show");
+  $("#quiz-next").disabled = false;
+}
+function finishQuiz() {
+  quizState.done = true;
+  $("#quiz-body").style.display = "none";
+  const result = $("#quiz-result");
+  result.classList.add("show");
+  $("#quiz-final-score").textContent = `${quizState.score}/${STUDY.quiz.length}`;
+  const pct = quizState.score / STUDY.quiz.length;
+  $("#quiz-final-title").textContent = pct === 1 ? "Perfect. You can audit the claim."
+    : pct >= 0.75 ? "Strong. One more pass on the details."
+    : pct >= 0.5 ? "Good start. The evidence table is the fastest fix."
+    : "Start with the beginner guide.";
+  $("#quiz-final-text").textContent = pct === 1
+    ? "You can explain why the same artifact costs 1.67× or 2,077× depending on the path."
+    : "Every answer is backed by a number on this page. Re-read the transport and query sections, then try again.";
+  $("#quiz-progress").style.width = "100%";
+}
+function restartQuiz() {
+  quizState.index = 0; quizState.score = 0; quizState.answered = false; quizState.done = false;
+  renderQuiz();
+}
+$("#quiz-next").addEventListener("click", () => {
+  if (!quizState.answered) return;
+  if (quizState.index === STUDY.quiz.length - 1) return finishQuiz();
+  quizState.index++;
+  renderQuiz();
+});
+$("#quiz-restart").addEventListener("click", restartQuiz);
+$("#quiz-again").addEventListener("click", restartQuiz);
+renderQuiz();
+
+let conceptIndex = 0;
+let activeConceptId = "artifact";
+function conceptSvg(activeId) {
+  const nodes = STUDY.concepts.nodes;
+  const edges = STUDY.concepts.edges;
+  const by = Object.fromEntries(nodes.map(n => [n.id, n]));
+  const edgeMarkup = edges.map(([a, b]) => {
+    const na = by[a], nb = by[b];
+    const active = a === activeId || b === activeId;
+    return `<line class="concept-edge ${active ? "active" : ""}" x1="${na.x}" y1="${na.y}" x2="${nb.x}" y2="${nb.y}"/>`;
+  }).join("");
+  const nodeMarkup = nodes.map(n => {
+    const active = n.id === activeId;
+    return `<g class="concept-node ${active ? "active" : ""}" data-concept="${n.id}" tabindex="0" role="button" aria-label="${esc(n.title)}">
+      <circle cx="${n.x}" cy="${n.y}" r="${n.id === "budget" ? 42 : 36}"/>
+      <text x="${n.x}" y="${n.y}">${esc(n.label)}</text>
+    </g>`;
+  }).join("");
+  return edgeMarkup + nodeMarkup;
+}
+function selectConcept(i, speakIt = false) {
+  conceptIndex = (i + STUDY.concepts.nodes.length) % STUDY.concepts.nodes.length;
+  const n = STUDY.concepts.nodes[conceptIndex];
+  activeConceptId = n.id;
+  $("#concept-title").textContent = n.title;
+  $("#concept-text").textContent = n.text;
+  $("#concept-meter").style.width = `${n.meter}%`;
+  $("#concept-svg").innerHTML = conceptSvg(n.id);
+  $$("#concept-svg .concept-node").forEach(g => {
+    g.addEventListener("click", () => selectConcept(STUDY.concepts.nodes.findIndex(x => x.id === g.dataset.concept)));
+    g.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); selectConcept(STUDY.concepts.nodes.findIndex(x => x.id === g.dataset.concept)); } });
+  });
+  if (speakIt) speakConcept(n);
+}
+function speakConcept(n) {
+  if (!("speechSynthesis" in window)) { toast("Speech is not available in this browser."); return; }
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(`${n.title}. ${n.text}`);
+  u.rate = 0.95;
+  speechSynthesis.speak(u);
+}
+$("#concept-read").addEventListener("click", () => speakConcept(STUDY.concepts.nodes[conceptIndex]));
+$("#concept-next").addEventListener("click", () => selectConcept(conceptIndex + 1));
+$("#concept-reset").addEventListener("click", () => selectConcept(0));
+selectConcept(0);
+
+const GAME_ROUNDS = [
+  {
+    prompt: "You need the structure of a protected JavaScript bundle. The budget is 100,000 credits. Which read do you request?",
+    options: [
+      {label:"MCP summary", cost:46, verdict:"best", feedback:"1.67× — enough to map the structure without paying for the full dump."},
+      {label:"CLI full JSON", cost:71598, verdict:"bad", feedback:"111.04× and 7,159,792 tokens. Accurate, but you paid for detail you did not ask for."},
+      {label:"Raw payload dump", cost:250000, verdict:"blow", feedback:"Over budget. The transport refuses before you learn anything useful."}
+    ]
+  },
+  {
+    prompt: "You need the frame numbers in a PCAP. Which query answers the question at the lowest cost?",
+    options: [
+      {label:"Narrow frame.number", cost:29, verdict:"best", feedback:"1.82×. A narrow field answers the frame-number question directly."},
+      {label:"Broad six fields", cost:111, verdict:"ok", feedback:"6.42×. More fields than the question requires."},
+      {label:"Summary tool", cost:153, verdict:"ok", feedback:"14.37×. Convenient, but still more than the narrow query."},
+      {label:"tcp.payload", cost:4404, verdict:"bad", feedback:"275.4×. You asked for payload bytes when you needed host metadata."}
+    ]
+  },
+  {
+    prompt: "You need the exports and imports of a protected WASM module. Which read preserves the ABI check?",
+    options: [
+      {label:"MCP summary", cost:40, verdict:"bad", feedback:"Cheap, but the summary cannot verify the ABI. A cheap wrong answer is still wrong."},
+      {label:"Full module analysis", cost:36185, verdict:"best", feedback:"2,077.21×, but it preserves the export surface and answers the question. The only path that supports an ABI claim."}
+    ]
+  },
+  {
+    prompt: "A protected ASAR refuses at the default cap. What do you do next?",
+    options: [
+      {label:"Accept the refusal", cost:8, verdict:"bad", feedback:"A refusal is an outcome, not an answer. You still do not know what the archive contains."},
+      {label:"Header-only read", cost:180, verdict:"best", feedback:"Enough to identify the archive and plan the next step without paying for a full dump."},
+      {label:"Apply the 32 MiB override", cost:472433, verdict:"blow", feedback:"718.14× and over budget. The override is real, but it is not the first move."}
+    ]
+  },
+  {
+    prompt: "You need table names and row counts from a protected SQLite database. Which query?",
+    options: [
+      {label:"Schema inventory", cost:17, verdict:"best", feedback:"1.29×. Exactly the question, with no full-table scan."},
+      {label:"Full table dump", cost:17, verdict:"ok", feedback:"Same measured cost here, but it returns more data than the question requires."},
+      {label:"Select the decoy column", cost:0, verdict:"bad", feedback:"Zero credits, zero answers. The trap wins."}
+    ]
+  }
+];
+const gameState = {round:0, budget:100000, score:0, answered:false, over:false};
+let labMode = "constellation";
+let labSelectedCase = null;
+
+function renderConstellationPanel() {
+  const c = labSelectedCase ? byId(labSelectedCase) : null;
+  const panel = $("#lab-panel");
+  panel.innerHTML = `<h3>15 cases, one path each</h3>
+    <p>Bar height is log10 measured amplification; color is outcome. Click a bar, or pick a case below.</p>
+    <div class="lab-legend"><span><i style="background:var(--red)"></i>Amplified</span><span><i style="background:var(--amber)"></i>Neutral</span><span><i style="background:var(--violet)"></i>Refused</span><span><i style="background:var(--green)"></i>MCP</span></div>
+    <div class="game-card" style="margin-top:2px">${c ? `<div class="game-top"><h4>${esc(c.short)}</h4><span class="game-budget">${fmtFactor(c.ratio)}</span></div><p class="game-prompt" style="min-height:0">${esc(c.note)}</p><p class="muted">Claimed ${fmtFactor(c.claimed)} · ${esc(c.transport)}</p>` : `<p class="game-prompt" style="min-height:0">Select a case to see the claimed factor, the measured factor, and the path.</p>`}</div>
+    <div class="game-actions"><button class="btn btn-ghost btn-small" id="lab-narrate">Narrate this view</button><button class="btn btn-ghost btn-small" id="lab-reset-view">Reset view</button></div>`;
+  $("#lab-narrate").addEventListener("click", () => speakText("This is the Budget Trap Lab. Each bar is an independently authored case. Height is the log of measured amplification; color is the outcome. The tallest bar is WASM at two thousand seventy-seven times. The point is not one number: the same artifact can move from one point six seven times to two thousand seventy-seven times depending on the transport and the query."));
+  $("#lab-reset-view").addEventListener("click", () => window.dispatchEvent(new CustomEvent("lab:reset")));
+}
+function renderHowPanel() {
+  $("#lab-panel").innerHTML = `<h3>How to read the lab</h3>
+    <p>Height is log10 of measured amplification, so equal visual steps are equal multiplicative changes. Color is the outcome, not the size of the claim.</p>
+    <p><strong>Amplified</strong> means the analyzer returned a successful result and the token count rose. <strong>Neutral</strong> means the protected and baseline costs are close. <strong>Refused</strong> means the analyzer returned an error payload; refusals are never averaged into the amplification factor.</p>
+    <p>Click a bar to select it. Drag to orbit, scroll to zoom. The accessible table below the lab has the same numbers.</p>
+    <div class="game-actions"><button class="btn btn-ghost btn-small" id="lab-narrate">Narrate this view</button></div>`;
+  $("#lab-narrate").addEventListener("click", () => speakText("The lab has three modes. Constellation shows the fifteen cases as bars. Budget Run is a five-round game about choosing a query. How to read this explains the axes, colors, and the difference between a refusal and an amplification."));
+}
+function renderGamePanel() {
+  const panel = $("#lab-panel");
+  if (gameState.over) {
+    const pct = Math.round(gameState.score / 500 * 100);
+    panel.innerHTML = `<div class="game-card">
+      <div class="game-top"><h4>Run complete</h4><span class="game-budget">${fmt(gameState.budget)} cr left</span></div>
+      <p class="game-prompt" style="min-height:0">Score ${gameState.score}/500 (${pct}%). ${pct >= 80 ? "You chose paths, not headlines." : pct >= 50 ? "Good instincts. Watch the transport and query shape." : "The cheapest correct read is usually the narrow one."}</p>
+      <div class="game-actions"><button class="btn btn-primary btn-small" id="game-again">Run again</button></div>
+    </div>`;
+    $("#game-again").addEventListener("click", restartGame);
+    return;
+  }
+  const r = GAME_ROUNDS[gameState.round];
+  const pct = Math.max(0, Math.min(100, gameState.budget / 100000 * 100));
+  const barColor = pct > 50 ? "linear-gradient(90deg,var(--green),var(--cyan))" : pct > 20 ? "linear-gradient(90deg,var(--amber),var(--red))" : "var(--red)";
+  panel.innerHTML = `<div class="game-card">
+    <div class="game-top"><h4>Budget Run · Round ${gameState.round + 1}/5</h4><span class="game-budget">${fmt(gameState.budget)} cr</span></div>
+    <div class="budget-track"><div class="budget-fill" style="width:${pct}%;background:${barColor}"></div></div>
+    <p class="game-prompt">${esc(r.prompt)}</p>
+    <div class="game-options">${r.options.map((o, i) => `<button class="game-option" data-opt="${i}"><span>${esc(o.label)}</span><span class="cost">${fmt(o.cost)} cr</span></button>`).join("")}</div>
+    <div class="game-feedback" id="game-feedback">Pick the cheapest read that still answers the question.</div>
+    <div class="game-actions"><button class="btn btn-ghost btn-small" id="game-restart">Restart</button></div>
+  </div>`;
+  $$("#lab-panel .game-option").forEach(btn => btn.addEventListener("click", () => answerGame(Number(btn.dataset.opt))));
+  $("#game-restart").addEventListener("click", restartGame);
+}
+function answerGame(i) {
+  if (gameState.answered) return;
+  gameState.answered = true;
+  const r = GAME_ROUNDS[gameState.round];
+  const opt = r.options[i];
+  gameState.budget = Math.max(0, gameState.budget - opt.cost);
+  gameState.score += opt.verdict === "best" ? 100 : opt.verdict === "ok" ? 60 : opt.verdict === "bad" ? 20 : 0;
+  $$("#lab-panel .game-option").forEach((btn, j) => {
+    btn.disabled = true;
+    if (j === i) btn.classList.add(opt.verdict === "best" ? "best" : "bad");
+    if (r.options[j].verdict === "best" && j !== i) btn.classList.add("best");
+  });
+  const fb = $("#game-feedback");
+  fb.innerHTML = `<strong>${opt.verdict === "best" ? "Best path." : opt.verdict === "ok" ? "Workable." : opt.verdict === "bad" ? "Expensive." : "Over budget."}</strong> ${esc(opt.feedback)}`;
+  const actions = $("#lab-panel .game-actions");
+  actions.innerHTML = `<button class="btn btn-primary btn-small" id="game-next">${gameState.round === GAME_ROUNDS.length - 1 ? "See result" : "Next round"}</button><button class="btn btn-ghost btn-small" id="game-restart">Restart</button>`;
+  $("#game-next").addEventListener("click", nextGameRound);
+  $("#game-restart").addEventListener("click", restartGame);
+  window.dispatchEvent(new CustomEvent("lab:game", {detail:{type:"choice", verdict:opt.verdict, budget:gameState.budget}}));
+}
+function nextGameRound() {
+  if (gameState.round === GAME_ROUNDS.length - 1) {
+    gameState.over = true;
+    renderGamePanel();
+    window.dispatchEvent(new CustomEvent("lab:game", {detail:{type:"end", score:gameState.score}}));
+    return;
+  }
+  gameState.round++;
+  gameState.answered = false;
+  renderGamePanel();
+  window.dispatchEvent(new CustomEvent("lab:game", {detail:{type:"next", round:gameState.round}}));
+}
+function restartGame() {
+  gameState.round = 0; gameState.budget = 100000; gameState.score = 0; gameState.answered = false; gameState.over = false;
+  renderGamePanel();
+  window.dispatchEvent(new CustomEvent("lab:game", {detail:{type:"start"}}));
+}
+function speakText(text) {
+  if (!("speechSynthesis" in window)) { toast("Speech is not available in this browser."); return; }
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.rate = 0.95;
+  speechSynthesis.speak(u);
+}
+function setLabMode(mode) {
+  labMode = mode;
+  window.__labMode = mode;
+  $$(".lab-tab").forEach(t => t.setAttribute("aria-selected", String(t.dataset.labMode === mode)));
+  const activeTab = $$(".lab-tab").find(t => t.dataset.labMode === mode);
+  if (activeTab) $("#lab-panel").setAttribute("aria-labelledby", activeTab.id);
+  $("#lab-mode-badge").textContent = mode === "game" ? "Budget Run" : mode === "how" ? "How to read" : "Constellation";
+  if (mode === "game") renderGamePanel();
+  else if (mode === "how") renderHowPanel();
+  else renderConstellationPanel();
+  window.dispatchEvent(new CustomEvent("lab:mode", {detail:{mode}}));
+}
+$$(".lab-tab").forEach(tab => tab.addEventListener("click", () => setLabMode(tab.dataset.labMode)));
+window.addEventListener("lab:select", (e) => {
+  labSelectedCase = e.detail.id;
+  $("#lab-focus-badge").textContent = byId(e.detail.id) ? byId(e.detail.id).short : "All formats";
+  if (labMode === "constellation") renderConstellationPanel();
+});
+setLabMode("constellation");
+
+const searchSections = [
+  {title:"What this study found", desc:"Three findings in 30 seconds", href:"#summary"},
+  {title:"What is a budget trap?", desc:"Zero-jargon explainer", href:"#explain"},
+  {title:"Every case, every number", desc:"Filterable evidence table", href:"#evidence"},
+  {title:"The Budget Trap Lab", desc:"3D constellation and game", href:"#lab"},
+  {title:"Intensity, transport, and query shape", desc:"How the path changes the result", href:"#intensity"},
+  {title:"Beginner guide", desc:"Six levels from zero to verification", href:"#learn"},
+  {title:"What this is worth", desc:"Decision-maker view", href:"#business"},
+  {title:"Eight questions", desc:"Interactive quiz", href:"#quiz"},
+  {title:"How the ideas connect", desc:"Concept map with narration", href:"#concepts"},
+  {title:"Run it yourself", desc:"Reproduce the study", href:"#reproduce"},
+  {title:"FAQ and glossary", desc:"Objections and definitions", href:"#faq"}
+];
+function searchItems() {
+  return [
+    ...searchSections.map(s => ({...s, kind:"Section"})),
+    ...STUDY.cases.map(c => ({title:c.name, desc:`Claimed ${fmtFactor(c.claimed)} · Measured ${fmtFactor(c.ratio)} · ${outcomeInfo(c).label}`, keywords:[c.id, c.short, c.format, c.transport].join(" "), caseId:c.id, kind:"Case"})),
+    ...STUDY.concepts.nodes.map(n => ({title:n.title, desc:n.text, keywords:n.id, conceptId:n.id, kind:"Concept"}))
+  ];
+}
+function renderSearch(q) {
+  const query = q.trim().toLowerCase();
+  const items = searchItems().filter(it => !query || (it.title + " " + it.desc + " " + it.kind + " " + (it.keywords || "")).toLowerCase().includes(query)).slice(0, 14);
+  const results = $("#search-results");
+  results.innerHTML = items.length ? items.map(it =>
+    `<button class="search-result" data-href="${esc(it.href || "")}" data-case="${esc(it.caseId || "")}" data-concept="${esc(it.conceptId || "")}">
+      <div class="st">${esc(it.title)}</div><div class="sd">${esc(it.kind)} · ${esc(it.desc).slice(0, 130)}</div>
+    </button>`
+  ).join("") : `<div class="search-empty">No result. Try “transport”, “WASM”, or “refusal”.</div>`;
+  $$("#search-results .search-result").forEach(btn => btn.addEventListener("click", () => {
+    closeSearch();
+    const caseId = btn.dataset.case, conceptId = btn.dataset.concept, href = btn.dataset.href;
+    if (caseId) { location.hash = "#evidence"; openCase(caseId, true); }
+    else if (conceptId) { location.hash = "#concepts"; selectConcept(STUDY.concepts.nodes.findIndex(n => n.id === conceptId)); }
+    else if (href) location.hash = href;
+  }));
+}
+function openSearch() {
+  $("#search-modal").classList.add("open");
+  $("#search-input").value = "";
+  renderSearch("");
+  setTimeout(() => $("#search-input").focus(), 30);
+}
+function closeSearch() {
+  $("#search-modal").classList.remove("open");
+}
+$("#search-open").addEventListener("click", openSearch);
+$("#search-input").addEventListener("input", (e) => renderSearch(e.target.value));
+$("#search-modal").addEventListener("click", (e) => { if (e.target.id === "search-modal") closeSearch(); });
+document.addEventListener("keydown", (e) => {
+  const tag = (e.target.tagName || "").toLowerCase();
+  const typing = tag === "input" || tag === "textarea" || e.target.isContentEditable;
+  if (e.key === "/" && !typing) { e.preventDefault(); openSearch(); }
+  if (e.key === "Escape") closeSearch();
+  if ($("#search-modal").classList.contains("open") && e.key === "Enter") {
+    const first = $("#search-results .search-result");
+    if (first) first.click();
+  }
+});
+
+const menuBtn = $("#menu-btn"), mobileMenu = $("#mobile-menu");
+menuBtn.addEventListener("click", () => {
+  const open = mobileMenu.classList.toggle("open");
+  menuBtn.setAttribute("aria-expanded", String(open));
+  menuBtn.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+});
+$$("#mobile-menu a").forEach(a => a.addEventListener("click", () => {
+  mobileMenu.classList.remove("open");
+  menuBtn.setAttribute("aria-expanded", "false");
+}));
+
+const progress = $("#progress");
+function updateProgress() {
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  progress.style.width = `${max > 0 ? (h.scrollTop / max) * 100 : 0}%`;
+}
+addEventListener("scroll", updateProgress, {passive:true});
+updateProgress();
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add("in"); revealObserver.unobserve(e.target); }
+  });
+}, {threshold:0.1});
+$$(".reveal").forEach(el => revealObserver.observe(el));
+
+const countObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    countObserver.unobserve(e.target);
+    const el = e.target;
+    const target = parseFloat(el.dataset.count);
+    const suffix = el.dataset.suffix || "";
+    const start = performance.now();
+    const dur = 1100;
+    function frame(now) {
+      const p = Math.min(1, (now - start) / dur);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = (target * eased).toLocaleString("en-US", {maximumFractionDigits: target >= 100 ? 0 : 2}) + suffix;
+      if (p < 1) requestAnimationFrame(frame);
+      else el.textContent = target.toLocaleString("en-US", {maximumFractionDigits: 2}) + suffix;
+    }
+    requestAnimationFrame(frame);
+  });
+}, {threshold:0.5});
+$$("[data-count]").forEach(el => countObserver.observe(el));
+
+const motionBtn = $("#motion-toggle");
+motionBtn.addEventListener("click", () => {
+  const off = document.body.classList.toggle("motion-off");
+  motionBtn.setAttribute("aria-pressed", String(off));
+  motionBtn.setAttribute("aria-label", off ? "Enable motion" : "Reduce motion");
+  motionBtn.title = off ? "Enable motion" : "Reduce motion";
+  toast(off ? "Motion reduced" : "Motion enabled");
+});
+
+$$("[data-copy]").forEach(btn => btn.addEventListener("click", async () => {
+  try {
+    await navigator.clipboard.writeText(btn.dataset.copy);
+    toast(`Copied: ${btn.dataset.copy}`);
+  } catch {
+    toast("Copy failed; select the command manually.");
+  }
+}));
+
+const navLinks = $$(".nav-links a");
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    navLinks.forEach(a => a.setAttribute("aria-current", String(a.getAttribute("href") === `#${e.target.id}`)));
+  });
+}, {rootMargin:"-35% 0px -55% 0px"});
+navLinks.forEach(a => {
+  const id = a.getAttribute("href").slice(1);
+  const section = document.getElementById(id);
+  if (section) sectionObserver.observe(section);
+});
+
+function repoUrl() {
+  const host = location.hostname;
+  if (host.endsWith(".github.io")) {
+    const user = host.split(".")[0];
+    const repo = location.pathname.split("/").filter(Boolean)[0] || "";
+    if (user && repo) return `https://github.com/${user}/${repo}`;
+  }
+  return "https://github.com/";
+}
+const repo = repoUrl();
+$$("[data-repo-link]").forEach(a => {
+  a.href = repo;
+  if (repo === "https://github.com/") a.title = "Set this to your repository URL after publishing";
+});
+function initNeural() {
+  const canvas = document.getElementById("neural-canvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+  const dpr = Math.min(devicePixelRatio || 1, 2);
+  let w = 0, h = 0, nodes = [];
+  function resize() {
+    const rect = canvas.getBoundingClientRect();
+    w = Math.max(1, rect.width);
+    h = Math.max(1, rect.height);
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    nodes = Array.from({length:42}, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      vx: (Math.random() - 0.5) * 0.22,
+      vy: (Math.random() - 0.5) * 0.22,
+      r: 1 + Math.random() * 2.2
+    }));
+  }
+  function draw() {
+    const still = document.body.classList.contains("motion-off") || matchMedia("(prefers-reduced-motion: reduce)").matches;
+    ctx.clearRect(0, 0, w, h);
+    if (!still) {
+      for (const n of nodes) {
+        n.x += n.vx; n.y += n.vy;
+        if (n.x < 0 || n.x > w) n.vx *= -1;
+        if (n.y < 0 || n.y > h) n.vy *= -1;
+      }
+    }
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const a = nodes[i], b = nodes[j];
+        const d = Math.hypot(a.x - b.x, a.y - b.y);
+        if (d < 128) {
+          ctx.strokeStyle = `rgba(56,232,255,${(1 - d / 128) * 0.16})`;
+          ctx.lineWidth = 0.7;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.stroke();
+        }
+      }
+    }
+    for (const n of nodes) {
+      ctx.fillStyle = "rgba(56,232,255,.62)";
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+  resize();
+  new ResizeObserver(resize).observe(canvas);
+  requestAnimationFrame(draw);
+}
+initNeural();
+window.STUDY = STUDY;
+</script>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.187.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.187.0/examples/jsm/"
+  }
+}
+</script>
+<script type="module">
+const DATA = window.STUDY;
+const canvas = document.getElementById("lab-canvas");
+const wrap = canvas.parentElement;
+const fallback = document.getElementById("lab-fallback");
+let THREE, OrbitControls;
+try {
+  THREE = await import("three");
+  ({ OrbitControls } = await import("three/addons/controls/OrbitControls.js"));
+} catch (err) {
+  fallback.classList.add("show");
+  console.warn("3D lab unavailable:", err);
+}
+
+if (THREE) {
+  let renderer, scene, camera, controls, raycaster, pointer;
+  const timer = { started: 0, getElapsedTime() { return (performance.now() - this.started) / 1000; } };
+  let bars = [], labels = [], core, ring, particles;
+  let running = false;
+  let mode = window.__labMode || "constellation";
+  let selectedId = null;
+  const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const motionOff = () => reduceMotion || document.body.classList.contains("motion-off");
+  const colorFor = (outcome) => outcome === "amplified" ? 0xff5d7a : outcome === "neutral" ? 0xfbbf24 : outcome === "mcp-denied" ? 0x34d399 : 0x8b5cf6;
+
+  function makeLabel(text, color) {
+    const c = document.createElement("canvas");
+    c.width = 256; c.height = 64;
+    const ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 256, 64);
+    ctx.fillStyle = "rgba(6, 11, 22, 0.88)";
+    ctx.strokeStyle = "rgba(120, 150, 190, 0.35)";
+    ctx.lineWidth = 2;
+    const r = 14;
+    ctx.beginPath();
+    ctx.moveTo(r, 4); ctx.lineTo(256 - r, 4); ctx.quadraticCurveTo(252, 4, 252, 4 + r);
+    ctx.lineTo(252, 60 - r); ctx.quadraticCurveTo(252, 60, 256 - r, 60);
+    ctx.lineTo(r, 60); ctx.quadraticCurveTo(4, 60, 4, 60 - r);
+    ctx.lineTo(4, 4 + r); ctx.quadraticCurveTo(4, 4, r, 4);
+    ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.font = "600 24px Inter, sans-serif";
+    ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    ctx.fillStyle = color || "#9aa8c2";
+    ctx.fillText(text, 128, 33);
+    const tex = new THREE.CanvasTexture(c);
+    tex.colorSpace = THREE.SRGBColorSpace;
+    const sprite = new THREE.Sprite(new THREE.SpriteMaterial({map:tex, transparent:true, depthWrite:false, depthTest:false}));
+    sprite.renderOrder = 20;
+    sprite.scale.set(1.8, 0.45, 1);
+    return sprite;
+  }
+
+  function resize() {
+    if (!renderer) return;
+    const w = wrap.clientWidth, h = wrap.clientHeight;
+    if (!w || !h) return;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+
+  function resetView() {
+    if (!camera || !controls) return;
+    camera.position.set(0, 7.5, 16.5);
+    controls.target.set(0, 1.0, 0);
+    controls.update();
+  }
+
+  function applyMode() {
+    const isGame = mode === "game";
+    bars.forEach(b => { b.visible = !isGame; });
+    labels.forEach(l => { l.visible = !isGame; });
+    core.visible = mode !== "how";
+    ring.visible = mode !== "how";
+    controls.autoRotate = !motionOff() && !isGame;
+    if (isGame) {
+      camera.position.set(0, 6.0, 11);
+      controls.target.set(0, 2.8, 0);
+      controls.update();
+    } else {
+      resetView();
+    }
+  }
+
+  function highlight(id) {
+    bars.forEach(b => {
+      const on = b.userData.caseId === id;
+      b.material.emissiveIntensity = on ? 1.2 : 0.28;
+      b.scale.setScalar(on ? 1.08 : 1);
+    });
+  }
+
+  function focusCase(id) {
+    const bar = bars.find(b => b.userData.caseId === id);
+    if (!bar) return;
+    const p = bar.position;
+    controls.target.set(p.x, p.y, p.z);
+    camera.position.set(p.x * 1.75, p.y + 4.5, p.z * 1.75 + 6.5);
+    controls.update();
+    highlight(id);
+  }
+
+  function pulseGame(detail) {
+    if (!core) return;
+    const color = detail.type === "choice"
+      ? (detail.verdict === "best" ? 0x34d399 : detail.verdict === "ok" ? 0xfbbf24 : 0xff5d7a)
+      : detail.type === "end" ? 0x38e8ff : 0x8b5cf6;
+    core.material.emissive.setHex(color);
+    core.material.emissiveIntensity = 1.4;
+    core.scale.setScalar(1.3);
+    setTimeout(() => {
+      core.material.emissive.setHex(0x38e8ff);
+      core.material.emissiveIntensity = 0.55;
+      core.scale.setScalar(1);
+    }, 650);
+  }
+
+  let down = null;
+  function setPointer(e) {
+    const r = canvas.getBoundingClientRect();
+    pointer.x = ((e.clientX - r.left) / r.width) * 2 - 1;
+    pointer.y = -((e.clientY - r.top) / r.height) * 2 + 1;
+  }
+  function onPointerDown(e) { down = {x:e.clientX, y:e.clientY}; }
+  function onPointerUp(e) {
+    if (!down) return;
+    const moved = Math.hypot(e.clientX - down.x, e.clientY - down.y);
+    down = null;
+    if (moved > 6 || mode === "game") return;
+    setPointer(e);
+    raycaster.setFromCamera(pointer, camera);
+    const hits = raycaster.intersectObjects(bars, false);
+    if (hits.length) {
+      const id = hits[0].object.userData.caseId;
+      selectedId = id;
+      highlight(id);
+      window.dispatchEvent(new CustomEvent("lab:select", {detail:{id}}));
+    }
+  }
+  function onPointerMove(e) {
+    if (e.buttons) return;
+    setPointer(e);
+    raycaster.setFromCamera(pointer, camera);
+    canvas.style.cursor = raycaster.intersectObjects(bars, false).length ? "pointer" : "grab";
+  }
+
+  function start() {
+    if (running || !renderer) return;
+    running = true;
+    timer.started = performance.now();
+    animate();
+  }
+  function stop() { running = false; }
+  function animate() {
+    if (!running) return;
+    requestAnimationFrame(animate);
+    const t = timer.getElapsedTime();
+    controls.autoRotate = !motionOff() && mode !== "game";
+    controls.update();
+    if (!motionOff()) {
+      core.rotation.y = t * 0.35;
+      core.rotation.x = Math.sin(t * 0.4) * 0.2;
+      ring.rotation.z = t * 0.5;
+      particles.rotation.y = t * 0.03;
+    }
+    renderer.render(scene, camera);
+  }
+
+  try {
+    renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true, powerPreference:"high-performance"});
+  } catch (err) {
+    fallback.classList.add("show");
+    console.warn("WebGL unavailable:", err);
+  }
+
+  if (renderer) {
+    renderer.setPixelRatio(Math.min(devicePixelRatio || 1, 2));
+    scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x05070d, 0.028);
+    camera = new THREE.PerspectiveCamera(45, 1, 0.1, 120);
+    camera.position.set(0, 7.5, 16.5);
+    controls = new OrbitControls(camera, canvas);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.06;
+    controls.autoRotate = !motionOff();
+    controls.autoRotateSpeed = 0.55;
+    controls.minDistance = 7;
+    controls.maxDistance = 28;
+    controls.maxPolarAngle = Math.PI * 0.54;
+    controls.target.set(0, 1.0, 0);
+
+    scene.add(new THREE.AmbientLight(0x94a3b8, 0.55));
+    const key = new THREE.DirectionalLight(0x38e8ff, 2.2);
+    key.position.set(6, 12, 8); scene.add(key);
+    const fill = new THREE.PointLight(0x8b5cf6, 40, 40);
+    fill.position.set(-8, 4, -6); scene.add(fill);
+    const warm = new THREE.PointLight(0xfbbf24, 20, 30);
+    warm.position.set(0, 2, 10); scene.add(warm);
+
+    const grid = new THREE.GridHelper(30, 30, 0x1c2a44, 0x0e1626);
+    grid.position.y = -2.6;
+    grid.material.opacity = 0.55;
+    grid.material.transparent = true;
+    scene.add(grid);
+
+    DATA.cases.forEach((c, i) => {
+      const angle = (i / DATA.cases.length) * Math.PI * 2 + (i % 2 ? 0.07 : -0.04);
+      const radius = 5.2 + (i % 2) * 0.9;
+      const h = c.ratio ? Math.max(0.8, Math.log10(Math.max(c.ratio, 1)) * 1.35) : 0.55;
+      const mesh = new THREE.Mesh(
+        new THREE.BoxGeometry(0.72, h, 0.72),
+        new THREE.MeshStandardMaterial({color:colorFor(c.outcome), emissive:colorFor(c.outcome), emissiveIntensity:0.28, roughness:0.32, metalness:0.55})
+      );
+      mesh.position.set(Math.cos(angle) * radius, -2.6 + h / 2, Math.sin(angle) * radius);
+      mesh.userData = {caseId:c.id, h};
+      scene.add(mesh);
+      bars.push(mesh);
+      const label = makeLabel(c.short, c.outcome === "amplified" ? "#ff8fa3" : c.outcome === "neutral" ? "#ffd166" : c.outcome === "mcp-denied" ? "#6ee7b7" : "#c4b5fd");
+      label.position.set(mesh.position.x, -2.6 + h + 0.5 + (i % 2) * 0.18, mesh.position.z);
+      scene.add(label);
+      labels.push(label);
+    });
+
+    core = new THREE.Mesh(
+      new THREE.IcosahedronGeometry(1.25, 1),
+      new THREE.MeshStandardMaterial({color:0x0b1220, emissive:0x38e8ff, emissiveIntensity:0.55, wireframe:true, transparent:true, opacity:0.9})
+    );
+    core.position.y = 3.2;
+    scene.add(core);
+    ring = new THREE.Mesh(
+      new THREE.TorusGeometry(2.1, 0.018, 8, 80),
+      new THREE.MeshBasicMaterial({color:0x38e8ff, transparent:true, opacity:0.5})
+    );
+    ring.rotation.x = Math.PI / 2;
+    ring.position.y = 3.2;
+    scene.add(ring);
+
+    const pGeo = new THREE.BufferGeometry();
+    const count = 500;
+    const pos = new Float32Array(count * 3);
+    for (let i = 0; i < count; i++) {
+      const r = 6 + Math.random() * 8;
+      const t = Math.random() * Math.PI * 2;
+      const p = Math.acos(2 * Math.random() - 1);
+      pos[i * 3] = r * Math.sin(p) * Math.cos(t);
+      pos[i * 3 + 1] = (Math.random() - 0.5) * 10;
+      pos[i * 3 + 2] = r * Math.sin(p) * Math.sin(t);
+    }
+    pGeo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+    particles = new THREE.Points(pGeo, new THREE.PointsMaterial({color:0x38e8ff, size:0.035, transparent:true, opacity:0.45, depthWrite:false}));
+    scene.add(particles);
+
+    raycaster = new THREE.Raycaster();
+    pointer = new THREE.Vector2();
+
+    canvas.addEventListener("pointerdown", onPointerDown);
+    canvas.addEventListener("pointerup", onPointerUp);
+    canvas.addEventListener("pointermove", onPointerMove);
+    new ResizeObserver(resize).observe(wrap);
+    resize();
+
+    new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) start(); else stop(); });
+    }, {threshold:0.05}).observe(wrap);
+    document.addEventListener("visibilitychange", () => { if (document.hidden) stop(); else start(); });
+
+    window.addEventListener("lab:mode", (e) => { mode = e.detail.mode; applyMode(); });
+    window.addEventListener("lab:focus", (e) => focusCase(e.detail.id));
+    window.addEventListener("lab:reset", resetView);
+    window.addEventListener("lab:game", (e) => pulseGame(e.detail));
+
+    applyMode();
+    start();
+    window.dispatchEvent(new CustomEvent("lab:ready"));
+  }
+}
+</script>
+
+</body>
+</html>

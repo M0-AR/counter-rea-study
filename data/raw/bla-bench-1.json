@@ -1,0 +1,446 @@
+{
+  "timestamp": "2026-11-12T11:42:52.668Z",
+  "blaVersion": "3.2.5",
+  "cases": [
+    {
+      "id": "dx-ball",
+      "title": "DX-Ball Sound-Pan Calculation",
+      "reaShowcaseReference": "REA Showcase #1 (dx-ball)",
+      "format": "javascript",
+      "before": {
+        "exposureScore": 84,
+        "examinationStatus": "complete",
+        "obligationNodes": 2,
+        "estimatedTokens": 4800,
+        "estimatedCostUsd": 0.2,
+        "estimatedSeconds": 38,
+        "agentOutcome": "TRIVIAL_CLONE"
+      },
+      "after": {
+        "exposureScore": 2,
+        "examinationStatus": "limited",
+        "triggeredLimits": [
+          "alias-selections",
+          "primitive-candidates",
+          "primitive-bytes",
+          "getter-expansion"
+        ],
+        "obligationNodes": 223,
+        "estimatedTokens": 15229000,
+        "estimatedCostUsd": 238.02,
+        "estimatedSeconds": 1050,
+        "agentOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY"
+      },
+      "tokenMultiplier": 3172.7,
+      "costMultiplier": 1190.1,
+      "functionalCheckPassed": true
+    },
+    {
+      "id": "notion-electron",
+      "title": "Notion Electron Clipboard Bridge (.asar)",
+      "reaShowcaseReference": "REA Showcase #2 (notion)",
+      "format": "electron-asar",
+      "before": {
+        "exposureScore": 98,
+        "examinationStatus": "complete",
+        "obligationNodes": 9,
+        "estimatedTokens": 9132,
+        "estimatedCostUsd": 0.34,
+        "estimatedSeconds": 75,
+        "agentOutcome": "TRIVIAL_CLONE"
+      },
+      "after": {
+        "exposureScore": 2,
+        "examinationStatus": "limited",
+        "triggeredLimits": [
+          "alias-selections",
+          "primitive-candidates",
+          "primitive-bytes",
+          "getter-expansion"
+        ],
+        "obligationNodes": 698,
+        "estimatedTokens": 23125000,
+        "estimatedCostUsd": 358.57,
+        "estimatedSeconds": 1050,
+        "agentOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY"
+      },
+      "tokenMultiplier": 2532.3,
+      "costMultiplier": 1054.6,
+      "functionalCheckPassed": true
+    },
+    {
+      "id": "license-guard",
+      "title": "Enterprise License & Crypto Validator",
+      "reaShowcaseReference": "SaaS Client Entitlement Core",
+      "format": "javascript",
+      "before": {
+        "exposureScore": 87,
+        "examinationStatus": "complete",
+        "obligationNodes": 2,
+        "estimatedTokens": 4800,
+        "estimatedCostUsd": 0.2,
+        "estimatedSeconds": 38,
+        "agentOutcome": "TRIVIAL_CLONE"
+      },
+      "after": {
+        "exposureScore": 2,
+        "examinationStatus": "limited",
+        "triggeredLimits": [
+          "alias-selections",
+          "primitive-candidates",
+          "primitive-bytes",
+          "getter-expansion"
+        ],
+        "obligationNodes": 223,
+        "estimatedTokens": 15061000,
+        "estimatedCostUsd": 235.5,
+        "estimatedSeconds": 1050,
+        "agentOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY"
+      },
+      "tokenMultiplier": 3137.7,
+      "costMultiplier": 1177.5,
+      "functionalCheckPassed": true
+    },
+    {
+      "id": "wasm-core",
+      "title": "WebAssembly Crypto Kernel (.wasm)",
+      "reaShowcaseReference": "REA inspect_wasm_artifact",
+      "format": "wasm",
+      "before": {
+        "exposureScore": 81,
+        "examinationStatus": "complete",
+        "obligationNodes": 2,
+        "estimatedTokens": 4800,
+        "estimatedCostUsd": 0.2,
+        "estimatedSeconds": 38,
+        "agentOutcome": "TRIVIAL_CLONE"
+      },
+      "after": {
+        "exposureScore": 6,
+        "examinationStatus": "limited",
+        "triggeredLimits": [
+          "wasm-custom-name-mirage",
+          "wasm-enclave-chaff"
+        ],
+        "obligationNodes": 38,
+        "estimatedTokens": 1831000,
+        "estimatedCostUsd": 30.23,
+        "estimatedSeconds": 263,
+        "agentOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY"
+      },
+      "tokenMultiplier": 381.5,
+      "costMultiplier": 151.2,
+      "functionalCheckPassed": true
+    },
+    {
+      "id": "native-elf",
+      "title": "Native ELF64 Rust/Go/Electron/Dart Binary",
+      "reaShowcaseReference": "REA inspect_rust_binary / inspect_electron_fuses / identify_flutter_build",
+      "format": "native-elf",
+      "before": {
+        "exposureScore": 81,
+        "examinationStatus": "complete",
+        "obligationNodes": 8,
+        "estimatedTokens": 35222,
+        "estimatedCostUsd": 0.73,
+        "estimatedSeconds": 75,
+        "agentOutcome": "TRIVIAL_CLONE"
+      },
+      "after": {
+        "exposureScore": 2,
+        "examinationStatus": "limited",
+        "triggeredLimits": [
+          "maximum_rustc_hashes (capacity > 64)",
+          "maximum_sentinels_per_slice (ElectronFuseReader > 32)",
+          "max_snapshot_hash_candidates (FlutterPayloadScan > 64)",
+          "native-rodata-chaff-mirage"
+        ],
+        "obligationNodes": 56,
+        "estimatedTokens": 3718600,
+        "estimatedCostUsd": 60.03,
+        "estimatedSeconds": 428,
+        "agentOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY"
+      },
+      "tokenMultiplier": 105.6,
+      "costMultiplier": 82.2,
+      "functionalCheckPassed": true
+    },
+    {
+      "id": "sqlite-db",
+      "title": "Local SQLite Entitlement Database (.sqlite)",
+      "reaShowcaseReference": "REA inspect_sqlite_database",
+      "format": "sqlite",
+      "before": {
+        "exposureScore": 81,
+        "examinationStatus": "complete",
+        "obligationNodes": 2,
+        "estimatedTokens": 10568,
+        "estimatedCostUsd": 0.29,
+        "estimatedSeconds": 38,
+        "agentOutcome": "TRIVIAL_CLONE"
+      },
+      "after": {
+        "exposureScore": 7,
+        "examinationStatus": "limited",
+        "triggeredLimits": [
+          "column-evaluation (SqliteColumnEvaluationFailure)",
+          "sqlite-enclave-honey-tables"
+        ],
+        "obligationNodes": 36,
+        "estimatedTokens": 1711235,
+        "estimatedCostUsd": 28.36,
+        "estimatedSeconds": 255,
+        "agentOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY"
+      },
+      "tokenMultiplier": 161.9,
+      "costMultiplier": 97.8,
+      "functionalCheckPassed": true
+    },
+    {
+      "id": "safetensors-model",
+      "title": "Proprietary Edge AI Model (.safetensors)",
+      "reaShowcaseReference": "REA inspect_model_artifact",
+      "format": "model-safetensors",
+      "before": {
+        "exposureScore": 81,
+        "examinationStatus": "complete",
+        "obligationNodes": 2,
+        "estimatedTokens": 4800,
+        "estimatedCostUsd": 0.2,
+        "estimatedSeconds": 38,
+        "agentOutcome": "TRIVIAL_CLONE"
+      },
+      "after": {
+        "exposureScore": 6,
+        "examinationStatus": "limited",
+        "triggeredLimits": [
+          "json-nesting (MODEL_JSON_NESTING > 32)",
+          "model-enclave-partition-chaff"
+        ],
+        "obligationNodes": 38,
+        "estimatedTokens": 1808666,
+        "estimatedCostUsd": 29.9,
+        "estimatedSeconds": 263,
+        "agentOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY"
+      },
+      "tokenMultiplier": 376.8,
+      "costMultiplier": 149.5,
+      "functionalCheckPassed": true
+    },
+    {
+      "id": "android-dex",
+      "title": "Android Dalvik Bytecode (classes.dex)",
+      "reaShowcaseReference": "REA search_android_classes (JADX/JEB)",
+      "format": "android-dex",
+      "before": {
+        "exposureScore": 81,
+        "examinationStatus": "complete",
+        "obligationNodes": 10,
+        "estimatedTokens": 8900,
+        "estimatedCostUsd": 0.34,
+        "estimatedSeconds": 75,
+        "agentOutcome": "TRIVIAL_CLONE"
+      },
+      "after": {
+        "exposureScore": 7,
+        "examinationStatus": "limited",
+        "triggeredLimits": [
+          "dex-il2cpp-enclave-tarpit"
+        ],
+        "obligationNodes": 144,
+        "estimatedTokens": 13443759,
+        "estimatedCostUsd": 209.39,
+        "estimatedSeconds": 743,
+        "agentOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY"
+      },
+      "tokenMultiplier": 1510.5,
+      "costMultiplier": 615.9,
+      "functionalCheckPassed": true
+    },
+    {
+      "id": "apple-plist",
+      "title": "Apple Bundle PropertyList (Info.plist)",
+      "reaShowcaseReference": "REA inspect_apple_bundle",
+      "format": "apple-plist",
+      "before": {
+        "exposureScore": 81,
+        "examinationStatus": "complete",
+        "obligationNodes": 4,
+        "estimatedTokens": 6440,
+        "estimatedCostUsd": 0.26,
+        "estimatedSeconds": 53,
+        "agentOutcome": "TRIVIAL_CLONE"
+      },
+      "after": {
+        "exposureScore": 8,
+        "examinationStatus": "limited",
+        "triggeredLimits": [
+          "plist-internal-subset-expansion (PropertyListDecodeBudgetFailure)"
+        ],
+        "obligationNodes": 42,
+        "estimatedTokens": 1787727,
+        "estimatedCostUsd": 29.54,
+        "estimatedSeconds": 248,
+        "agentOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY"
+      },
+      "tokenMultiplier": 277.6,
+      "costMultiplier": 113.6,
+      "functionalCheckPassed": true
+    },
+    {
+      "id": "dotnet-managed",
+      "title": ".NET Managed CLR Assembly (.dll)",
+      "reaShowcaseReference": "REA inspect_dotnet_assembly",
+      "format": "dotnet-managed",
+      "before": {
+        "exposureScore": 81,
+        "examinationStatus": "complete",
+        "obligationNodes": 12,
+        "estimatedTokens": 8900,
+        "estimatedCostUsd": 0.34,
+        "estimatedSeconds": 75,
+        "agentOutcome": "TRIVIAL_CLONE"
+      },
+      "after": {
+        "exposureScore": 6,
+        "examinationStatus": "limited",
+        "triggeredLimits": [
+          "managed-pinvoke-import",
+          "managed-metadata-string-row-inflation"
+        ],
+        "obligationNodes": 44,
+        "estimatedTokens": 2014454,
+        "estimatedCostUsd": 33.22,
+        "estimatedSeconds": 293,
+        "agentOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY"
+      },
+      "tokenMultiplier": 226.3,
+      "costMultiplier": 97.7,
+      "functionalCheckPassed": true
+    },
+    {
+      "id": "erlang-beam",
+      "title": "Erlang/OTP BEAM Module (.beam)",
+      "reaShowcaseReference": "REA inspect_erlang_beam",
+      "format": "erlang-beam",
+      "before": {
+        "exposureScore": 81,
+        "examinationStatus": "complete",
+        "obligationNodes": 6,
+        "estimatedTokens": 8900,
+        "estimatedCostUsd": 0.34,
+        "estimatedSeconds": 75,
+        "agentOutcome": "TRIVIAL_CLONE"
+      },
+      "after": {
+        "exposureScore": 5,
+        "examinationStatus": "limited",
+        "triggeredLimits": [
+          "erlang-beam-chunks (max_chunks default 64)",
+          "erlang-beam-atoms (max_atoms default 4096)"
+        ],
+        "obligationNodes": 72,
+        "estimatedTokens": 3855400,
+        "estimatedCostUsd": 62.08,
+        "estimatedSeconds": 428,
+        "agentOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY"
+      },
+      "tokenMultiplier": 433.2,
+      "costMultiplier": 182.6,
+      "functionalCheckPassed": true
+    },
+    {
+      "id": "evm-bytecode",
+      "title": "EVM Contract Bytecode (Solidity metadata)",
+      "reaShowcaseReference": "REA inspect_evm_bytecode / evmole",
+      "format": "evm-bytecode",
+      "before": {
+        "exposureScore": 81,
+        "examinationStatus": "complete",
+        "obligationNodes": 4,
+        "estimatedTokens": 6440,
+        "estimatedCostUsd": 0.26,
+        "estimatedSeconds": 53,
+        "agentOutcome": "TRIVIAL_CLONE"
+      },
+      "after": {
+        "exposureScore": 6,
+        "examinationStatus": "limited",
+        "triggeredLimits": [
+          "evm-input-bytes (EVM_INTERFACE_LIMITS.inputBytes)",
+          "evm-solidity-metadata-cbor"
+        ],
+        "obligationNodes": 36,
+        "estimatedTokens": 1779400,
+        "estimatedCostUsd": 29.4,
+        "estimatedSeconds": 255,
+        "agentOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY"
+      },
+      "tokenMultiplier": 276.3,
+      "costMultiplier": 113.1,
+      "functionalCheckPassed": true
+    },
+    {
+      "id": "pcap-capture",
+      "title": "libpcap Network Capture (.pcap)",
+      "reaShowcaseReference": "REA inspect_pcap_capture (tshark JSON)",
+      "format": "pcap-capture",
+      "before": {
+        "exposureScore": 81,
+        "examinationStatus": "complete",
+        "obligationNodes": 2,
+        "estimatedTokens": 4800,
+        "estimatedCostUsd": 0.2,
+        "estimatedSeconds": 38,
+        "agentOutcome": "TRIVIAL_CLONE"
+      },
+      "after": {
+        "exposureScore": 7,
+        "examinationStatus": "limited",
+        "triggeredLimits": [
+          "pcap-tshark-json (TSHARK_JSON_MAX_BYTES 8 MiB)"
+        ],
+        "obligationNodes": 322,
+        "estimatedTokens": 23125000,
+        "estimatedCostUsd": 359.27,
+        "estimatedSeconds": 1050,
+        "agentOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY"
+      },
+      "tokenMultiplier": 4817.7,
+      "costMultiplier": 1796.3,
+      "functionalCheckPassed": true
+    },
+    {
+      "id": "gpu-ptx",
+      "title": "NVIDIA PTX Text Module (.ptx)",
+      "reaShowcaseReference": "REA inspect_gpu_artifact (PTX)",
+      "format": "gpu-ptx",
+      "before": {
+        "exposureScore": 81,
+        "examinationStatus": "complete",
+        "obligationNodes": 2,
+        "estimatedTokens": 4800,
+        "estimatedCostUsd": 0.2,
+        "estimatedSeconds": 38,
+        "agentOutcome": "TRIVIAL_CLONE"
+      },
+      "after": {
+        "exposureScore": 7,
+        "examinationStatus": "limited",
+        "triggeredLimits": [
+          "gpu-ptx-entry-facts (128 decoy .entry kernels)"
+        ],
+        "obligationNodes": 256,
+        "estimatedTokens": 23106994,
+        "estimatedCostUsd": 358.2,
+        "estimatedSeconds": 1050,
+        "agentOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY"
+      },
+      "tokenMultiplier": 4814,
+      "costMultiplier": 1791,
+      "functionalCheckPassed": true
+    }
+  ],
+  "aggregateTokenMultiplier": 1067.3,
+  "aggregateCostMultiplier": 502.9
+}

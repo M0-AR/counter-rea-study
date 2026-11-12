@@ -1,0 +1,63 @@
+{
+  "tokenizer": "cl100k_base",
+  "tiktoken_version": "0.14.0",
+  "case_count": 8,
+  "cases": {
+    "js-app": {
+      "baseline_tokens": 84191,
+      "protected_tokens": 9735794,
+      "ratio": 115.64,
+      "baseline_path": "results/baseline/raw/js-app/rea.full.json",
+      "protected_path": "results/raw/js-app/rea.full.json"
+    },
+    "wasm": {
+      "baseline_tokens": 1729,
+      "protected_tokens": 5399498,
+      "ratio": 3122.9,
+      "baseline_path": "results/variants/raw/wasm-baseline-fixed/rea.full.json",
+      "protected_path": "results/variants/raw/wasm-fixed/rea.full.json"
+    },
+    "sqlite": {
+      "baseline_tokens": 1039,
+      "protected_tokens": 1330,
+      "ratio": 1.28,
+      "baseline_path": "results/baseline/raw/sqlite/rea.full.json",
+      "protected_path": "results/raw/sqlite/rea.full.json"
+    },
+    "evm": {
+      "baseline_tokens": 1245,
+      "protected_tokens": 8381737,
+      "ratio": 6732.32,
+      "baseline_path": "results/baseline/raw/evm/rea.full.json",
+      "protected_path": "results/raw/evm/rea.full.json"
+    },
+    "pcap": {
+      "baseline_tokens": 992,
+      "protected_tokens": 25197,
+      "ratio": 25.4,
+      "baseline_path": "results/pcap/baseline.summary.full.json",
+      "protected_path": "results/pcap/protected.summary.full.json"
+    },
+    "ptx": {
+      "baseline_tokens": 665,
+      "protected_tokens": 695,
+      "ratio": 1.05,
+      "baseline_path": "results/baseline/raw/ptx/rea.full.json",
+      "protected_path": "results/raw/ptx/rea.full.json"
+    },
+    "elf": {
+      "baseline_tokens": 503,
+      "protected_tokens": 519,
+      "ratio": 1.03,
+      "baseline_path": "results/baseline/raw/elf/rea.full.json",
+      "protected_path": "results/raw/elf/rea.full.json"
+    },
+    "asar-raised-32m": {
+      "baseline_tokens": 85964,
+      "protected_tokens": 47232337,
+      "ratio": 549.44,
+      "baseline_path": "results/baseline/raw/asar/rea.full.json",
+      "protected_path": "results/variants/raw/asar-raised-32m/rea.full.json"
+    }
+  }
+}

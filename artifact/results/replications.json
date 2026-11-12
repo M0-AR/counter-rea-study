@@ -1,0 +1,53 @@
+{
+  "js": [
+    {
+      "tokens": "7159792",
+      "wall_ms": 5639,
+      "exit": 0
+    },
+    {
+      "tokens": "7159792",
+      "wall_ms": 5637,
+      "exit": 0
+    },
+    {
+      "tokens": "7159792",
+      "wall_ms": 5627,
+      "exit": 0
+    }
+  ],
+  "wasm": [
+    {
+      "tokens": "3618492",
+      "wall_ms": 1458,
+      "exit": 0
+    },
+    {
+      "tokens": "3618492",
+      "wall_ms": 1428,
+      "exit": 0
+    },
+    {
+      "tokens": "3618492",
+      "wall_ms": 1324,
+      "exit": 0
+    }
+  ],
+  "evm": [
+    {
+      "tokens": "1399400",
+      "wall_ms": 986,
+      "exit": 0
+    },
+    {
+      "tokens": "1399400",
+      "wall_ms": 998,
+      "exit": 0
+    },
+    {
+      "tokens": "1399400",
+      "wall_ms": 1014,
+      "exit": 0
+    }
+  ]
+}

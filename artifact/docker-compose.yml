@@ -1,0 +1,12 @@
+services:
+  study:
+    build:
+      context: ./docker
+    image: counter-rea-study:1.0
+    working_dir: /work/artifact
+    volumes:
+      - ..:/work
+    environment:
+      NODE_BIN: node
+      REA_WABT_BIN_DIRECTORY: /opt/wabt/bin
+    command: ["bash", "scripts/docker_run.sh"]

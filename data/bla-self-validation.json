@@ -1,0 +1,210 @@
+{
+  "source": "artifact/upstream/bla/docs/redteam/empirical-rea-validation.json",
+  "generatedAt": "2026-10-27, 09:56:00",
+  "intensity": "bankrupt",
+  "nodeVersion": "v24.22.1",
+  "tshark": {
+    "available": true,
+    "version": "TShark (Wireshark) 4.4.19."
+  },
+  "pairs": [
+    {
+      "format": "go_buildinfo",
+      "beforeBytes": 51339,
+      "afterBytes": 1214461,
+      "beforeStatus": "ok",
+      "afterStatus": "error",
+      "errorName": "BinaryResourceFailure",
+      "errorMessage": "Go build-info string length exceeds the 1 MiB limit",
+      "budgetHit": true,
+      "budgetName": "MAX_BUILD_INFO_BYTES",
+      "redactionOrAmbiguity": null
+    },
+    {
+      "format": "flutter_pool",
+      "beforeBytes": 51339,
+      "afterBytes": 1214461,
+      "beforeStatus": "ok",
+      "afterStatus": "ok",
+      "errorName": null,
+      "errorMessage": null,
+      "budgetHit": true,
+      "budgetName": "MAX_POOL_URIS|MAX_POOL_TOKENS",
+      "redactionOrAmbiguity": "REA would report truncated package_uris/dart_uris/class_like_tokens with 'at least N' limitations"
+    },
+    {
+      "format": "erlang_beam",
+      "beforeBytes": 84,
+      "afterBytes": 267876,
+      "beforeStatus": "ok",
+      "afterStatus": "error",
+      "errorName": "BeamCapacityFailure",
+      "errorMessage": "BEAM form exceeds the 64-chunk budget.",
+      "budgetHit": true,
+      "budgetName": "max_chunks",
+      "redactionOrAmbiguity": null
+    },
+    {
+      "format": "evm_bytecode",
+      "beforeBytes": 16,
+      "afterBytes": 4190208,
+      "beforeStatus": "ok",
+      "afterStatus": "ok",
+      "errorName": null,
+      "errorMessage": null,
+      "budgetHit": true,
+      "budgetName": "EVM_INTERFACE_LIMITS.inputBytes (approach)",
+      "redactionOrAmbiguity": "Hardened sample approaches full 4 MiB input budget"
+    },
+    {
+      "format": "pcap_capture",
+      "beforeBytes": 24,
+      "afterBytes": 1347772,
+      "beforeStatus": "ok",
+      "afterStatus": "budget_rejected",
+      "errorName": null,
+      "errorMessage": null,
+      "budgetHit": true,
+      "budgetName": "TSHARK_JSON_MAX_BYTES",
+      "redactionOrAmbiguity": "REA parseTsharkJsonOutput would throw AnalysisResourceConstraintError"
+    },
+    {
+      "format": "safetensors",
+      "beforeBytes": 128,
+      "afterBytes": 10160,
+      "beforeStatus": "ok",
+      "afterStatus": "error",
+      "errorName": "ModelFormatFailure",
+      "errorMessage": "Safetensors JSON nesting exceeds 32 levels",
+      "budgetHit": true,
+      "budgetName": "MODEL_JSON_NESTING",
+      "redactionOrAmbiguity": null
+    },
+    {
+      "format": "gguf",
+      "beforeBytes": 24,
+      "afterBytes": 7648,
+      "beforeStatus": "ok",
+      "afterStatus": "error",
+      "errorName": "ModelFormatFailure",
+      "errorMessage": "GGUF metadata nesting exceeds 32 array frames",
+      "budgetHit": true,
+      "budgetName": "MODEL_METADATA_NESTING",
+      "redactionOrAmbiguity": null
+    },
+    {
+      "format": "gpu_ptx",
+      "beforeBytes": 91,
+      "afterBytes": 26424,
+      "beforeStatus": "ok",
+      "afterStatus": "ok",
+      "errorName": null,
+      "errorMessage": null,
+      "budgetHit": false,
+      "budgetName": null,
+      "redactionOrAmbiguity": null
+    },
+    {
+      "format": "electron_asar",
+      "beforeBytes": 607,
+      "afterBytes": 17752989,
+      "beforeStatus": "ok",
+      "afterStatus": "error",
+      "errorName": "ArtifactReaderFailure",
+      "errorMessage": "ASAR header/index admission is limited to 16 MiB / 16777216 bytes. On MCP, call update_analysis_settings with setting asar.max_header_bytes, action set, and a value in bytes up to 256 MiB / 268435456 bytes (default 16 MiB / 16777216 bytes),",
+      "budgetHit": true,
+      "budgetName": "DEFAULT_ASAR_MAX_HEADER_BYTES",
+      "redactionOrAmbiguity": null
+    },
+    {
+      "format": "wasm_module",
+      "beforeBytes": 54,
+      "afterBytes": 6877425,
+      "beforeStatus": "ok",
+      "afterStatus": "budget_rejected",
+      "errorName": null,
+      "errorMessage": null,
+      "budgetHit": true,
+      "budgetName": "WASM_INTERFACE_REPRESENTATION_BYTES",
+      "redactionOrAmbiguity": "Resource constraint during inspect_wasm_artifact: Typed WASM interface decoding exceeds the WABT output representation budget"
+    },
+    {
+      "format": "sqlite_db",
+      "beforeBytes": 12288,
+      "afterBytes": 57344,
+      "beforeStatus": "ok",
+      "afterStatus": "budget_rejected",
+      "errorName": "SqliteColumnEvaluationFailure",
+      "errorMessage": "SQLite cannot evaluate selected column(s) of table \"enclave_key_hierarchy\" on REA's read-only connection: \"unsealed_preview\": unknown function: enclave_unseal_payload()",
+      "budgetHit": true,
+      "budgetName": "SqliteColumnEvaluationFailure",
+      "redactionOrAmbiguity": "REA cannot evaluate BLA generated trap columns (unknown function enclave_unseal_payload); honey schema still disclosed"
+    },
+    {
+      "format": "electron_fuses",
+      "beforeBytes": 51339,
+      "afterBytes": 1214461,
+      "beforeStatus": "ok",
+      "afterStatus": "budget_rejected",
+      "errorName": "ElectronFuseResourceFailure",
+      "errorMessage": "Slice 0 contains more than 32 Electron fuse sentinels.",
+      "budgetHit": true,
+      "budgetName": "ELECTRON_FUSE_LIMITS.maximumSentinelsPerSlice",
+      "redactionOrAmbiguity": null
+    },
+    {
+      "format": "javascript",
+      "beforeBytes": 761,
+      "afterBytes": 116210,
+      "beforeStatus": "ok",
+      "afterStatus": "budget_rejected",
+      "errorName": null,
+      "errorMessage": null,
+      "budgetHit": true,
+      "budgetName": "alias-selections+getter-expansion+primitive-bytes+primitive-candidates",
+      "redactionOrAmbiguity": "REA JS semantic analysis degraded: resourceLimits=[alias-selections, getter-expansion, primitive-bytes, primitive-candidates] (real REA exceptions, not simulation)"
+    }
+  ],
+  "unverified": [
+    {
+      "analyzer": "Ghidra / Hopper native decompile",
+      "reason": "requires Ghidra/Hopper install (not available without root/GUI)"
+    },
+    {
+      "analyzer": "Frida dynamic instrumentation",
+      "reason": "requires frida-tools + attachable target process"
+    },
+    {
+      "analyzer": "LLDB / GDB native tracing",
+      "reason": "requires lldb/gdb + debuggee; not installed here"
+    },
+    {
+      "analyzer": "Rizin / Cutter",
+      "reason": "requires rizin binary"
+    },
+    {
+      "analyzer": "JADX Android decompile",
+      "reason": "requires JADX JVM tooling"
+    },
+    {
+      "analyzer": "EVM EVMole worker full interface recovery",
+      "reason": "Not pathable in-process: EvmoleInterfaceWorker refuses library import ('Owned worker request path missing') and only runs under REA's owned subprocess launcher (prlimit address-space/CPU/file-size, 256 MiB heap, IPC reply schema). The evmole npm package exists in the REA tree but cannot be driven without that ownership harness. inputBytes (4 MiB) admission is checked in-process via probeEvm."
+    },
+    {
+      "analyzer": "WASM Wabt full WAT decode (wasm-objdump / wasm2wat)",
+      "reason": "AVAILABLE this run — probeWasm drives WabtArtifactProvider end-to-end"
+    },
+    {
+      "analyzer": "SQLite inspect_sqlite_database (DatabaseSync.limits)",
+      "reason": "Requires Node.js DatabaseSync.limits (24.15+ / 26+). Soft-skips as capability_gated on Node 22; under Node 24 probeSqlite records honey disclosure + SqliteColumnEvaluationFailure on generated trap columns."
+    },
+    {
+      "analyzer": "SPIR-V / CUDA fatbinary / AMD GPU object",
+      "reason": "BLA skips these formats (GPU_OBJECT_HARDENING_SKIP_REASON); no shield to validate"
+    },
+    {
+      "analyzer": "Firmware analysis",
+      "reason": "BLA skips firmware (FIRMWARE_HARDENING_SKIP_REASON); needs vendor parsers"
+    }
+  ]
+}

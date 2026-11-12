@@ -1,0 +1,247 @@
+{
+  "generated_at": "2026-11-12T15:49:04.675Z",
+  "units": {
+    "tokens": "REA --token-count (REA tokenizer)",
+    "ratios": "protected / unprotected"
+  },
+  "sample": {
+    "successful_cli_cases": 8,
+    "ids": [
+      "js-app",
+      "wasm",
+      "sqlite",
+      "evm",
+      "pcap",
+      "ptx",
+      "elf",
+      "asar-raised-32m"
+    ]
+  },
+  "claimed_vs_measured": {
+    "claimed": [
+      2679.9,
+      381.5,
+      162.1,
+      276.3,
+      4817.7,
+      4814,
+      235,
+      4111.8
+    ],
+    "measured": [
+      111.04,
+      2077.21,
+      1.29,
+      978.6,
+      14.37,
+      1.01,
+      1.01,
+      718.14
+    ],
+    "pearson_raw": -0.36724814878612205,
+    "pearson_log10": 0.0393193084215162,
+    "spearman": -0.047619047619047616,
+    "pearson_log10_bootstrap_95": [
+      -0.8147922069864318,
+      0.764870361569396
+    ],
+    "loglog_slope": 0.018100576993989367,
+    "loglog_intercept": 2.973151315202106,
+    "log10_rmse_regression_residual": 0.6118571119393883,
+    "log10_rmse_zero_model": 2.0385047366564746,
+    "geometric_mean_claimed": 1003.2353793226428,
+    "geometric_mean_measured": 36.375412467993584,
+    "claimed_over_measured": {
+      "js-app": 24.13,
+      "wasm": 0.18,
+      "sqlite": 125.66,
+      "evm": 0.28,
+      "pcap": 335.26,
+      "ptx": 4766.34,
+      "elf": 232.67,
+      "asar-raised-32m": 5.73
+    },
+    "tokenizer_sensitivity": {
+      "tokenizer": "cl100k_base",
+      "n": 8,
+      "measured": [
+        115.64,
+        3122.9,
+        1.28,
+        6732.32,
+        25.4,
+        1.05,
+        1.03,
+        549.44
+      ],
+      "pearson_log10": -0.024127067647245606,
+      "spearman": 0.047619047619047616,
+      "loglog_slope": -0.010060649527794932,
+      "geometric_mean_measured": 51.16555323438972
+    }
+  },
+  "outcomes": {
+    "amplified_default": [
+      "js-app",
+      "wasm",
+      "evm",
+      "pcap"
+    ],
+    "neutral_default": [
+      "sqlite",
+      "ptx",
+      "elf"
+    ],
+    "refused_default": [
+      "asar",
+      "safetensors",
+      "gguf",
+      "beam",
+      "pyc"
+    ],
+    "amplified_after_override": "asar-raised-32m"
+  },
+  "bla_benchmark": {
+    "runs": 5,
+    "token": {
+      "mean": 1067.02,
+      "sd": 0.5599999999999454,
+      "min": 1065.9,
+      "max": 1067.3
+    },
+    "cost": {
+      "mean": 502.75999999999993,
+      "sd": 0.2799999999999955,
+      "min": 502.2,
+      "max": 502.9
+    },
+    "readme_claim": {
+      "token": 639.5,
+      "cost": 304.4
+    },
+    "drift_multiple": {
+      "token": 1.66852228303362,
+      "cost": 1.6516425755584756
+    },
+    "functional_integrity_verified": false,
+    "runtime_equivalence": "not-tested"
+  },
+  "replications": {
+    "js": {
+      "runs": 3,
+      "tokens_unique": [
+        "7159792"
+      ],
+      "wall_ms_min": 5627,
+      "wall_ms_max": 5639,
+      "exit_codes": [
+        0
+      ]
+    },
+    "wasm": {
+      "runs": 3,
+      "tokens_unique": [
+        "3618492"
+      ],
+      "wall_ms_min": 1324,
+      "wall_ms_max": 1458,
+      "exit_codes": [
+        0
+      ]
+    },
+    "evm": {
+      "runs": 3,
+      "tokens_unique": [
+        "1399400"
+      ],
+      "wall_ms_min": 986,
+      "wall_ms_max": 1014,
+      "exit_codes": [
+        0
+      ]
+    }
+  },
+  "intensity": {
+    "js": {
+      "stealth": {
+        "tokens": 2481573,
+        "ratio": 38.49,
+        "functional": true,
+        "bytes": 51072
+      },
+      "balanced": {
+        "tokens": 3824471,
+        "ratio": 59.31,
+        "functional": true,
+        "bytes": 77296
+      },
+      "maximum": {
+        "tokens": 5876681,
+        "ratio": 91.14,
+        "functional": true,
+        "bytes": 112111
+      },
+      "bankrupt": {
+        "tokens": 7381143,
+        "ratio": 114.47,
+        "functional": true,
+        "bytes": 141402
+      }
+    },
+    "wasm": {
+      "stealth": {
+        "tokens": 4773,
+        "ratio": 2.74,
+        "functional": true,
+        "compute_digest": 45,
+        "export_count": 1,
+        "bytes": 6096
+      },
+      "balanced": {
+        "tokens": 6806,
+        "ratio": 3.91,
+        "functional": true,
+        "compute_digest": 45,
+        "export_count": 3,
+        "bytes": 10689
+      },
+      "maximum": {
+        "tokens": 11615,
+        "ratio": 6.67,
+        "functional": true,
+        "compute_digest": 45,
+        "export_count": 9,
+        "bytes": 23817
+      },
+      "bankrupt": {
+        "tokens": 3618503,
+        "ratio": 2077.21,
+        "functional": true,
+        "compute_digest": 45,
+        "export_count": 251,
+        "bytes": 6879947
+      }
+    },
+    "bankrupt_step_multiple": {
+      "js": 1.26,
+      "wasm": 311.54
+    }
+  },
+  "transport": {
+    "cli_full_js_tokens": 7159792,
+    "mcp_summary_protected_tokens": 4645,
+    "mcp_summary_unprotected_tokens": 2786,
+    "cli_to_mcp_summary_multiple": 1541.4,
+    "mcp_complete_error": "resource_constraint",
+    "mcp_complete_budget_bytes": 10485760
+  },
+  "pcap_tool_query_sensitivity": {
+    "summary_tool_ratio": 14.37,
+    "field_query_ratios": {
+      "narrow": 1.82,
+      "broad": 6.42,
+      "payload": 275.4
+    },
+    "range_multiple": 151.32
+  }
+}

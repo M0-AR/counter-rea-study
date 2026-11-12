@@ -1,0 +1,8 @@
+Data and figures in this repository are released under the Creative Commons
+Attribution 4.0 International License (CC-BY-4.0):
+https://creativecommons.org/licenses/by/4.0/
+
+This covers the generated CSV/JSON summaries, figures, and documentation.
+Upstream source code and upstream-generated artifacts remain under their own
+licenses; see artifact/upstream/<project>/LICENSE after fetching the pinned
+commits.

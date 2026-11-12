@@ -1,0 +1,71 @@
+{
+  "generated_at": "2026-11-12T15:47:43.481Z",
+  "baseline": {
+    "js_tokens": 64481,
+    "wasm_tokens": 1742
+  },
+  "js": {
+    "stealth": {
+      "tokens": 2481573,
+      "ratio": 38.49,
+      "functional": true,
+      "bytes": 51072
+    },
+    "balanced": {
+      "tokens": 3824471,
+      "ratio": 59.31,
+      "functional": true,
+      "bytes": 77296
+    },
+    "maximum": {
+      "tokens": 5876681,
+      "ratio": 91.14,
+      "functional": true,
+      "bytes": 112111
+    },
+    "bankrupt": {
+      "tokens": 7381143,
+      "ratio": 114.47,
+      "functional": true,
+      "bytes": 141402
+    }
+  },
+  "wasm": {
+    "stealth": {
+      "tokens": 4773,
+      "ratio": 2.74,
+      "functional": true,
+      "compute_digest": 45,
+      "export_count": 1,
+      "bytes": 6096
+    },
+    "balanced": {
+      "tokens": 6806,
+      "ratio": 3.91,
+      "functional": true,
+      "compute_digest": 45,
+      "export_count": 3,
+      "bytes": 10689
+    },
+    "maximum": {
+      "tokens": 11615,
+      "ratio": 6.67,
+      "functional": true,
+      "compute_digest": 45,
+      "export_count": 9,
+      "bytes": 23817
+    },
+    "bankrupt": {
+      "tokens": 3618503,
+      "ratio": 2077.21,
+      "functional": true,
+      "compute_digest": 45,
+      "export_count": 251,
+      "bytes": 6879947
+    }
+  },
+  "bankrupt_step_multiple": {
+    "js": 1.26,
+    "wasm": 311.54
+  }
+}

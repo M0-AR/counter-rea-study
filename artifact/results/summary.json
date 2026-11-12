@@ -1,0 +1,509 @@
+{
+  "generated_at": "2026-11-12T15:48:43.284Z",
+  "upstream": {
+    "bla": "bla-agents 3.2.5 (9c41bb53b040797e098954c4007425981f3a7a6b)",
+    "rea": "rea-agents 6.9.0 (d74549e495c58eb4a560279fd9f05508401ea0a0)",
+    "node": "24.22.1",
+    "wabt": "1.0.42"
+  },
+  "cases": [
+    {
+      "id": "js-app",
+      "format": "JavaScript app",
+      "baseline_tokens": 64481,
+      "protected_tokens": 7159792,
+      "token_ratio": 111.04,
+      "protected_exit": 0,
+      "error_code": null,
+      "outcome": "amplified",
+      "input_bytes": 729,
+      "protected_bytes": 140944,
+      "size_ratio": null,
+      "bla_claimed": {
+        "token_factor": 2679.9,
+        "cost_factor": 1023.9,
+        "overall_passed": true,
+        "functional_integrity": false,
+        "runtime_equivalence": "not-tested"
+      },
+      "independent_equivalence": "pass (4 function vectors; 3 outputs)",
+      "transport": "CLI full JSON",
+      "notes": "CLI full evidence; MCP complete hard-fails at 10 MiB, MCP summary = 4,645 tokens (1.67x)."
+    },
+    {
+      "id": "asar",
+      "format": "Electron ASAR",
+      "baseline_tokens": 65786,
+      "protected_tokens": 789,
+      "token_ratio": null,
+      "protected_exit": 1,
+      "error_code": "truncated",
+      "outcome": "denied (default 16 MiB ASAR header cap)",
+      "input_bytes": 1335,
+      "protected_bytes": 18023350,
+      "size_ratio": null,
+      "bla_claimed": {
+        "token_factor": 4111.8,
+        "cost_factor": 1554.4,
+        "overall_passed": true,
+        "functional_integrity": false,
+        "runtime_equivalence": "not-tested"
+      },
+      "independent_equivalence": null,
+      "transport": "CLI full JSON",
+      "notes": "Raising REA_ASAR_MAX_HEADER_BYTES to 32 MiB converts denial into 47,243,269 tokens / 236,579,520 bytes."
+    },
+    {
+      "id": "wasm",
+      "format": "WebAssembly",
+      "baseline_tokens": 1742,
+      "protected_tokens": 3618492,
+      "token_ratio": 2077.21,
+      "protected_exit": 0,
+      "error_code": null,
+      "outcome": "amplified",
+      "input_bytes": 54,
+      "protected_bytes": 6879942,
+      "size_ratio": null,
+      "bla_claimed": {
+        "token_factor": 381.5,
+        "cost_factor": 151.2,
+        "overall_passed": true,
+        "functional_integrity": false,
+        "runtime_equivalence": "not-tested"
+      },
+      "independent_equivalence": "pass with --wasm-preserve-exports computeDigest",
+      "transport": "CLI full JSON",
+      "notes": "Measured with WABT 1.0.42; preserve variant keeps the public ABI and adds 250 export decoys."
+    },
+    {
+      "id": "sqlite",
+      "format": "SQLite",
+      "baseline_tokens": 1308,
+      "protected_tokens": 1684,
+      "token_ratio": 1.29,
+      "protected_exit": 0,
+      "error_code": null,
+      "outcome": "neutral",
+      "input_bytes": 12288,
+      "protected_bytes": 57344,
+      "size_ratio": null,
+      "bla_claimed": {
+        "token_factor": 162.1,
+        "cost_factor": 97.9,
+        "overall_passed": true,
+        "functional_integrity": false,
+        "runtime_equivalence": "not-tested"
+      },
+      "independent_equivalence": "pass (rows identical; 5 decoy tables)",
+      "transport": "CLI full JSON",
+      "notes": "REA reads schema/rows only; appended decoy tables contribute little token cost."
+    },
+    {
+      "id": "safetensors",
+      "format": "Safetensors",
+      "baseline_tokens": 898,
+      "protected_tokens": 138,
+      "token_ratio": null,
+      "protected_exit": 1,
+      "error_code": "resource_constraint",
+      "outcome": "denied (hard 32-level JSON nesting cap)",
+      "input_bytes": 152,
+      "protected_bytes": 10160,
+      "size_ratio": null,
+      "bla_claimed": {
+        "token_factor": 376.8,
+        "cost_factor": 149.5,
+        "overall_passed": true,
+        "functional_integrity": false,
+        "runtime_equivalence": "not-tested"
+      },
+      "independent_equivalence": "pass (huggingface safe_open loads; data identical)",
+      "transport": "CLI full JSON",
+      "notes": "No runtime override; injected metadata contains canary/deception strings."
+    },
+    {
+      "id": "gguf",
+      "format": "GGUF",
+      "baseline_tokens": 616,
+      "protected_tokens": 4168,
+      "token_ratio": null,
+      "protected_exit": 1,
+      "error_code": "resource_constraint",
+      "outcome": "denied (hard 32-frame metadata nesting cap)",
+      "input_bytes": 32,
+      "protected_bytes": 7470,
+      "size_ratio": null,
+      "bla_claimed": {
+        "token_factor": 376.7,
+        "cost_factor": 149.4,
+        "overall_passed": true,
+        "functional_integrity": false,
+        "runtime_equivalence": "not-tested"
+      },
+      "independent_equivalence": "pass (gguf Python reader loads; 30 fields vs 3)",
+      "transport": "CLI full JSON",
+      "notes": "No runtime override."
+    },
+    {
+      "id": "beam",
+      "format": "Erlang BEAM",
+      "baseline_tokens": 864,
+      "protected_tokens": 196,
+      "token_ratio": null,
+      "protected_exit": 1,
+      "error_code": "resource_constraint",
+      "outcome": "denied (hard 256-chunk cap)",
+      "input_bytes": 104,
+      "protected_bytes": 255516,
+      "size_ratio": null,
+      "bla_claimed": {
+        "token_factor": 433.2,
+        "cost_factor": 182.6,
+        "overall_passed": true,
+        "functional_integrity": false,
+        "runtime_equivalence": "not-tested"
+      },
+      "independent_equivalence": "not tested (no Erlang runtime installed)",
+      "transport": "CLI full JSON",
+      "notes": "Baseline 864 tokens at --max-chunks 256; protected fails at 64 and at legal max 256."
+    },
+    {
+      "id": "evm",
+      "format": "EVM bytecode",
+      "baseline_tokens": 1430,
+      "protected_tokens": 1399400,
+      "token_ratio": 978.6,
+      "protected_exit": 0,
+      "error_code": null,
+      "outcome": "amplified",
+      "input_bytes": 39,
+      "protected_bytes": 4190208,
+      "size_ratio": null,
+      "bla_claimed": {
+        "token_factor": 276.3,
+        "cost_factor": 113.1,
+        "overall_passed": true,
+        "functional_integrity": false,
+        "runtime_equivalence": "not-tested"
+      },
+      "independent_equivalence": "prefix byte-identical; 4,190,169 bytes appended (ignored by EVM)",
+      "transport": "CLI full JSON",
+      "notes": "Measured 978.6x; WASM preserve variant is larger (2077.21x)."
+    },
+    {
+      "id": "pcap",
+      "format": "libpcap capture",
+      "baseline_tokens": 1063,
+      "protected_tokens": 15279,
+      "token_ratio": 14.37,
+      "protected_exit": 0,
+      "error_code": null,
+      "outcome": "amplified (14.37x on BLA's target summary tool; field queries 1.82x-275.4x)",
+      "input_bytes": 94,
+      "protected_bytes": 1346404,
+      "size_ratio": 14323.45,
+      "bla_claimed": {
+        "token_factor": 4817.7,
+        "cost_factor": 1796.3,
+        "overall_passed": true,
+        "functional_integrity": false,
+        "runtime_equivalence": "not-tested"
+      },
+      "independent_equivalence": "pass (original 5-tuple preserved; 160 decoy TCP packets added)",
+      "transport": "CLI summary tool",
+      "notes": "TShark 4.0.17 in Docker; 14,323x file growth. BLA claims target inspect_pcap_capture; same tool measured. Caller-chosen field query changes cost by 150x."
+    },
+    {
+      "id": "ptx",
+      "format": "NVIDIA PTX text",
+      "baseline_tokens": 812,
+      "protected_tokens": 817,
+      "token_ratio": 1.01,
+      "protected_exit": 0,
+      "error_code": null,
+      "outcome": "no amplification",
+      "input_bytes": 290,
+      "protected_bytes": 26575,
+      "size_ratio": null,
+      "bla_claimed": {
+        "token_factor": 4814,
+        "cost_factor": 1791,
+        "overall_passed": true,
+        "functional_integrity": false,
+        "runtime_equivalence": "not-tested"
+      },
+      "independent_equivalence": "prefix byte-identical; 26,285 bytes appended",
+      "transport": "CLI full JSON",
+      "notes": "REA GPU inspector ignores appended decoy PTX text: 1.006x measured vs 4,814x claimed."
+    },
+    {
+      "id": "elf",
+      "format": "Native ELF64",
+      "baseline_tokens": 566,
+      "protected_tokens": 571,
+      "token_ratio": 1.01,
+      "protected_exit": 0,
+      "error_code": null,
+      "outcome": "no amplification",
+      "input_bytes": 14480,
+      "protected_bytes": 1179297,
+      "size_ratio": null,
+      "bla_claimed": {
+        "token_factor": 235,
+        "cost_factor": 136.4,
+        "overall_passed": true,
+        "functional_integrity": false,
+        "runtime_equivalence": "not-tested"
+      },
+      "independent_equivalence": "pass (identical stdout/exit; entry point unchanged)",
+      "transport": "CLI full JSON",
+      "notes": "81.5x file growth but 1.008x token growth: REA reads export table only."
+    },
+    {
+      "id": "pyc",
+      "format": "CPython .pyc",
+      "baseline_tokens": 1345,
+      "protected_tokens": 247,
+      "token_ratio": null,
+      "protected_exit": 1,
+      "error_code": "invalid_request",
+      "outcome": "denied (REA rejects trailing marshal bytes)",
+      "input_bytes": 790,
+      "protected_bytes": 8401,
+      "size_ratio": null,
+      "bla_claimed": {
+        "token_factor": 240.3,
+        "cost_factor": 99.1,
+        "overall_passed": true,
+        "functional_integrity": false,
+        "runtime_equivalence": "not-tested"
+      },
+      "independent_equivalence": "pass (CPython imports and executes protected pyc)",
+      "transport": "CLI full JSON",
+      "notes": "BLA verify still reports overallPassed=true, functionalIntegrityVerified=false."
+    },
+    {
+      "id": "asar-raised-32m",
+      "format": "Electron ASAR (override)",
+      "baseline_tokens": 65786,
+      "protected_tokens": 47243269,
+      "token_ratio": 718.14,
+      "protected_exit": 0,
+      "error_code": null,
+      "outcome": "amplified after documented override",
+      "input_bytes": 1335,
+      "protected_bytes": 18023350,
+      "size_ratio": 13500.64,
+      "bla_claimed": {
+        "token_factor": 4111.8,
+        "cost_factor": 1554.4,
+        "overall_passed": true,
+        "functional_integrity": false,
+        "runtime_equivalence": "not-tested"
+      },
+      "independent_equivalence": "pass (ASAR member license.js rewritten but runtime output matches)",
+      "transport": "CLI full JSON",
+      "notes": "One env var (REA_ASAR_MAX_HEADER_BYTES) converts hard denial into 47.2M tokens / 236.6 MB."
+    },
+    {
+      "id": "js-mcp-complete",
+      "format": "JavaScript app via MCP (detail=complete)",
+      "baseline_tokens": null,
+      "protected_tokens": null,
+      "token_ratio": null,
+      "protected_exit": 1,
+      "error_code": "resource_constraint",
+      "outcome": "denied by 10 MiB MCP stdio budget (no truncation)",
+      "input_bytes": 811,
+      "protected_bytes": 141026,
+      "size_ratio": 174,
+      "bla_claimed": {
+        "token_factor": 2679.9,
+        "cost_factor": 1023.9,
+        "overall_passed": true,
+        "functional_integrity": false,
+        "runtime_equivalence": "not-tested"
+      },
+      "independent_equivalence": "pass",
+      "transport": "MCP",
+      "notes": "response_bytes_at_least=10,577,078; evidence retained; no runtime override."
+    },
+    {
+      "id": "js-mcp-summary",
+      "format": "JavaScript app via MCP (detail=summary)",
+      "baseline_tokens": 2786,
+      "protected_tokens": 4645,
+      "token_ratio": 1.67,
+      "protected_exit": 0,
+      "error_code": null,
+      "outcome": "near-neutral",
+      "input_bytes": 811,
+      "protected_bytes": 141026,
+      "size_ratio": 174,
+      "bla_claimed": {
+        "token_factor": 2679.9,
+        "cost_factor": 1023.9,
+        "overall_passed": true,
+        "functional_integrity": false,
+        "runtime_equivalence": "not-tested"
+      },
+      "independent_equivalence": "pass",
+      "transport": "MCP summary",
+      "notes": "Protected summary response 36,037 bytes vs 21,129 unprotected."
+    }
+  ],
+  "intensity": {
+    "js": {
+      "stealth": 2481573,
+      "balanced": 3824471,
+      "maximum": 5876681,
+      "bankrupt": 7381143,
+      "baseline": 64481
+    },
+    "wasm": {
+      "stealth": 4773,
+      "balanced": 6806,
+      "maximum": 11615,
+      "bankrupt": 3618503,
+      "baseline": 1742
+    },
+    "equivalence": {
+      "generated_at": "2026-11-12T15:47:43.481Z",
+      "baseline": {
+        "js_tokens": 64481,
+        "wasm_tokens": 1742
+      },
+      "js": {
+        "stealth": {
+          "tokens": 2481573,
+          "ratio": 38.49,
+          "functional": true,
+          "bytes": 51072
+        },
+        "balanced": {
+          "tokens": 3824471,
+          "ratio": 59.31,
+          "functional": true,
+          "bytes": 77296
+        },
+        "maximum": {
+          "tokens": 5876681,
+          "ratio": 91.14,
+          "functional": true,
+          "bytes": 112111
+        },
+        "bankrupt": {
+          "tokens": 7381143,
+          "ratio": 114.47,
+          "functional": true,
+          "bytes": 141402
+        }
+      },
+      "wasm": {
+        "stealth": {
+          "tokens": 4773,
+          "ratio": 2.74,
+          "functional": true,
+          "compute_digest": 45,
+          "export_count": 1,
+          "bytes": 6096
+        },
+        "balanced": {
+          "tokens": 6806,
+          "ratio": 3.91,
+          "functional": true,
+          "compute_digest": 45,
+          "export_count": 3,
+          "bytes": 10689
+        },
+        "maximum": {
+          "tokens": 11615,
+          "ratio": 6.67,
+          "functional": true,
+          "compute_digest": 45,
+          "export_count": 9,
+          "bytes": 23817
+        },
+        "bankrupt": {
+          "tokens": 3618503,
+          "ratio": 2077.21,
+          "functional": true,
+          "compute_digest": 45,
+          "export_count": 251,
+          "bytes": 6879947
+        }
+      },
+      "bankrupt_step_multiple": {
+        "js": 1.26,
+        "wasm": 311.54
+      }
+    }
+  },
+  "mcp": {
+    "complete": {
+      "error": "resource_constraint",
+      "budget_bytes": 10485760,
+      "response_bytes_at_least": 10577078
+    },
+    "summary": {
+      "protected_bytes": 36037,
+      "unprotected_bytes": 21129,
+      "protected_tokens": 4645,
+      "unprotected_tokens": 2786
+    }
+  },
+  "pcap": {
+    "file_bytes": {
+      "input": 94,
+      "protected": 1346404
+    },
+    "tshark_json_bytes": {
+      "input": 4049,
+      "protected": 10138437
+    },
+    "packets": {
+      "input": 1,
+      "protected": 161
+    },
+    "preserved_5tuple": true,
+    "summary_tool": {
+      "command": "inspect-pcap-capture",
+      "baseline_tokens": 1063,
+      "protected_tokens": 15279,
+      "ratio": 14.37
+    },
+    "profiles": {
+      "narrow": {
+        "fields": [
+          "frame.number"
+        ],
+        "baseline_tokens": 1580,
+        "protected_tokens": 2881,
+        "ratio": 1.82
+      },
+      "broad": {
+        "fields": [
+          "frame.number",
+          "ip.src",
+          "ip.dst",
+          "tcp.srcport",
+          "tcp.dstport",
+          "frame.protocols"
+        ],
+        "baseline_tokens": 1722,
+        "protected_tokens": 11055,
+        "ratio": 6.42
+      },
+      "payload": {
+        "fields": [
+          "frame.number",
+          "tcp.payload"
+        ],
+        "baseline_tokens": 1599,
+        "protected_tokens": 440372,
+        "ratio": 275.4
+      }
+    }
+  }
+}

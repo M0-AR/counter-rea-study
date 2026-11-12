@@ -1,0 +1,44 @@
+{
+  "command": "inspect-sqlite-database",
+  "tool": "REA SQLite inspector",
+  "default_inventory": {
+    "baseline": {
+      "exit": 0,
+      "tokens": 1308,
+      "error_code": null,
+      "error_message": null,
+      "limitations": null
+    },
+    "protected": {
+      "exit": 0,
+      "tokens": 1684,
+      "error_code": null,
+      "error_message": null,
+      "limitations": null
+    },
+    "ratio": 1.29
+  },
+  "trap_table": {
+    "protected": {
+      "exit": 1,
+      "tokens": 326,
+      "error_code": null,
+      "error_message": null,
+      "limitations": null
+    },
+    "protected_selected_column": {
+      "exit": 1,
+      "tokens": 326,
+      "error_code": null,
+      "error_message": null,
+      "limitations": null
+    },
+    "error": {
+      "exit": 1,
+      "code": "capability_unavailable",
+      "message": "SQLite cannot evaluate selected column(s) of table \"enclave_key_hierarchy\" on REA's read-only connection: \"unsealed_preview\": unknown function: enclave_unseal_payload()",
+      "operation": "inspect_sqlite_database"
+    }
+  },
+  "interpretation": "BLA's SQLite trap is real only when the analyzer evaluates the trap column. REA's default compact inventory lists the trap tables without reading their virtual columns; selecting the table or the unsealed_preview column reproduces SqliteColumnEvaluationFailure."
+}

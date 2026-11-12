@@ -1,0 +1,110 @@
+{
+  "safetensors_orig": {
+    "keys": [
+      "model.embed.weight"
+    ],
+    "metadata_keys": [
+      "format",
+      "license"
+    ],
+    "metadata_count": 2
+  },
+  "safetensors_prot": {
+    "keys": [
+      "model.embed.weight"
+    ],
+    "metadata_keys": [
+      "bla.shield.signature",
+      "enclave.canary.token.0",
+      "enclave.canary.token.1",
+      "enclave.canary.token.2",
+      "enclave.canary.token.3",
+      "enclave.canary.token.4",
+      "enclave.canary.token.5",
+      "enclave.canary.token.6",
+      "enclave.canary.token.7",
+      "enclave.canary.transport.0",
+      "enclave.canary.transport.1",
+      "enclave.canary.transport.2",
+      "enclave.canary.transport.3",
+      "enclave.canary.transport.4",
+      "enclave.canary.transport.5",
+      "enclave.canary.transport.6",
+      "enclave.canary.transport.7",
+      "enclave.delegation.notice",
+      "enclave.delegation.status",
+      "enclave.diagnostic.0",
+      "enclave.diagnostic.1",
+      "enclave.diagnostic.2",
+      "enclave.diagnostic.3",
+      "enclave.diagnostic.4",
+      "enclave.diagnostic.5",
+      "enclave.diagnostic.6",
+      "enclave.diagnostic.7",
+      "enclave.manifest.0",
+      "enclave.manifest.1",
+      "enclave.manifest.10",
+      "enclave.manifest.11",
+      "enclave.manifest.12",
+      "enclave.manifest.13",
+      "enclave.manifest.14",
+      "enclave.manifest.15",
+      "enclave.manifest.2",
+      "enclave.manifest.3",
+      "enclave.manifest.4",
+      "enclave.manifest.5",
+      "enclave.manifest.6",
+      "enclave.manifest.7",
+      "enclave.manifest.8",
+      "enclave.manifest.9",
+      "format",
+      "license"
+    ],
+    "metadata_count": 45
+  },
+  "gguf_orig": {
+    "fields": 3,
+    "tensors": 0,
+    "field_keys": [
+      "GGUF.kv_count",
+      "GGUF.tensor_count",
+      "GGUF.version"
+    ]
+  },
+  "gguf_prot": {
+    "fields": 30,
+    "tensors": 0,
+    "field_keys": [
+      "GGUF.kv_count",
+      "GGUF.tensor_count",
+      "GGUF.version",
+      "enclave.canary.token.0",
+      "enclave.canary.token.1",
+      "enclave.canary.token.2",
+      "enclave.canary.token.3",
+      "enclave.canary.token.4",
+      "enclave.canary.token.5",
+      "enclave.canary.token.6",
+      "enclave.canary.token.7",
+      "enclave.canary.transport.0",
+      "enclave.canary.transport.1",
+      "enclave.canary.transport.2",
+      "enclave.canary.transport.3",
+      "enclave.canary.transport.4",
+      "enclave.canary.transport.5",
+      "enclave.canary.transport.6",
+      "enclave.canary.transport.7",
+      "enclave.delegation.manifest",
+      "enclave.diagnostic.0",
+      "enclave.diagnostic.1",
+      "enclave.diagnostic.2",
+      "enclave.diagnostic.3",
+      "enclave.diagnostic.4",
+      "enclave.diagnostic.5",
+      "enclave.diagnostic.6",
+      "enclave.diagnostic.7",
+      "enclave.nesting.breaker",
+      "general.description"
+    ]
+  }
+}

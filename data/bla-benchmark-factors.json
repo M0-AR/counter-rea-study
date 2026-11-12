@@ -1,0 +1,208 @@
+{
+  "source": "artifact/upstream/bla benchmark output (data/raw/bla-benchmark.json)",
+  "blaVersion": "3.2.5",
+  "aggregateTokenMultiplier": 1067.3,
+  "aggregateCostMultiplier": 502.9,
+  "cases": [
+    {
+      "id": "dx-ball",
+      "format": "javascript",
+      "beforeTokens": 4800,
+      "afterTokens": 15061000,
+      "tokenMultiplier": 3137.7,
+      "costMultiplier": 1177.5,
+      "functionalCheckPassed": true,
+      "afterOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY",
+      "triggeredLimits": [
+        "alias-selections",
+        "primitive-candidates",
+        "primitive-bytes",
+        "getter-expansion"
+      ]
+    },
+    {
+      "id": "notion-electron",
+      "format": "electron-asar",
+      "beforeTokens": 9132,
+      "afterTokens": 23125000,
+      "tokenMultiplier": 2532.3,
+      "costMultiplier": 1054.6,
+      "functionalCheckPassed": true,
+      "afterOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY",
+      "triggeredLimits": [
+        "alias-selections",
+        "primitive-candidates",
+        "primitive-bytes",
+        "getter-expansion"
+      ]
+    },
+    {
+      "id": "license-guard",
+      "format": "javascript",
+      "beforeTokens": 4800,
+      "afterTokens": 15229000,
+      "tokenMultiplier": 3172.7,
+      "costMultiplier": 1190.1,
+      "functionalCheckPassed": true,
+      "afterOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY",
+      "triggeredLimits": [
+        "alias-selections",
+        "primitive-candidates",
+        "primitive-bytes",
+        "getter-expansion"
+      ]
+    },
+    {
+      "id": "wasm-core",
+      "format": "wasm",
+      "beforeTokens": 4800,
+      "afterTokens": 1831000,
+      "tokenMultiplier": 381.5,
+      "costMultiplier": 151.2,
+      "functionalCheckPassed": true,
+      "afterOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY",
+      "triggeredLimits": [
+        "wasm-custom-name-mirage",
+        "wasm-enclave-chaff"
+      ]
+    },
+    {
+      "id": "native-elf",
+      "format": "native-elf",
+      "beforeTokens": 35222,
+      "afterTokens": 3718600,
+      "tokenMultiplier": 105.6,
+      "costMultiplier": 82.2,
+      "functionalCheckPassed": true,
+      "afterOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY",
+      "triggeredLimits": [
+        "maximum_rustc_hashes (capacity > 64)",
+        "maximum_sentinels_per_slice (ElectronFuseReader > 32)",
+        "max_snapshot_hash_candidates (FlutterPayloadScan > 64)",
+        "native-rodata-chaff-mirage"
+      ]
+    },
+    {
+      "id": "sqlite-db",
+      "format": "sqlite",
+      "beforeTokens": 10568,
+      "afterTokens": 1713391,
+      "tokenMultiplier": 162.1,
+      "costMultiplier": 97.9,
+      "functionalCheckPassed": true,
+      "afterOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY",
+      "triggeredLimits": [
+        "column-evaluation (SqliteColumnEvaluationFailure)",
+        "sqlite-enclave-honey-tables"
+      ]
+    },
+    {
+      "id": "safetensors-model",
+      "format": "model-safetensors",
+      "beforeTokens": 4800,
+      "afterTokens": 1808634,
+      "tokenMultiplier": 376.8,
+      "costMultiplier": 149.5,
+      "functionalCheckPassed": true,
+      "afterOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY",
+      "triggeredLimits": [
+        "json-nesting (MODEL_JSON_NESTING > 32)",
+        "model-enclave-partition-chaff"
+      ]
+    },
+    {
+      "id": "android-dex",
+      "format": "android-dex",
+      "beforeTokens": 8900,
+      "afterTokens": 13443709,
+      "tokenMultiplier": 1510.5,
+      "costMultiplier": 615.9,
+      "functionalCheckPassed": true,
+      "afterOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY",
+      "triggeredLimits": [
+        "dex-il2cpp-enclave-tarpit"
+      ]
+    },
+    {
+      "id": "apple-plist",
+      "format": "apple-plist",
+      "beforeTokens": 6440,
+      "afterTokens": 1787727,
+      "tokenMultiplier": 277.6,
+      "costMultiplier": 113.6,
+      "functionalCheckPassed": true,
+      "afterOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY",
+      "triggeredLimits": [
+        "plist-internal-subset-expansion (PropertyListDecodeBudgetFailure)"
+      ]
+    },
+    {
+      "id": "dotnet-managed",
+      "format": "dotnet-managed",
+      "beforeTokens": 8900,
+      "afterTokens": 2014454,
+      "tokenMultiplier": 226.3,
+      "costMultiplier": 97.7,
+      "functionalCheckPassed": true,
+      "afterOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY",
+      "triggeredLimits": [
+        "managed-pinvoke-import",
+        "managed-metadata-string-row-inflation"
+      ]
+    },
+    {
+      "id": "erlang-beam",
+      "format": "erlang-beam",
+      "beforeTokens": 8900,
+      "afterTokens": 3855400,
+      "tokenMultiplier": 433.2,
+      "costMultiplier": 182.6,
+      "functionalCheckPassed": true,
+      "afterOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY",
+      "triggeredLimits": [
+        "erlang-beam-chunks (max_chunks default 64)",
+        "erlang-beam-atoms (max_atoms default 4096)"
+      ]
+    },
+    {
+      "id": "evm-bytecode",
+      "format": "evm-bytecode",
+      "beforeTokens": 6440,
+      "afterTokens": 1779400,
+      "tokenMultiplier": 276.3,
+      "costMultiplier": 113.1,
+      "functionalCheckPassed": true,
+      "afterOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY",
+      "triggeredLimits": [
+        "evm-input-bytes (EVM_INTERFACE_LIMITS.inputBytes)",
+        "evm-solidity-metadata-cbor"
+      ]
+    },
+    {
+      "id": "pcap-capture",
+      "format": "pcap-capture",
+      "beforeTokens": 4800,
+      "afterTokens": 23125000,
+      "tokenMultiplier": 4817.7,
+      "costMultiplier": 1796.3,
+      "functionalCheckPassed": true,
+      "afterOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY",
+      "triggeredLimits": [
+        "pcap-tshark-json (TSHARK_JSON_MAX_BYTES 8 MiB)"
+      ]
+    },
+    {
+      "id": "gpu-ptx",
+      "format": "gpu-ptx",
+      "beforeTokens": 4800,
+      "afterTokens": 23106994,
+      "tokenMultiplier": 4814,
+      "costMultiplier": 1791,
+      "functionalCheckPassed": true,
+      "afterOutcome": "AGENT_HALLUCINATION_AND_BANKRUPTCY",
+      "triggeredLimits": [
+        "gpu-ptx-entry-facts (128 decoy .entry kernels)"
+      ]
+    }
+  ]
+}
